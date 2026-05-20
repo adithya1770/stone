@@ -1,0 +1,4 @@
+numpy==2.2.6
+pillow==12.2.0
+psutil==7.2.2
+tflite-runtime==2.14.0

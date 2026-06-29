@@ -1,0 +1,2 @@
+timestamp,cpu,cpu_ema,memory,temperature,chosen_model,latency,confidence,reward
+2026-06-29 21:02:19.301986,20,18,30,45,FP32,0.2,0.95,0.9

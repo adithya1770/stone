@@ -1,4 +1,5 @@
 from runtime.inference_engine import InferenceEngine
+from runtime.telemetry import get_telemetry
 
 engine = InferenceEngine(
     fp32_path="models/mobilenet_v2_fp32.tflite",
@@ -11,3 +12,4 @@ int8_result = engine.run("dog.jpeg", "int8")
 
 print("FP32 result:", fp32_result)
 print("INT8 result:", int8_result)
+print("Telemetry:", get_telemetry())

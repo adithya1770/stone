@@ -6,17 +6,21 @@ def get_telemetry():
 
     try:
         temps = psutil.sensors_temperatures()
+
         if "coretemp" in temps:
             temperature = temps["coretemp"][0].current
+
         elif "cpu_thermal" in temps:
             temperature = temps["cpu_thermal"][0].current
+
         else:
-            temperature = None
+            temperature = 40
+
     except AttributeError:
-        temperature = None
+        temperature = 40
 
     return {
-        "cpu_percent": cpu,
-        "ram_percent": ram,
-        "temperature_c": temperature
+        "cpu": cpu,
+        "ram": ram,
+        "temperature": temperature
     }

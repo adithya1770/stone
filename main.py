@@ -1,5 +1,9 @@
+import time
+
 from runtime.inference_engine import InferenceEngine
 from runtime.telemetry import get_telemetry
+from runtime.decision_engine import decide
+
 
 engine = InferenceEngine(
     fp32_path="models/mobilenet_v2_fp32.tflite",
@@ -7,9 +11,31 @@ engine = InferenceEngine(
     labels_path="models/labels.txt"
 )
 
-fp32_result = engine.run("dog.jpeg", "fp32")
-int8_result = engine.run("dog.jpeg", "int8")
+state = {
+    "current_model": "fp32",
+    "high_count": 0,
+    "low_count": 0
+}
 
-print("FP32 result:", fp32_result)
-print("INT8 result:", int8_result)
-print("Telemetry:", get_telemetry())
+while True:
+
+    telemetry = get_telemetry()
+
+    decision = decide(
+        telemetry["cpu"],
+        telemetry["ram"],
+        telemetry["temperature"],
+        state
+    )
+
+    result = engine.run(
+        "dog.jpeg",
+        decision["model"]
+    )
+
+    print("-" * 50)
+    print("Telemetry :", telemetry)
+    print("Decision  :", decision)
+    print("Inference :", result)
+
+    time.sleep(1)

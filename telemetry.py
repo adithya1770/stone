@@ -48,9 +48,3 @@ class TelemetryMonitor:
             "temperature": self.get_temperature()
         }
     
-if __name__ == "__main__":
-
-    monitor = TelemetryMonitor()
-
-    for _ in range(10):
-        print(monitor.get_telemetry())

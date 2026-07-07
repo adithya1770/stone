@@ -71,7 +71,7 @@ class ModelManager:
             zero_point = output_details["quantization"][1]
 
             output = (output.astype(np.float32) - zero_point) * scale
-        confidence = float(np.max(output))
+        
 
         class_id = int(np.argmax(output))
         confidence = float(np.max(output))

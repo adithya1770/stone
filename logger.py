@@ -48,20 +48,3 @@ class RuntimeLogger:
 from datetime import datetime
 
 
-if __name__ == "__main__":
-
-    logger = RuntimeLogger()
-
-    logger.log({
-        "timestamp": datetime.now(),
-        "cpu": 20,
-        "cpu_ema": 18,
-        "memory": 30,
-        "temperature": 45,
-        "chosen_model": "FP32",
-        "latency": 0.2,
-        "confidence": 0.95,
-        "reward": 0.90
-    })
-
-    print("Log written.")

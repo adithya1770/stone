@@ -1,50 +1,77 @@
+# telemetry.py
+
 import psutil
+import time
 
 
-class TelemetryMonitor:
-    def __init__(self, alpha=0.3):
-        self.alpha = alpha
+class Telemetry:
+    """
+    Collects raw device telemetry and maintains smoothed (EMA) versions
+    of the signals that will later feed the context feature vector.
+    """
+
+    def __init__(self, ema_alpha: float = 0.3):
+        self.ema_alpha = ema_alpha
         self.cpu_ema = None
+        self.mem_ema = None
 
-    def get_cpu_usage(self):
-        return psutil.cpu_percent(interval=1)
+    def _read_cpu(self) -> float:
+        # interval=0.1 gives a real sampled reading instead of an instant 0.0
+        return psutil.cpu_percent(interval=0.1)
 
-    def get_memory_usage(self):
+    def _read_memory(self) -> float:
         return psutil.virtual_memory().percent
 
-    def get_temperature(self):
-        temps = psutil.sensors_temperatures()
+    def _read_temperature(self):
+        try:
+            temps = psutil.sensors_temperatures()
+        except (AttributeError, NotImplementedError):
+            return None
 
         if not temps:
             return None
 
-        for sensor_name, entries in temps.items():
-            if entries:
-                return entries[0].current
+        # Just take the first available sensor's first reading.
+        # On laptops this is usually 'coretemp'; on a Pi it'll be 'cpu_thermal'.
+        first_sensor = next(iter(temps.values()))
+        if not first_sensor:
+            return None
 
-        return None
+        return first_sensor[0].current
 
-    def update_cpu_ema(self, cpu):
+    def _update_ema(self, current: float, previous_ema):
+        if previous_ema is None:
+            return current  # first reading, no history yet
+        return self.ema_alpha * current + (1 - self.ema_alpha) * previous_ema
 
-        if self.cpu_ema is None:
-            self.cpu_ema = cpu
+    def read(self) -> dict:
+        """
+        Takes one telemetry snapshot, updates internal EMA state,
+        and returns both raw and smoothed values.
+        """
+        cpu_raw = self._read_cpu()
+        mem_raw = self._read_memory()
+        temp_raw = self._read_temperature()
 
-        else:
-            self.cpu_ema = (
-                self.alpha * cpu
-                + (1 - self.alpha) * self.cpu_ema
-            )
-
-        return self.cpu_ema
-
-    def get_telemetry(self):
-
-        cpu = self.get_cpu_usage()
+        self.cpu_ema = self._update_ema(cpu_raw, self.cpu_ema)
+        self.mem_ema = self._update_ema(mem_raw, self.mem_ema)
 
         return {
-            "cpu": cpu,
-            "cpu_ema": round(self.update_cpu_ema(cpu),2),
-            "memory": self.get_memory_usage(),
-            "temperature": self.get_temperature()
+            "cpu_raw": cpu_raw,
+            "cpu_ema": self.cpu_ema,
+            "mem_raw": mem_raw,
+            "mem_ema": self.mem_ema,
+            "temp": temp_raw,  # None if no sensor available
         }
-    
+
+
+if __name__ == "__main__":
+    t = Telemetry()
+    print("Reading telemetry every second. Ctrl+C to stop.")
+    try:
+        while True:
+            snapshot = t.read()
+            print(snapshot)
+            time.sleep(1)
+    except KeyboardInterrupt:
+        print("\nStopped.")

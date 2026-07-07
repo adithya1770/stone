@@ -5,13 +5,9 @@ LOG_FILE = "logging/session_log.csv"
 
 
 def initialize_logger():
-
     if not os.path.exists(LOG_FILE):
-
         with open(LOG_FILE, "w", newline="") as file:
-
             writer = csv.writer(file)
-
             writer.writerow([
                 "timestamp",
                 "cpu",
@@ -26,11 +22,8 @@ def initialize_logger():
 
 
 def log_data(data):
-
     with open(LOG_FILE, "a", newline="") as file:
-
         writer = csv.writer(file)
-
         writer.writerow([
             data["timestamp"],
             data["cpu"],

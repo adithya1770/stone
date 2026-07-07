@@ -1,8 +1,10 @@
 import time
+from datetime import datetime
 
 from runtime.inference_engine import InferenceEngine
 from runtime.telemetry import get_telemetry
 from runtime.decision_engine import decide
+from runtime.logger import initialize_logger, log_data
 
 
 engine = InferenceEngine(
@@ -17,8 +19,9 @@ state = {
     "low_count": 0
 }
 
-while True:
+initialize_logger()
 
+while True:
     telemetry = get_telemetry()
 
     decision = decide(
@@ -28,10 +31,19 @@ while True:
         state
     )
 
-    result = engine.run(
-        "dog.jpeg",
-        decision["model"]
-    )
+    result = engine.run("dog.jpeg", decision["model"])
+
+    log_data({
+        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "cpu": telemetry["cpu"],
+        "ram": telemetry["ram"],
+        "temperature": telemetry["temperature"],
+        "health_score": decision["health_score"],
+        "model": result["model"],
+        "label": result["label"],
+        "confidence": result["confidence"],
+        "latency_ms": result["latency_ms"]
+    })
 
     print("-" * 50)
     print("Telemetry :", telemetry)

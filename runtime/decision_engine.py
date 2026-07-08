@@ -1,3 +1,37 @@
+import numpy as np
+
+class LinUCB:
+
+    def __init__(self, alpha=1.0):
+        self.alpha = alpha
+        self.models = ["fp32", "int8"]
+        self.d = 3
+
+        self.A = {m: np.identity(self.d) for m in self.models}
+        self.b = {m: np.zeros(self.d) for m in self.models}
+
+    def _context(self, cpu, ram, temp):
+        return np.array([cpu / 100.0, ram / 100.0, temp / 100.0])
+
+    def choose(self, cpu, ram, temp):
+        x = self._context(cpu, ram, temp)
+        scores = {}
+
+        for model in self.models:
+            A_inv = np.linalg.inv(self.A[model])
+            theta = A_inv @ self.b[model]
+            expected = theta @ x
+            uncertainty = self.alpha * np.sqrt(x @ A_inv @ x)
+            scores[model] = expected + uncertainty
+
+        chosen = max(scores, key=scores.get)
+        return chosen, scores
+
+    def update(self, model, cpu, ram, temp, reward):
+        x = self._context(cpu, ram, temp)
+        self.A[model] += np.outer(x, x)
+        self.b[model] += reward * x
+
 HIGH_THRESHOLD = 70
 LOW_THRESHOLD = 50
 REQUIRED_READINGS = 10

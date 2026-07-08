@@ -3,18 +3,9 @@ from datetime import datetime
 
 from runtime.inference_engine import InferenceEngine
 from runtime.telemetry import get_telemetry
-from runtime.decision_engine import decide
-from runtime.logger import initialize_logger, log_data
+from runtime.decision_engine import decide, LinUCB
 from runtime.reward import calculate_reward
-
-r = calculate_reward(0.55, 13)
-print("Reward (FP32 healthy):", r)
-
-r = calculate_reward(0.55, 38)
-print("Reward (FP32 stressed):", r)
-
-r = calculate_reward(0.24, 12)
-print("Reward (INT8 stressed):", r)
+from runtime.logger import initialize_logger, log_data
 
 
 engine = InferenceEngine(
@@ -29,26 +20,36 @@ state = {
     "low_count": 0
 }
 
+linucb = LinUCB(alpha=1.0)
 initialize_logger()
 
 while True:
     telemetry = get_telemetry()
 
-    decision = decide(
+    chosen_model, scores = linucb.choose(
+        telemetry["cpu"],
+        telemetry["ram"],
+        telemetry["temperature"]
+    )
+
+    result = engine.run("dog.jpeg", chosen_model)
+
+    reward = calculate_reward(result["confidence"], result["latency_ms"])
+
+    linucb.update(
+        chosen_model,
         telemetry["cpu"],
         telemetry["ram"],
         telemetry["temperature"],
-        state
+        reward
     )
-
-    result = engine.run("dog.jpeg", decision["model"])
 
     log_data({
         "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "cpu": telemetry["cpu"],
         "ram": telemetry["ram"],
         "temperature": telemetry["temperature"],
-        "health_score": decision["health_score"],
+        "health_score": round(scores["fp32"], 4),
         "model": result["model"],
         "label": result["label"],
         "confidence": result["confidence"],
@@ -57,7 +58,9 @@ while True:
 
     print("-" * 50)
     print("Telemetry :", telemetry)
-    print("Decision  :", decision)
+    print("Scores    :", {k: round(v, 4) for k, v in scores.items()})
+    print("Chosen    :", chosen_model)
+    print("Reward    :", reward)
     print("Inference :", result)
 
     time.sleep(1)

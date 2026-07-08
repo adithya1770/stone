@@ -1,58 +1,33 @@
-
+import time
 
 ACTION_FP32 = 0
 ACTION_INT8 = 1
-
-HIGH_THRESHOLD = 70
-LOW_THRESHOLD = 50
-REQUIRED_READINGS = 10
-
+CPU_THRESHOLD = 30
 
 class DecisionEngine:
 
-    def __init__(self):
+    def __init__(self, min_mode_duration=5):
+        self.min_mode_duration = min_mode_duration
+        self.current_action = None
+        self.last_switch_time = 0
 
-        self.current_action = ACTION_FP32
-
-        self.high_count = 0
-        self.low_count = 0
-
-    def choose_action(self, telemetry):
-
-        cpu_ema = telemetry["cpu_ema"]
-
-        if cpu_ema > HIGH_THRESHOLD:
-
-            self.high_count += 1
-            self.low_count = 0
-
-        elif cpu_ema < LOW_THRESHOLD:
-
-            self.low_count += 1
-            self.high_count = 0
-
-        else:
-
-            self.high_count = 0
-            self.low_count = 0
-
-        if self.high_count >= REQUIRED_READINGS:
-
-            self.current_action = ACTION_INT8
-
-        if self.low_count >= REQUIRED_READINGS:
-
-            self.current_action = ACTION_FP32
-
-        return self.current_action
+    def _choose_action(self, telemetry):
+        if telemetry["cpu_ema"] > CPU_THRESHOLD:
+            return ACTION_INT8
+        return ACTION_FP32
     
-if __name__ == "__main__":
-
-    engine = DecisionEngine()
-
-    for _ in range(12):
-        print(
-            engine.choose_action(
-                {"cpu_ema": 80}
-            )
-        )
+    def decide(self, telemetry):
+        now = time.time()
+        proposed = self._choose_action(telemetry)
+        if self.current_action is None:
+            self.current_action = proposed
+            self.last_switch_time = now
+            return self.current_action
+        time_since_switch = now - self.last_switch_time
+        if (
+            proposed != self.current_action
+            and time_since_switch >= self.min_mode_duration
+        ):
+            self.current_action = proposed
+            self.last_switch_time = now
+        return self.current_action

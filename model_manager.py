@@ -44,7 +44,7 @@ class ModelManager:
 
             input_data = (img_np / 255.0)
             input_data = input_data / scale + zero_point
-            input_data = input_data.astype(np.int8)
+            input_data = np.clip(np.round(input_data), -128, 127).astype(np.int8)
 
         input_data = np.expand_dims(input_data, axis=0)
 
@@ -56,11 +56,11 @@ class ModelManager:
         model.set_tensor(input_index, input_data)
 
         # Run inference
-        start = time.time()
+        start = time.perf_counter()
 
         model.invoke()
 
-        latency_ms = (time.time() - start) * 1000
+        latency_ms = (time.perf_counter() - start) * 1000
 
         # Read output
         output = model.get_tensor(output_index)

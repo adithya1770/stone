@@ -5,6 +5,16 @@ from runtime.inference_engine import InferenceEngine
 from runtime.telemetry import get_telemetry
 from runtime.decision_engine import decide
 from runtime.logger import initialize_logger, log_data
+from runtime.reward import calculate_reward
+
+r = calculate_reward(0.55, 13)
+print("Reward (FP32 healthy):", r)
+
+r = calculate_reward(0.55, 38)
+print("Reward (FP32 stressed):", r)
+
+r = calculate_reward(0.24, 12)
+print("Reward (INT8 stressed):", r)
 
 
 engine = InferenceEngine(

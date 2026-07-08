@@ -1,0 +1,8 @@
+timestamp,cpu,ram,temperature,health_score,model,label,confidence,latency_ms
+2026-07-08 15:10:42,14.4,36.8,69.0,35.26,fp32,curly-coated retriever,0.5467,14.22
+2026-07-08 15:10:43,2.9,36.7,53.0,24.69,fp32,curly-coated retriever,0.5467,12.61
+2026-07-08 15:10:45,2.0,36.6,53.0,24.22,fp32,curly-coated retriever,0.5467,13.12
+2026-07-08 15:10:46,0.9,36.3,51.0,23.01,fp32,curly-coated retriever,0.5467,12.38
+2026-07-08 15:10:48,3.5,36.3,51.0,24.31,fp32,curly-coated retriever,0.5467,12.61
+2026-07-08 15:10:50,1.0,36.2,51.0,23.04,fp32,curly-coated retriever,0.5467,13.72
+2026-07-08 15:10:51,4.9,35.9,51.0,24.93,fp32,curly-coated retriever,0.5467,12.36

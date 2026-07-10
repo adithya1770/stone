@@ -24,7 +24,7 @@ class InferenceEngine:
 
         img = Image.open(image_path).convert('RGB').resize((224, 224))
         img_array = np.array(img)
-        img_array = img_array.astype(np.int8) if is_int8 else (img_array / 255.0).astype(np.float32)
+        img_array = (img_array.astype(np.int32) - 128).astype(np.int8) if is_int8 else (img_array / 255.0).astype(np.float32)
         img_array = np.expand_dims(img_array, axis=0)
 
         inp = model.get_input_details()[0]['index']

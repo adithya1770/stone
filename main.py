@@ -64,3 +64,7 @@ while True:
     print("Inference :", result)
 
     time.sleep(1)
+
+# add temporarily to main.py
+print(engine.run("images/dog.jpeg", "fp32"))
+print(engine.run("images/dog.jpeg", "int8"))

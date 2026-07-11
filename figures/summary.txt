@@ -1,0 +1,13 @@
+Rows: 999
+
+Action Counts
+model_used
+int8    592
+fp32    407
+Name: count, dtype: int64
+
+Average Metrics
+            latency_ms    reward
+model_used                      
+fp32          8.652678  0.508068
+int8         17.559966  0.359873

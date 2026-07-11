@@ -1,14 +1,9 @@
-# telemetry.py
 
 import psutil
 import time
 
 
 class Telemetry:
-    """
-    Collects raw device telemetry and maintains smoothed (EMA) versions
-    of the signals that will later feed the context feature vector.
-    """
 
     def __init__(self, ema_alpha: float = 0.3):
         self.ema_alpha = ema_alpha
@@ -30,9 +25,6 @@ class Telemetry:
 
         if not temps:
             return None
-
-        # Just take the first available sensor's first reading.
-        # On laptops this is usually 'coretemp'; on a Pi it'll be 'cpu_thermal'.
         first_sensor = next(iter(temps.values()))
         if not first_sensor:
             return None
@@ -41,7 +33,7 @@ class Telemetry:
 
     def _update_ema(self, current: float, previous_ema):
         if previous_ema is None:
-            return current  # first reading, no history yet
+            return current  # first reading
         return self.ema_alpha * current + (1 - self.ema_alpha) * previous_ema
 
     def read(self) -> dict:

@@ -77,8 +77,8 @@ class ModelManager:
         confidence = float(np.max(output))
 
         # Safety check
-        if class_id < len(self.labels):
-            label = self.labels[class_id]
+        if class_id+1 < len(self.labels):
+            label = self.labels[class_id+1]
         else:
             label = "unknown"
 

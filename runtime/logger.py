@@ -1,13 +1,13 @@
 import csv
 import os
 
-LOG_FILE = "logging/session_log.csv"
+DEFAULT_LOG = "logging/session_log.csv"
 
 
-def initialize_logger():
-    if not os.path.exists(LOG_FILE):
-        with open(LOG_FILE, "w", newline="") as file:
-            writer = csv.writer(file)
+def initialize_logger(log_file=DEFAULT_LOG):
+    if not os.path.exists(log_file):
+        with open(log_file, "w", newline="") as f:
+            writer = csv.writer(f)
             writer.writerow([
                 "timestamp",
                 "cpu",
@@ -19,11 +19,12 @@ def initialize_logger():
                 "confidence",
                 "latency_ms"
             ])
+    return log_file
 
 
-def log_data(data):
-    with open(LOG_FILE, "a", newline="") as file:
-        writer = csv.writer(file)
+def log_data(data, log_file=DEFAULT_LOG):
+    with open(log_file, "a", newline="") as f:
+        writer = csv.writer(f)
         writer.writerow([
             data["timestamp"],
             data["cpu"],

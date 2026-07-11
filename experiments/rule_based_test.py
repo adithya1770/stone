@@ -1,16 +1,18 @@
 import time
+import sys
+import os
 from datetime import datetime
 from collections import deque
 import numpy as np
 
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from runtime.inference_engine import InferenceEngine
 from runtime.telemetry import get_telemetry
-from runtime.decision_engine import decide, LinUCB
-from runtime.reward import calculate_reward
+from runtime.decision_engine import decide
 from runtime.logger import initialize_logger, log_data
 
-
-LOG_FILE = "logging/linucb_warm_log.csv"
+LOG_FILE = "logging/rule_based_log.csv"
 EMA_ALPHA = 0.2
 WINDOW_SIZE = 5
 
@@ -45,7 +47,6 @@ state = {
     "low_count": 0
 }
 
-linucb = LinUCB(alpha=1.0)
 initialize_logger(LOG_FILE)
 
 ema_cpu  = None
@@ -53,7 +54,7 @@ ema_ram  = None
 ema_temp = None
 recent_cpu = deque(maxlen=WINDOW_SIZE)
 
-print("Stone adaptive runtime running — LinUCB mode.")
+print("Rule-based test running.")
 print("-" * 50)
 
 while True:
@@ -72,43 +73,30 @@ while True:
         "temperature": round(ema_temp, 2)
     }
 
-    chosen_model, scores = linucb.choose(
-        smoothed["cpu"],
-        smoothed["ram"],
-        smoothed["temperature"]
-    )
-
-    result = engine.run("dog.jpeg", chosen_model)
-
-    reward = calculate_reward(result["confidence"], result["latency_ms"])
-
-    linucb.update(
-        chosen_model,
+    decision = decide(
         smoothed["cpu"],
         smoothed["ram"],
         smoothed["temperature"],
-        reward
+        state
     )
+
+    result = engine.run("dog.jpeg", decision["model"])
 
     log_data({
         "timestamp":    datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "cpu":          smoothed["cpu"],
         "ram":          smoothed["ram"],
         "temperature":  smoothed["temperature"],
-        "health_score": round(scores["fp32"], 4),
+        "health_score": decision["health_score"],
         "model":        result["model"],
         "label":        result["label"],
         "confidence":   result["confidence"],
         "latency_ms":   result["latency_ms"]
     }, LOG_FILE)
 
-    print("Raw       :", telemetry)
-    print("Alpha     :", alpha)
-    print("Smoothed  :", smoothed)
-    print("Scores    :", {k: round(v, 4) for k, v in scores.items()})
-    print("Chosen    :", chosen_model)
-    print("Reward    :", reward)
-    print("Inference :", result)
+    print(f"Smoothed  : {smoothed}")
+    print(f"Decision  : {decision}")
+    print(f"Inference : {result}")
     print("-" * 50)
 
     time.sleep(1)

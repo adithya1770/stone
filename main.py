@@ -1,4 +1,5 @@
 import time
+import threading
 from datetime import datetime
 from collections import deque
 import numpy as np
@@ -10,9 +11,33 @@ from runtime.reward import calculate_reward
 from runtime.logger import initialize_logger, log_data
 
 
-LOG_FILE = "logging/linucb_warm_log.csv"
+LOG_FILE = "logging/linucb_log.csv"
 EMA_ALPHA = 0.2
 WINDOW_SIZE = 5
+
+# --- shared telemetry state ---
+_telemetry_state = {
+    "cpu":          0.0,
+    "ram":          0.0,
+    "temperature":  40.0,
+    "cpu_per_core": []
+}
+_telemetry_lock = threading.Lock()
+
+
+def _telemetry_worker():
+    while True:
+        fresh = get_telemetry()
+        with _telemetry_lock:
+            _telemetry_state["cpu"]          = fresh["cpu"]
+            _telemetry_state["ram"]          = fresh["ram"]
+            _telemetry_state["temperature"]  = fresh["temperature"]
+            _telemetry_state["cpu_per_core"] = fresh["cpu_per_core"]
+
+
+def read_telemetry():
+    with _telemetry_lock:
+        return dict(_telemetry_state)
 
 
 def adaptive_alpha(recent_values):
@@ -33,6 +58,14 @@ def update_ema(previous, current, alpha):
     return alpha * current + (1 - alpha) * previous
 
 
+# --- start telemetry thread ---
+_t = threading.Thread(target=_telemetry_worker, daemon=True)
+_t.start()
+print("Telemetry thread started.")
+
+# wait one cycle so first read isn't zeros
+time.sleep(0.6)
+
 engine = InferenceEngine(
     fp32_path="models/mobilenet_v2_fp32.tflite",
     int8_path="models/mobilenet_v2_int8.tflite",
@@ -41,8 +74,8 @@ engine = InferenceEngine(
 
 state = {
     "current_model": "fp32",
-    "high_count": 0,
-    "low_count": 0
+    "high_count":    0,
+    "low_count":     0
 }
 
 linucb = LinUCB(alpha=1.0)
@@ -57,13 +90,13 @@ print("Stone adaptive runtime running — LinUCB mode.")
 print("-" * 50)
 
 while True:
-    telemetry = get_telemetry()
+    telemetry = read_telemetry()
 
     recent_cpu.append(telemetry["cpu"])
     alpha = adaptive_alpha(recent_cpu)
 
-    ema_cpu  = update_ema(ema_cpu,  telemetry["cpu"],         alpha)
-    ema_ram  = update_ema(ema_ram,  telemetry["ram"],         alpha)
+    ema_cpu  = update_ema(ema_cpu,  telemetry["cpu"],        alpha)
+    ema_ram  = update_ema(ema_ram,  telemetry["ram"],        alpha)
     ema_temp = update_ema(ema_temp, telemetry["temperature"], alpha)
 
     smoothed = {
@@ -103,6 +136,7 @@ while True:
     }, LOG_FILE)
 
     print("Raw       :", telemetry)
+    print("Per-core  :", telemetry["cpu_per_core"])
     print("Alpha     :", alpha)
     print("Smoothed  :", smoothed)
     print("Scores    :", {k: round(v, 4) for k, v in scores.items()})

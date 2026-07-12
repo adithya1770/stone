@@ -1,21 +1,39 @@
 import time
 import threading
+import argparse
 from datetime import datetime
 from collections import deque
 import numpy as np
 
 from runtime.inference_engine import InferenceEngine
 from runtime.telemetry import get_telemetry
-from runtime.decision_engine import decide, LinUCB
+from runtime.decision_engine import decide, get_algo
 from runtime.reward import calculate_reward
 from runtime.logger import initialize_logger, log_data
 
 
-LOG_FILE = "logging/linucb_log.csv"
-EMA_ALPHA = 0.2
-WINDOW_SIZE = 5
+parser = argparse.ArgumentParser(description="Stone Adaptive Runtime")
+parser.add_argument(
+    "--algo",
+    type=str,
+    default="linucb",
+    choices=["linucb", "thompson"],
+    help="Decision algorithm: linucb or thompson"
+)
+parser.add_argument(
+    "--log",
+    type=str,
+    default="logging/linucb_log.csv",
+    help="Log file path"
+)
+args = parser.parse_args()
 
-# --- shared telemetry state ---
+DECISION_ALGO = args.algo
+LOG_FILE      = args.log
+EMA_ALPHA     = 0.2
+WINDOW_SIZE   = 5
+
+
 _telemetry_state = {
     "cpu":          0.0,
     "ram":          0.0,
@@ -58,12 +76,9 @@ def update_ema(previous, current, alpha):
     return alpha * current + (1 - alpha) * previous
 
 
-# --- start telemetry thread ---
 _t = threading.Thread(target=_telemetry_worker, daemon=True)
 _t.start()
 print("Telemetry thread started.")
-
-# wait one cycle so first read isn't zeros
 time.sleep(0.6)
 
 engine = InferenceEngine(
@@ -78,15 +93,16 @@ state = {
     "low_count":     0
 }
 
-linucb = LinUCB(alpha=1.0)
+algo = get_algo(DECISION_ALGO, alpha=1.0)
 initialize_logger(LOG_FILE)
 
-ema_cpu  = None
-ema_ram  = None
-ema_temp = None
+ema_cpu    = None
+ema_ram    = None
+ema_temp   = None
 recent_cpu = deque(maxlen=WINDOW_SIZE)
 
-print("Stone adaptive runtime running — LinUCB mode.")
+print(f"Stone adaptive runtime — {DECISION_ALGO.upper()} mode.")
+print(f"Logging to: {LOG_FILE}")
 print("-" * 50)
 
 while True:
@@ -95,8 +111,8 @@ while True:
     recent_cpu.append(telemetry["cpu"])
     alpha = adaptive_alpha(recent_cpu)
 
-    ema_cpu  = update_ema(ema_cpu,  telemetry["cpu"],        alpha)
-    ema_ram  = update_ema(ema_ram,  telemetry["ram"],        alpha)
+    ema_cpu  = update_ema(ema_cpu,  telemetry["cpu"],         alpha)
+    ema_ram  = update_ema(ema_ram,  telemetry["ram"],         alpha)
     ema_temp = update_ema(ema_temp, telemetry["temperature"], alpha)
 
     smoothed = {
@@ -105,7 +121,7 @@ while True:
         "temperature": round(ema_temp, 2)
     }
 
-    chosen_model, scores = linucb.choose(
+    chosen_model, scores = algo.choose(
         smoothed["cpu"],
         smoothed["ram"],
         smoothed["temperature"]
@@ -115,7 +131,7 @@ while True:
 
     reward = calculate_reward(result["confidence"], result["latency_ms"])
 
-    linucb.update(
+    algo.update(
         chosen_model,
         smoothed["cpu"],
         smoothed["ram"],

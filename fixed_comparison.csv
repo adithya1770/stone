@@ -1,0 +1,51 @@
+filename,ground_truth,fp32_label,fp32_correct,fp32_confidence,fp32_latency_ms,int8_label,int8_correct,int8_confidence,int8_latency_ms
+n01440764_ILSVRC2012_val_00009111.JPEG,tench,tench,1,0.762,7.7,tench,1,0.7852,3.73
+n01440764_ILSVRC2012_val_00009191.JPEG,tench,tench,1,0.8943,6.98,tench,1,0.7617,4.05
+n01440764_ILSVRC2012_val_00017472.JPEG,tench,tench,1,0.9366,7.39,tench,1,0.8984,3.81
+n01440764_ILSVRC2012_val_00017700.JPEG,tench,tench,1,0.9557,6.77,tench,1,0.9531,3.79
+n01440764_ILSVRC2012_val_00021740.JPEG,tench,tench,1,0.8085,6.84,tench,1,0.8984,3.91
+n02102040_ILSVRC2012_val_00004650.JPEG,English springer,English springer,1,0.2901,6.98,English springer,1,0.4062,3.78
+n02102040_ILSVRC2012_val_00007032.JPEG,English springer,English springer,1,0.3843,6.92,English springer,1,0.3164,3.84
+n02102040_ILSVRC2012_val_00008162.JPEG,English springer,English springer,1,0.0751,6.82,English springer,1,0.1484,3.9
+n02102040_ILSVRC2012_val_00014280.JPEG,English springer,Brittany spaniel,0,0.1431,6.92,German short-haired pointer,0,0.1992,3.79
+n02102040_ILSVRC2012_val_00016582.JPEG,English springer,English springer,1,0.5382,6.67,English springer,1,0.5234,3.84
+n02979186_ILSVRC2012_val_00008651.JPEG,cassette player,cassette player,1,0.5997,6.72,cassette player,1,0.5977,3.83
+n02979186_ILSVRC2012_val_00020400.JPEG,cassette player,tape player,0,0.7176,6.8,tape player,0,0.7188,3.83
+n02979186_ILSVRC2012_val_00028911.JPEG,cassette player,cassette player,1,0.5429,6.95,cassette player,1,0.5195,3.79
+n02979186_ILSVRC2012_val_00035160.JPEG,cassette player,cassette player,1,0.1619,7.29,cassette player,1,0.1484,3.9
+n02979186_ILSVRC2012_val_00035482.JPEG,cassette player,spotlight,0,0.4148,6.92,spotlight,0,0.3008,3.87
+n03000684_ILSVRC2012_val_00004262.JPEG,chain saw,ski,0,0.2617,6.83,chain saw,1,0.1523,3.83
+n03000684_ILSVRC2012_val_00007460.JPEG,chain saw,chain saw,1,0.7581,6.75,chain saw,1,0.7148,3.8
+n03000684_ILSVRC2012_val_00011170.JPEG,chain saw,snowmobile,0,0.0861,6.9,snowmobile,0,0.0703,3.7
+n03000684_ILSVRC2012_val_00011951.JPEG,chain saw,chain saw,1,0.6289,6.94,chain saw,1,0.5508,3.91
+n03000684_ILSVRC2012_val_00017801.JPEG,chain saw,chain saw,1,0.3559,7.18,chain saw,1,0.3203,3.9
+n03028079_ILSVRC2012_val_00003351.JPEG,church,fireboat,0,0.1381,7.01,fountain,0,0.125,3.85
+n03028079_ILSVRC2012_val_00003682.JPEG,church,monastery,0,0.3477,7.03,monastery,0,0.4258,3.94
+n03028079_ILSVRC2012_val_00004912.JPEG,church,church,1,0.518,7.0,church,1,0.5547,3.94
+n03028079_ILSVRC2012_val_00007400.JPEG,church,altar,0,0.7162,6.67,altar,0,0.6016,3.78
+n03028079_ILSVRC2012_val_00010770.JPEG,church,vault,0,0.1841,6.9,organ,0,0.2422,3.73
+n03394916_ILSVRC2012_val_00001492.JPEG,French horn,plate rack,0,0.1872,6.95,crash helmet,0,0.125,3.79
+n03394916_ILSVRC2012_val_00003620.JPEG,French horn,oxygen mask,0,0.1954,6.67,oxygen mask,0,0.1523,3.75
+n03394916_ILSVRC2012_val_00004301.JPEG,French horn,French horn,1,0.9461,6.93,French horn,1,0.8789,3.8
+n03394916_ILSVRC2012_val_00007921.JPEG,French horn,trombone,0,0.2696,6.74,cornet,0,0.3359,3.76
+n03394916_ILSVRC2012_val_00009651.JPEG,French horn,cornet,0,0.2775,6.81,cornet,0,0.2969,3.74
+n03417042_ILSVRC2012_val_00002210.JPEG,garbage truck,trailer truck,0,0.5809,6.81,trailer truck,0,0.707,3.79
+n03417042_ILSVRC2012_val_00006922.JPEG,garbage truck,garbage truck,1,0.72,6.93,garbage truck,1,0.7227,3.83
+n03417042_ILSVRC2012_val_00008430.JPEG,garbage truck,moving van,0,0.513,6.96,moving van,0,0.5586,3.92
+n03417042_ILSVRC2012_val_00022172.JPEG,garbage truck,garbage truck,1,0.7944,6.74,garbage truck,1,0.625,3.78
+n03417042_ILSVRC2012_val_00024560.JPEG,garbage truck,trailer truck,0,0.3995,6.88,trailer truck,0,0.5859,3.76
+n03425413_ILSVRC2012_val_00000732.JPEG,gas pump,gas pump,1,0.4306,6.69,cash machine,0,0.4414,3.71
+n03425413_ILSVRC2012_val_00001432.JPEG,gas pump,thresher,0,0.188,6.85,thresher,0,0.1953,3.75
+n03425413_ILSVRC2012_val_00004452.JPEG,gas pump,patio,0,0.2122,7.07,barbershop,0,0.2617,3.79
+n03425413_ILSVRC2012_val_00004860.JPEG,gas pump,gas pump,1,0.2132,6.87,tobacco shop,0,0.2148,3.85
+n03425413_ILSVRC2012_val_00007471.JPEG,gas pump,bookcase,0,0.2548,6.97,bookcase,0,0.2695,3.87
+n03445777_ILSVRC2012_val_00008161.JPEG,golf ball,safety pin,0,0.2579,6.89,safety pin,0,0.2422,3.79
+n03445777_ILSVRC2012_val_00009902.JPEG,golf ball,golf ball,1,0.3281,6.85,golf ball,1,0.2266,3.77
+n03445777_ILSVRC2012_val_00011431.JPEG,golf ball,golf ball,1,0.9775,6.77,golf ball,1,0.9648,3.74
+n03445777_ILSVRC2012_val_00011581.JPEG,golf ball,golf ball,1,0.604,6.78,golf ball,1,0.7109,3.84
+n03445777_ILSVRC2012_val_00014102.JPEG,golf ball,golf ball,1,0.8822,6.83,golf ball,1,0.8516,3.71
+n03888257_ILSVRC2012_val_00001440.JPEG,parachute,parachute,1,0.8955,6.81,parachute,1,0.6211,3.83
+n03888257_ILSVRC2012_val_00002990.JPEG,parachute,aircraft carrier,0,0.1905,6.85,aircraft carrier,0,0.1797,3.82
+n03888257_ILSVRC2012_val_00006561.JPEG,parachute,parachute,1,0.9528,6.88,parachute,1,0.9727,3.73
+n03888257_ILSVRC2012_val_00009370.JPEG,parachute,parachute,1,0.8659,6.92,parachute,1,0.918,3.84
+n03888257_ILSVRC2012_val_00010460.JPEG,parachute,parachute,1,0.4111,6.92,umbrella,0,0.4453,3.84

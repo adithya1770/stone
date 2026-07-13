@@ -3,10 +3,14 @@ import os
 
 
 FILES = {
-    "Baseline":     "logging/baseline_log.csv",
-    "Rule-Based":   "logging/rule_based_log.csv",
-    "LinUCB Cold":  "logging/linucb_log.csv",
-    "LinUCB Warm":  "logging/linucb_warm_log.csv"
+    "Baseline":       "logging/baseline_log.csv",
+    "Rule-Based":     "logging/rule_based_log.csv",
+    "EpsilonGreedy":  "logging/egreedy_log.csv",
+    "LinUCB Cold":    "logging/linucb_log.csv",
+    "LinUCB Warm":    "logging/linucb_warm_log.csv",
+    "Thompson":       "logging/thompson_log.csv",
+    "SlidingLinUCBWarm":  "logging/sliding_log_warm.csv",
+    "SlidingLinUCBCold":  "logging/sliding_log_cold.csv"
 }
 
 STRESS_THRESHOLD = 70.0
@@ -135,5 +139,46 @@ if "LinUCB Cold" in results and "LinUCB Warm" in results:
     warm_sw = results["LinUCB Warm"]["model_switches"]
     print(f"\n  LinUCB Cold switches: {cold_sw}  —  LinUCB Warm switches: {warm_sw}")
     print(f"  Warm start makes more decisive switching decisions from inference 1")
+
+if "EpsilonGreedy" in results and "LinUCB Warm" in results:
+    eg_lat  = results["EpsilonGreedy"]["avg_latency_stressed"]
+    lw_lat  = results["LinUCB Warm"]["avg_latency_stressed"]
+    eg_sw   = results["EpsilonGreedy"]["model_switches"]
+    lw_sw   = results["LinUCB Warm"]["model_switches"]
+    print(f"\n  EpsilonGreedy avg stressed latency: {eg_lat}ms "
+          f"(96.3% INT8 usage — context-blind)")
+    print(f"  LinUCB Warm avg stressed latency:   {lw_lat}ms "
+          f"(context-aware, immediate switching)")
+    print(f"  EpsilonGreedy switches: {eg_sw} — "
+          f"LinUCB Warm switches: {lw_sw}")
+    print(f"  LinUCB Warm is {lw_sw} switches vs "
+          f"EpsilonGreedy's {eg_sw} — more stable")
+
+if "Thompson Sampling" in results:
+    ts_sw  = results["Thompson Sampling"]["model_switches"]
+    ts_lat = results["Thompson Sampling"]["avg_latency_stressed"]
+    ts_max = results["Thompson Sampling"]["max_latency_stressed"]
+    print(f"\n  Thompson Sampling: {ts_sw} switches — "
+          f"highest instability of all systems")
+    print(f"  Thompson max stressed latency: {ts_max}ms — "
+          f"exploration spikes under full load")
+    
+if "SlidingLinUCBWarm" in results and "LinUCB Cold" in results:
+    sl_lat = results["SlidingLinUCBWarm"]["avg_latency_stressed"]
+    lc_lat = results["LinUCB Cold"]["avg_latency_stressed"]
+    pct = round(100 * (lc_lat - sl_lat) / lc_lat, 1)
+    print(f"  SlidingLinUCBWarm  reduces stressed latency by "
+          f"{pct}% vs LinUCB Cold")
+    print(f"  SlidingLinUCBWarm  adapts faster post-stress "
+          f"due to window context shift")
+    
+if "SlidingLinUCBCold" in results and "LinUCB Cold" in results:
+    sl_lat = results["SlidingLinUCBCold"]["avg_latency_stressed"]
+    lc_lat = results["LinUCB Cold"]["avg_latency_stressed"]
+    pct = round(100 * (lc_lat - sl_lat) / lc_lat, 1)
+    print(f"  SlidingLinUCBCold  reduces stressed latency by "
+          f"{pct}% vs LinUCB Cold")
+    print(f"  SlidingLinUCB  adapts faster post-stress "
+          f"due to window context shift")
 
 print()

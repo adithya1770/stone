@@ -48,9 +48,12 @@ class _BanditBase:
             self._load()
             print(f"{self.__class__.__name__}: loaded previous state.")
         else:
-            self.A = {m: np.identity(self.d) for m in self.models}
-            self.b = {m: np.zeros(self.d)    for m in self.models}
+            self._init_fresh()
             print(f"{self.__class__.__name__}: starting fresh.")
+
+    def _init_fresh(self):
+        self.A = {m: np.identity(self.d) for m in self.models}
+        self.b = {m: np.zeros(self.d)    for m in self.models}
 
     def _context(self, cpu, ram, temp):
         return np.array([cpu / 100.0, ram / 100.0, temp / 100.0])
@@ -93,8 +96,8 @@ class LinUCB(_BanditBase):
         scores = {}
 
         for model in self.models:
-            A_inv = np.linalg.inv(self.A[model])
-            theta = A_inv @ self.b[model]
+            A_inv       = np.linalg.inv(self.A[model])
+            theta       = A_inv @ self.b[model]
             expected    = theta @ x
             uncertainty = self.alpha * np.sqrt(x @ A_inv @ x)
             scores[model] = expected + uncertainty
@@ -112,8 +115,8 @@ class ThompsonSampling(_BanditBase):
         scores = {}
 
         for model in self.models:
-            A_inv       = np.linalg.inv(self.A[model])
-            theta_mean  = A_inv @ self.b[model]
+            A_inv        = np.linalg.inv(self.A[model])
+            theta_mean   = A_inv @ self.b[model]
             theta_sample = np.random.multivariate_normal(
                 theta_mean, A_inv
             )
@@ -123,6 +126,135 @@ class ThompsonSampling(_BanditBase):
         return chosen, scores
 
 
+class SlidingLinUCB:
+    def __init__(self, alpha=1.0, window=50,
+                 state_path="logging/sliding_linucb_state.npz"):
+        self.alpha      = alpha
+        self.window     = window
+        self.models     = ["fp32", "int8"]
+        self.d          = 3
+        self.state_path = state_path
+        self.history    = []
+
+        if os.path.exists(state_path):
+            self._load()
+            print("SlidingLinUCB: loaded previous state.")
+        else:
+            self.A = {m: np.identity(self.d) for m in self.models}
+            self.b = {m: np.zeros(self.d)    for m in self.models}
+            print("SlidingLinUCB: starting fresh.")
+
+    def _context(self, cpu, ram, temp):
+        return np.array([cpu / 100.0, ram / 100.0, temp / 100.0])
+
+    def choose(self, cpu, ram, temp):
+        x = self._context(cpu, ram, temp)
+        scores = {}
+
+        for model in self.models:
+            A_inv       = np.linalg.inv(self.A[model])
+            theta       = A_inv @ self.b[model]
+            expected    = theta @ x
+            uncertainty = self.alpha * np.sqrt(x @ A_inv @ x)
+            scores[model] = expected + uncertainty
+
+        chosen = max(scores, key=scores.get)
+        return chosen, scores
+
+    def update(self, model, cpu, ram, temp, reward):
+        x = self._context(cpu, ram, temp)
+
+        self.history.append((x, model, reward))
+
+        if len(self.history) > self.window:
+            self.history.pop(0)
+
+        self.A = {m: np.identity(self.d) for m in self.models}
+        self.b = {m: np.zeros(self.d)    for m in self.models}
+
+        for hist_x, hist_model, hist_reward in self.history:
+            self.A[hist_model] += np.outer(hist_x, hist_x)
+            self.b[hist_model] += hist_reward * hist_x
+
+        self._save()
+
+    def _save(self):
+        history_x      = np.array([h[0] for h in self.history])
+        history_models = np.array([h[1] for h in self.history])
+        history_rewards = np.array([h[2] for h in self.history])
+
+        np.savez(
+            self.state_path,
+            history_x=history_x,
+            history_models=history_models,
+            history_rewards=history_rewards,
+            window=np.array([self.window])
+        )
+
+    def _load(self):
+        data = np.load(self.state_path, allow_pickle=True)
+
+        history_x       = data["history_x"]
+        history_models  = data["history_models"]
+        history_rewards = data["history_rewards"]
+
+        self.history = [
+            (history_x[i], str(history_models[i]), float(history_rewards[i]))
+            for i in range(len(history_x))
+        ]
+
+        self.A = {m: np.identity(self.d) for m in self.models}
+        self.b = {m: np.zeros(self.d)    for m in self.models}
+
+        for hist_x, hist_model, hist_reward in self.history:
+            self.A[hist_model] += np.outer(hist_x, hist_x)
+            self.b[hist_model] += hist_reward * hist_x
+
+
+class EpsilonGreedy:
+    def __init__(self, epsilon=0.1,
+                 state_path="logging/egreedy_state.npz"):
+        self.epsilon    = epsilon
+        self.models     = ["fp32", "int8"]
+        self.state_path = state_path
+
+        if os.path.exists(state_path):
+            data = np.load(state_path)
+            self.counts = {m: float(data[f"count_{m}"])
+                           for m in self.models}
+            self.totals = {m: float(data[f"total_{m}"])
+                           for m in self.models}
+            print("EpsilonGreedy: loaded previous state.")
+        else:
+            self.counts = {m: 0.0 for m in self.models}
+            self.totals = {m: 0.0 for m in self.models}
+            print("EpsilonGreedy: starting fresh.")
+
+    def _avg_reward(self, model):
+        if self.counts[model] == 0:
+            return 0.0
+        return self.totals[model] / self.counts[model]
+
+    def choose(self, cpu, ram, temp):
+        if np.random.random() < self.epsilon:
+            chosen = np.random.choice(self.models)
+        else:
+            chosen = max(self.models, key=self._avg_reward)
+
+        scores = {m: round(self._avg_reward(m), 4)
+                  for m in self.models}
+        return chosen, scores
+
+    def update(self, model, cpu, ram, temp, reward):
+        self.counts[model] += 1
+        self.totals[model] += reward
+        np.savez(
+            self.state_path,
+            **{f"count_{m}": self.counts[m] for m in self.models},
+            **{f"total_{m}": self.totals[m] for m in self.models}
+        )
+
+
 def get_algo(name="linucb", **kwargs):
     name = name.lower().strip()
     if name == "linucb":
@@ -130,8 +262,13 @@ def get_algo(name="linucb", **kwargs):
     elif name in ("thompson", "ts"):
         kwargs.pop("alpha", None)
         return ThompsonSampling(**kwargs)
+    elif name in ("sliding", "slidinglinucb"):
+        return SlidingLinUCB(**kwargs)
+    elif name in ("egreedy", "epsilon"):
+        kwargs.pop("alpha", None)
+        return EpsilonGreedy(**kwargs)
     else:
         raise ValueError(
             f"Unknown algorithm '{name}'. "
-            f"Choose 'linucb' or 'thompson'."
+            f"Choose 'linucb', 'thompson', 'sliding', or 'egreedy'."
         )

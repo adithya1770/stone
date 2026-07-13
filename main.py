@@ -17,7 +17,7 @@ parser.add_argument(
     "--algo",
     type=str,
     default="linucb",
-    choices=["linucb", "thompson"],
+    choices=["linucb", "thompson", "egreedy", "sliding"],
     help="Decision algorithm: linucb or thompson"
 )
 parser.add_argument(

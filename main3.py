@@ -9,6 +9,7 @@ from logger import Logger
 from linucb import LinUCB
 from context import N_FEATURES
 from bootstrap_linucb import bootstrap_from_csv
+from policies import LinUCBPolicy
 
 ACTION_TO_MODEL_TYPE = {0: "fp32", 1: "int8"}
 TEST_IMAGES_DIR = "test_images"
@@ -32,7 +33,7 @@ def compute_reward(predicted_label, ground_truth_label, latency_ms):
 
 
 # --- Set up LinUCB and bootstrap it from the heuristic-phase log ---
-linucb = LinUCB(n_actions=2, n_features=N_FEATURES, alpha=1.0)
+linucb = LinUCB(n_actions=2, n_features=N_FEATURES, alpha=0.3)
 n_replayed = bootstrap_from_csv(linucb, BOOTSTRAP_CSV)
 print(f"Bootstrapped LinUCB with {n_replayed} historical rows from {BOOTSTRAP_CSV}")
 print("Starting theta (FP32 arm):", linucb.theta(0))
@@ -44,7 +45,7 @@ image_cycle = itertools.cycle(sorted(ground_truth.keys()))
 
 telemetry = Telemetry()
 mm = ModelManager("models/mobilenet_v2_fp32.tflite", "models/mobilenet_v2_int8.tflite", "models/labels.txt")
-engine = DecisionEngine(linucb, min_mode_duration=5)
+engine = DecisionEngine(LinUCBPolicy(linucb), min_mode_duration=5)
 logger = Logger(LIVE_LOG_CSV)
 
 input_id = 0

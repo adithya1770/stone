@@ -1,11 +1,14 @@
-
 import time
-from linucb import LinUCB
-from context import build_context
 
 class DecisionEngine:
-    def __init__(self, linucb: LinUCB, min_mode_duration=5):
-        self.linucb = linucb
+    """
+    Unified wrapper: hysteresis logic stays identical no matter which policy
+    is plugged in. Baseline, rule-based, and both LinUCB conditions all run
+    through the exact same decision-timing code -- any measured difference
+    between them is due to the policy itself, not the harness.
+    """
+    def __init__(self, policy, min_mode_duration=5):
+        self.policy = policy
         self.min_mode_duration = min_mode_duration
         self.current_action = None
         self.last_switch_time = 0
@@ -13,8 +16,7 @@ class DecisionEngine:
 
     def decide(self, telemetry_snapshot):
         now = time.time()
-        context = build_context(telemetry_snapshot, self.prev_latency)
-        proposed = self.linucb.select_action(context)
+        proposed, context = self.policy.select_action(telemetry_snapshot, self.prev_latency)
 
         if self.current_action is None:
             self.current_action = proposed
@@ -25,8 +27,8 @@ class DecisionEngine:
                 self.current_action = proposed
                 self.last_switch_time = now
 
-        return self.current_action, context  # main.py needs context to call learn() later
+        return self.current_action, context
 
     def learn(self, action, context, reward, latency_ms):
-        self.linucb.update(action, context, reward)
+        self.policy.update(action, context, reward, latency_ms)
         self.prev_latency = latency_ms

@@ -32,14 +32,14 @@ def compute_reward(predicted_label, ground_truth_label, latency_ms):
     return correct - (0.01 * latency_ms)
 
 
-# --- Set up LinUCB and bootstrap it from the heuristic-phase log ---
+#linucb and bootstrapp
 linucb = LinUCB(n_actions=2, n_features=N_FEATURES, alpha=0.3)
 n_replayed = bootstrap_from_csv(linucb, BOOTSTRAP_CSV)
 print(f"Bootstrapped LinUCB with {n_replayed} historical rows from {BOOTSTRAP_CSV}")
 print("Starting theta (FP32 arm):", linucb.theta(0))
 print("Starting theta (INT8 arm):", linucb.theta(1))
 
-# --- Set up the rest of the pipeline, same as before ---
+
 ground_truth = load_ground_truth(os.path.join(TEST_IMAGES_DIR, "ground_truth.csv"))
 image_cycle = itertools.cycle(sorted(ground_truth.keys()))
 
@@ -52,7 +52,7 @@ input_id = 0
 try:
     while True:
         before_snap = telemetry.read()
-        action, context = engine.decide(before_snap)   # note: now returns (action, context)
+        action, context = engine.decide(before_snap)   
         model_type = ACTION_TO_MODEL_TYPE[action]
 
         image_filename = next(image_cycle)
@@ -66,7 +66,7 @@ try:
         logger.log(before_snap, after_snap, input_id, action, model_type,
                     result, ground_truth=gt_label, reward=reward)
 
-        engine.learn(action, context, reward, result["latency_ms"])  # LinUCB updates here
+        engine.learn(action, context, reward, result["latency_ms"])  #LinUCB updates here
 
         print(before_snap, result, "gt:", gt_label, "reward:", round(reward, 4))
         input_id += 1

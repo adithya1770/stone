@@ -16,6 +16,12 @@ LOG_FILE = "logging/rule_based_log.csv"
 EMA_ALPHA = 0.2
 WINDOW_SIZE = 5
 
+import argparse
+
+parser = argparse.ArgumentParser(description="Run rule-based inference test")
+parser.add_argument("--iterations", type=int, default=10, help="number of iterations to run")
+args = parser.parse_args()
+
 
 def adaptive_alpha(recent_values):
     if len(recent_values) < 3:
@@ -57,7 +63,7 @@ recent_cpu = deque(maxlen=WINDOW_SIZE)
 print("Rule-based test running.")
 print("-" * 50)
 
-while True:
+for iteration in range(args.iterations):
     telemetry = get_telemetry()
 
     recent_cpu.append(telemetry["cpu"])

@@ -41,7 +41,7 @@ def decide(cpu, ram, temp, state):
 class _BanditBase:
     def __init__(self, state_path):
         self.models = ["fp32", "int8"]
-        self.d = 3
+        self.d = 4
         self.state_path = state_path
 
         if os.path.exists(state_path):
@@ -56,7 +56,12 @@ class _BanditBase:
         self.b = {m: np.zeros(self.d)    for m in self.models}
 
     def _context(self, cpu, ram, temp):
-        return np.array([cpu / 100.0, ram / 100.0, temp / 100.0])
+        return np.array([
+            cpu / 100.0,
+            ram / 100.0,
+            temp / 100.0,
+            1.0
+        ])
 
     def update(self, model, cpu, ram, temp, reward):
         x = self._context(cpu, ram, temp)
@@ -132,7 +137,7 @@ class SlidingLinUCB:
         self.alpha      = alpha
         self.window     = window
         self.models     = ["fp32", "int8"]
-        self.d          = 3
+        self.d          = 4
         self.state_path = state_path
         self.history    = []
 
@@ -145,7 +150,12 @@ class SlidingLinUCB:
             print("SlidingLinUCB: starting fresh.")
 
     def _context(self, cpu, ram, temp):
-        return np.array([cpu / 100.0, ram / 100.0, temp / 100.0])
+        return np.array([
+            cpu / 100.0,
+            ram / 100.0,
+            temp / 100.0,
+            1.0
+        ])
 
     def choose(self, cpu, ram, temp):
         x = self._context(cpu, ram, temp)

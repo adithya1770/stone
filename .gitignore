@@ -2,4 +2,5 @@ venv/
 __pycache__/
 *.pyc
 EdgeMLBalancer
-linucb_state.npzlogging/linucb_state.npz
+linucb_state.npz
+logging/linucb_state.npz

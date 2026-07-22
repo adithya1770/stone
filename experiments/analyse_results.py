@@ -3,14 +3,15 @@ import os
 
 
 FILES = {
-    "Baseline":       "logging/baseline_log.csv",
-    "Rule-Based":     "logging/rule_based_log.csv",
-    "EpsilonGreedy":  "logging/egreedy_log.csv",
-    "LinUCB Cold":    "logging/linucb_log.csv",
-    "LinUCB Warm":    "logging/linucb_warm_log.csv",
-    "Thompson":       "logging/thompson_log.csv",
-    "SlidingLinUCBWarm":  "logging/sliding_log_warm.csv",
-    "SlidingLinUCBCold":  "logging/sliding_log_cold.csv"
+    "Baseline":         "logging/baseline_log.csv",
+    "AlwaysINT8":       "logging/always_int8_log.csv",
+    "Rule-Based":       "logging/rule_based_log.csv",
+    "EpsilonGreedy":    "logging/egreedy_log.csv",
+    "LinUCB Cold":      "logging/linucb_log.csv",
+    "LinUCB Warm":      "logging/linucb_warm_log.csv",
+    "Thompson":         "logging/thompson_log.csv",
+    "SlidingLinUCBWarm": "logging/sliding_log_warm.csv",
+    "SlidingLinUCBCold": "logging/sliding_log_cold.csv"
 }
 
 STRESS_THRESHOLD = 70.0
@@ -22,10 +23,11 @@ def read_csv(path):
         reader = csv.DictReader(f)
         for row in reader:
             rows.append({
-                "cpu":        float(row["cpu"]),
-                "latency_ms": float(row["latency_ms"]),
-                "confidence": float(row["confidence"]),
-                "model":      row["model"]
+                "cpu":              float(row["cpu"]),
+                "latency_ms":       float(row["latency_ms"]),
+                "confidence":       float(row["confidence"]),
+                "model":            row["model"],
+                "decision_time_ms": float(row.get("decision_time_ms", 0) or 0)
             })
     return rows
 
@@ -64,7 +66,8 @@ def analyse(rows):
         "avg_confidence_normal":     avg_confidence(normal),
         "avg_confidence_stressed":   avg_confidence(stressed),
         "model_switches":            switches,
-        "int8_under_stress_pct":     int8_pct
+        "int8_under_stress_pct":     int8_pct,
+        "avg_decision_time_ms":      avg([r["decision_time_ms"] for r in rows])
     }
 
 
@@ -76,7 +79,7 @@ for name, path in FILES.items():
         print(f"Missing: {path}")
 
 
-col_w   = 15
+col_w   = 12
 label_w = 34
 names   = list(results.keys())
 
@@ -99,6 +102,7 @@ metrics = [
     ("Avg confidence — stressed",    "avg_confidence_stressed", ""),
     ("Model switches",               "model_switches",          ""),
     ("INT8 usage under stress",      "int8_under_stress_pct",   "%"),
+    ("Avg decision time",            "avg_decision_time_ms",    "ms"),
 ]
 
 for label, key, unit in metrics:
@@ -141,28 +145,29 @@ if "LinUCB Cold" in results and "LinUCB Warm" in results:
     print(f"  Warm start makes more decisive switching decisions from inference 1")
 
 if "EpsilonGreedy" in results and "LinUCB Warm" in results:
-    eg_lat  = results["EpsilonGreedy"]["avg_latency_stressed"]
-    lw_lat  = results["LinUCB Warm"]["avg_latency_stressed"]
-    eg_sw   = results["EpsilonGreedy"]["model_switches"]
-    lw_sw   = results["LinUCB Warm"]["model_switches"]
+    eg_lat   = results["EpsilonGreedy"]["avg_latency_stressed"]
+    eg_int8  = results["EpsilonGreedy"]["int8_under_stress_pct"]
+    lw_lat   = results["LinUCB Warm"]["avg_latency_stressed"]
+    lw_int8  = results["LinUCB Warm"]["int8_under_stress_pct"]
+    eg_sw    = results["EpsilonGreedy"]["model_switches"]
+    lw_sw    = results["LinUCB Warm"]["model_switches"]
     print(f"\n  EpsilonGreedy avg stressed latency: {eg_lat}ms "
-          f"(96.3% INT8 usage — context-blind)")
+          f"({eg_int8}% INT8 usage — context-blind, history-dependent)")
     print(f"  LinUCB Warm avg stressed latency:   {lw_lat}ms "
-          f"(context-aware, immediate switching)")
-    print(f"  EpsilonGreedy switches: {eg_sw} — "
-          f"LinUCB Warm switches: {lw_sw}")
-    print(f"  LinUCB Warm is {lw_sw} switches vs "
-          f"EpsilonGreedy's {eg_sw} — more stable")
+          f"({lw_int8}% INT8 usage — context-aware, conditioned on live telemetry)")
+    print(f"  EpsilonGreedy switches: {eg_sw} — LinUCB Warm switches: {lw_sw}")
+    print(f"  EpsilonGreedy's model choice depends on early exploration luck; "
+          f"LinUCB Warm reacts to current conditions every decision")
 
-if "Thompson Sampling" in results:
-    ts_sw  = results["Thompson Sampling"]["model_switches"]
-    ts_lat = results["Thompson Sampling"]["avg_latency_stressed"]
-    ts_max = results["Thompson Sampling"]["max_latency_stressed"]
+if "Thompson" in results:
+    ts_sw  = results["Thompson"]["model_switches"]
+    ts_lat = results["Thompson"]["avg_latency_stressed"]
+    ts_max = results["Thompson"]["max_latency_stressed"]
     print(f"\n  Thompson Sampling: {ts_sw} switches — "
           f"highest instability of all systems")
     print(f"  Thompson max stressed latency: {ts_max}ms — "
           f"exploration spikes under full load")
-    
+
 if "SlidingLinUCBWarm" in results and "LinUCB Cold" in results:
     sl_lat = results["SlidingLinUCBWarm"]["avg_latency_stressed"]
     lc_lat = results["LinUCB Cold"]["avg_latency_stressed"]
@@ -171,7 +176,7 @@ if "SlidingLinUCBWarm" in results and "LinUCB Cold" in results:
           f"{pct}% vs LinUCB Cold")
     print(f"  SlidingLinUCBWarm  adapts faster post-stress "
           f"due to window context shift")
-    
+
 if "SlidingLinUCBCold" in results and "LinUCB Cold" in results:
     sl_lat = results["SlidingLinUCBCold"]["avg_latency_stressed"]
     lc_lat = results["LinUCB Cold"]["avg_latency_stressed"]
@@ -180,5 +185,17 @@ if "SlidingLinUCBCold" in results and "LinUCB Cold" in results:
           f"{pct}% vs LinUCB Cold")
     print(f"  SlidingLinUCB  adapts faster post-stress "
           f"due to window context shift")
+
+if "AlwaysINT8" in results and "LinUCB Warm" in results:
+    int8_conf = results["AlwaysINT8"]["avg_confidence_stressed"]
+    warm_conf = results["LinUCB Warm"]["avg_confidence_stressed"]
+    int8_lat  = results["AlwaysINT8"]["avg_latency_stressed"]
+    warm_lat  = results["LinUCB Warm"]["avg_latency_stressed"]
+    print(f"\n  AlwaysINT8 stressed latency: {int8_lat}ms, confidence: {int8_conf}")
+    print(f"  LinUCB Warm stressed latency: {warm_lat}ms, confidence: {warm_conf}")
+    lat_diff = round(warm_lat - int8_lat, 2)
+    conf_diff = round(warm_conf - int8_conf, 4)
+    print(f"  LinUCB Warm trades {lat_diff}ms latency "
+          f"for {conf_diff} more confidence vs always-INT8")
 
 print()

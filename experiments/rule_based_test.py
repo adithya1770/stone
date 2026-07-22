@@ -19,7 +19,7 @@ WINDOW_SIZE = 5
 import argparse
 
 parser = argparse.ArgumentParser(description="Run rule-based inference test")
-parser.add_argument("--iterations", type=int, default=10, help="number of iterations to run")
+parser.add_argument("--iterations", type=int, default=100, help="number of iterations to run")
 args = parser.parse_args()
 
 
@@ -79,12 +79,16 @@ for iteration in range(args.iterations):
         "temperature": round(ema_temp, 2)
     }
 
+    decision_start = time.time()
+
     decision = decide(
         smoothed["cpu"],
         smoothed["ram"],
         smoothed["temperature"],
         state
     )
+
+    decision_time_ms = round((time.time() - decision_start) * 1000, 3)
 
     result = engine.run("dog.jpeg", decision["model"])
 
@@ -97,11 +101,13 @@ for iteration in range(args.iterations):
         "model":        result["model"],
         "label":        result["label"],
         "confidence":   result["confidence"],
-        "latency_ms":   result["latency_ms"]
+        "latency_ms":   result["latency_ms"],
+        "decision_time_ms": decision_time_ms
     }, LOG_FILE)
 
     print(f"Smoothed  : {smoothed}")
     print(f"Decision  : {decision}")
+    print(f"Decision time : {decision_time_ms}ms")
     print(f"Inference : {result}")
     print("-" * 50)
 

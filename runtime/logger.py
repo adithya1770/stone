@@ -17,7 +17,8 @@ def initialize_logger(log_file=DEFAULT_LOG):
                 "model",
                 "label",
                 "confidence",
-                "latency_ms"
+                "latency_ms",
+                "decision_time_ms"
             ])
     return log_file
 
@@ -34,5 +35,6 @@ def log_data(data, log_file=DEFAULT_LOG):
             data["model"],
             data["label"],
             data["confidence"],
-            data["latency_ms"]
+            data["latency_ms"],
+            data.get("decision_time_ms", 0)
         ])

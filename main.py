@@ -172,11 +172,15 @@ for _ in range(MAX_ITERATIONS):
         "temperature": round(ema_temp, 2)
     }
 
+    decision_start = time.time()
+
     chosen_model, scores = algo.choose(
         smoothed["cpu"],
         smoothed["ram"],
         smoothed["temperature"]
     )
+
+    decision_time_ms = round((time.time() - decision_start) * 1000, 3)
 
     result = engine.run(
         "dog.jpeg",
@@ -210,7 +214,8 @@ for _ in range(MAX_ITERATIONS):
         "model": result["model"],
         "label": result["label"],
         "confidence": result["confidence"],
-        "latency_ms": result["latency_ms"]
+        "latency_ms": result["latency_ms"],
+        "decision_time_ms": decision_time_ms
     }, LOG_FILE)
 
     print("Raw       :", telemetry)
@@ -222,6 +227,7 @@ for _ in range(MAX_ITERATIONS):
         {k: round(v, 4) for k, v in scores.items()}
     )
     print("Chosen    :", chosen_model)
+    print("Decision  :", f"{decision_time_ms}ms")
     print("Reward    :", reward)
     print("Inference :", result)
     print("-" * 50)

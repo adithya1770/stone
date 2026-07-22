@@ -57,12 +57,20 @@ rm -f logging/*.npz
 echo "Done."
 
 ########################################################
-# Baseline
+# Baseline (always FP32)
 ########################################################
 
 run_experiment \
 "Baseline" \
 "python3 experiments/baseline_static.py --iterations $ITERATIONS"
+
+########################################################
+# Always INT8
+########################################################
+
+run_experiment \
+"Always INT8" \
+"python3 experiments/always_int8_static.py --iterations $ITERATIONS"
 
 ########################################################
 # Rule-Based

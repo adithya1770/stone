@@ -11,7 +11,7 @@ from runtime.inference_engine import InferenceEngine
 from runtime.telemetry import get_telemetry
 from runtime.logger import initialize_logger, log_data
 
-LOG_FILE = "logging/baseline_log.csv"
+LOG_FILE = "logging/always_int8_log.csv"
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--iterations", type=int, default=100, help="Number of iterations")
@@ -25,12 +25,12 @@ engine = InferenceEngine(
 
 initialize_logger(LOG_FILE)
 
-print("Baseline running — always FP32, no switching.")
+print("Always-INT8 baseline running — always INT8, no switching.")
 print("-" * 50)
 
 for iteration in range(args.iterations):
     telemetry = get_telemetry()
-    result = engine.run("dog.jpeg", "fp32")
+    result = engine.run("dog.jpeg", "int8")
 
     log_data({
         "timestamp":    datetime.now().strftime("%Y-%m-%d %H:%M:%S"),

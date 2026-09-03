@@ -7,9 +7,11 @@ import numpy as np
 
 from runtime.inference_engine import InferenceEngine
 from runtime.telemetry import get_telemetry
-from runtime.decision_engine import decide, get_algo
+from runtime.decision_engine import get_algo
 from runtime.reward import calculate_reward
 from runtime.logger import initialize_logger, log_data
+from runtime.image_pool import ImagePool
+from runtime.label_lookup import build_wnid_to_label_index, true_label_for_image
 
 
 parser = argparse.ArgumentParser(description="Stone Adaptive Runtime")
@@ -18,7 +20,7 @@ parser.add_argument(
     "--algo",
     type=str,
     default="linucb",
-    choices=["linucb", "thompson", "egreedy", "sliding"],
+    choices=["linucb", "egreedy", "eightsignal"],
     help="Decision algorithm"
 )
 
@@ -50,6 +52,7 @@ _telemetry_state = {
     "cpu": 0.0,
     "ram": 0.0,
     "temperature": 40.0,
+    "battery": 100.0,
     "cpu_per_core": []
 }
 
@@ -67,7 +70,11 @@ def _telemetry_worker():
             _telemetry_state["cpu"] = fresh["cpu"]
             _telemetry_state["ram"] = fresh["ram"]
             _telemetry_state["temperature"] = fresh["temperature"]
+            _telemetry_state["battery"] = fresh["battery"]
             _telemetry_state["cpu_per_core"] = fresh["cpu_per_core"]
+            _telemetry_state["cpu_freq_current"] = fresh["cpu_freq_current"]
+            _telemetry_state["cpu_freq_max"] = fresh["cpu_freq_max"]
+            _telemetry_state["disk_busy_time"] = fresh["disk_busy_time"]
 
 
 def read_telemetry():
@@ -119,6 +126,11 @@ engine = InferenceEngine(
     labels_path="models/labels.txt"
 )
 
+import os as _os
+seed = int(_os.environ.get("STONE_SEED", 42))
+image_pool = ImagePool(seed=seed)
+wnid_to_label_index, labels = build_wnid_to_label_index("models/labels.txt")
+
 state = {
     "current_model": "fp32",
     "high_count": 0,
@@ -141,9 +153,16 @@ recent_cpu = deque(maxlen=WINDOW_SIZE)
 print(f"Stone adaptive runtime — {DECISION_ALGO.upper()} mode.")
 print(f"Logging to: {LOG_FILE}")
 print("-" * 50)
-for _ in range(MAX_ITERATIONS):
+for iteration in range(MAX_ITERATIONS):
 
     telemetry = read_telemetry()
+
+    if hasattr(algo, "set_extra_telemetry"):
+        algo.set_extra_telemetry(
+            telemetry.get("cpu_freq_current", 0.0),
+            telemetry.get("cpu_freq_max", 4000.0),
+            telemetry.get("disk_busy_time", 0)
+        )
 
     recent_cpu.append(telemetry["cpu"])
     alpha = adaptive_alpha(recent_cpu)
@@ -169,7 +188,8 @@ for _ in range(MAX_ITERATIONS):
     smoothed = {
         "cpu": round(ema_cpu, 2),
         "ram": round(ema_ram, 2),
-        "temperature": round(ema_temp, 2)
+        "temperature": round(ema_temp, 2),
+        "battery": telemetry["battery"]
     }
 
     decision_start = time.time()
@@ -177,14 +197,25 @@ for _ in range(MAX_ITERATIONS):
     chosen_model, scores = algo.choose(
         smoothed["cpu"],
         smoothed["ram"],
-        smoothed["temperature"]
+        smoothed["temperature"],
+        smoothed["battery"]
     )
+
+    decision_source = algo.get_last_source() if hasattr(algo, "get_last_source") else "algo"
 
     decision_time_ms = round((time.time() - decision_start) * 1000, 3)
 
+    image_path = image_pool.get(iteration)
+    true_label = true_label_for_image(image_path, wnid_to_label_index, labels)
+
     result = engine.run(
-        "dog.jpeg",
+        image_path,
         chosen_model
+    )
+
+    is_correct = (
+        result["label"].strip().lower() == true_label.strip().lower()
+        if true_label else None
     )
 
     reward = calculate_reward(
@@ -192,7 +223,8 @@ for _ in range(MAX_ITERATIONS):
         latency_ms=result["latency_ms"],
         cpu=smoothed["cpu"],
         ram=smoothed["ram"],
-        temperature=smoothed["temperature"]
+        temperature=smoothed["temperature"],
+        decision_time_ms=decision_time_ms
     )
 
     algo.update(
@@ -200,7 +232,9 @@ for _ in range(MAX_ITERATIONS):
         smoothed["cpu"],
         smoothed["ram"],
         smoothed["temperature"],
-        reward
+        smoothed["battery"],
+        reward,
+        confidence=result["confidence"]
     )
 
     log_data({
@@ -210,9 +244,14 @@ for _ in range(MAX_ITERATIONS):
         "cpu": smoothed["cpu"],
         "ram": smoothed["ram"],
         "temperature": smoothed["temperature"],
+        "battery": smoothed["battery"],
         "health_score": round(scores["fp32"], 4),
         "model": result["model"],
+        "decision_source": decision_source,
+        "image_path": image_path,
+        "true_label": true_label if true_label else "unmatched",
         "label": result["label"],
+        "correct": is_correct,
         "confidence": result["confidence"],
         "latency_ms": result["latency_ms"],
         "decision_time_ms": decision_time_ms
@@ -229,7 +268,11 @@ for _ in range(MAX_ITERATIONS):
     print("Chosen    :", chosen_model)
     print("Decision  :", f"{decision_time_ms}ms")
     print("Reward    :", reward)
+    print("Image     :", image_path)
+    print("True label:", true_label)
     print("Inference :", result)
+    print("Correct   :", is_correct)
+    print("Source    :", decision_source)
     print("-" * 50)
 
     time.sleep(1)

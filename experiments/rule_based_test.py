@@ -11,6 +11,8 @@ from runtime.inference_engine import InferenceEngine
 from runtime.telemetry import get_telemetry
 from runtime.decision_engine import decide
 from runtime.logger import initialize_logger, log_data
+from runtime.image_pool import ImagePool
+from runtime.label_lookup import build_wnid_to_label_index, true_label_for_image
 
 LOG_FILE = "logging/rule_based_log.csv"
 EMA_ALPHA = 0.2
@@ -46,6 +48,11 @@ engine = InferenceEngine(
     int8_path="models/mobilenet_v2_int8.tflite",
     labels_path="models/labels.txt"
 )
+
+import os as _os
+seed = int(_os.environ.get("STONE_SEED", 42))
+image_pool = ImagePool(seed=seed)
+wnid_to_label_index, labels = build_wnid_to_label_index("models/labels.txt")
 
 state = {
     "current_model": "fp32",
@@ -90,16 +97,28 @@ for iteration in range(args.iterations):
 
     decision_time_ms = round((time.time() - decision_start) * 1000, 3)
 
-    result = engine.run("dog.jpeg", decision["model"])
+    image_path = image_pool.get(iteration)
+    true_label = true_label_for_image(image_path, wnid_to_label_index, labels)
+
+    result = engine.run(image_path, decision["model"])
+
+    is_correct = (
+        result["label"].strip().lower() == true_label.strip().lower()
+        if true_label else None
+    )
 
     log_data({
         "timestamp":    datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "cpu":          smoothed["cpu"],
         "ram":          smoothed["ram"],
         "temperature":  smoothed["temperature"],
+        "battery":      telemetry["battery"],
         "health_score": decision["health_score"],
         "model":        result["model"],
+        "image_path":   image_path,
+        "true_label":   true_label if true_label else "unmatched",
         "label":        result["label"],
+        "correct":      is_correct,
         "confidence":   result["confidence"],
         "latency_ms":   result["latency_ms"],
         "decision_time_ms": decision_time_ms
@@ -108,7 +127,10 @@ for iteration in range(args.iterations):
     print(f"Smoothed  : {smoothed}")
     print(f"Decision  : {decision}")
     print(f"Decision time : {decision_time_ms}ms")
+    print(f"Image     : {image_path}")
+    print(f"True label: {true_label}")
     print(f"Inference : {result}")
+    print(f"Correct   : {is_correct}")
     print("-" * 50)
 
     time.sleep(1)

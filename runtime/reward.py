@@ -7,6 +7,7 @@ def calculate_reward(
     cpu,
     ram,
     temperature,
+    decision_time_ms=0.0,
 ):
     health = (
         0.5 * cpu +
@@ -29,9 +30,12 @@ def calculate_reward(
         1 - latency_ms / 80
     )
 
+    decision_time_penalty = decision_time_ms / 50.0
+
     reward = (
         accuracy_weight * confidence_score +
-        latency_weight * latency_score
+        latency_weight * latency_score -
+        decision_time_penalty
     )
 
     return round(reward, 4)

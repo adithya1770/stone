@@ -3,7 +3,7 @@
 set -e
 
 echo "========================================="
-echo "STONE Experimental Evaluation"
+echo "STONE Experimental Evaluation — Final 5"
 echo "========================================="
 
 ITERATIONS=100
@@ -73,37 +73,8 @@ run_experiment \
 "python3 experiments/always_int8_static.py --iterations $ITERATIONS"
 
 ########################################################
-# Rule-Based
-########################################################
-
-run_experiment \
-"Rule-Based" \
-"python3 experiments/rule_based_test.py --iterations $ITERATIONS"
-
-########################################################
-# Epsilon Greedy
-########################################################
-
-run_experiment \
-"Epsilon Greedy" \
-"python3 main.py \
---algo egreedy \
---iterations $ITERATIONS \
---log logging/egreedy_log.csv"
-
-########################################################
-# Thompson Sampling
-########################################################
-
-run_experiment \
-"Thompson Sampling" \
-"python3 main.py \
---algo thompson \
---iterations $ITERATIONS \
---log logging/thompson_log.csv"
-
-########################################################
 # LinUCB Cold
+# (state file wiped just before this run, so it learns from scratch)
 ########################################################
 
 rm -f logging/linucb_state.npz
@@ -113,10 +84,12 @@ run_experiment \
 "python3 main.py \
 --algo linucb \
 --iterations $ITERATIONS \
---log logging/linucb_log.csv"
+--log logging/linucb_cold_log.csv"
 
 ########################################################
 # LinUCB Warm
+# (deliberately NOT deleting the state file here — this run
+# continues learning from whatever LinUCB Cold just built up)
 ########################################################
 
 run_experiment \
@@ -127,28 +100,34 @@ run_experiment \
 --log logging/linucb_warm_log.csv"
 
 ########################################################
-# Sliding LinUCB Cold
+# Eight Signal Cold
+# (its internal LinUCB fallback state file wiped, so that
+# component learns from scratch — the 8-signal voting logic
+# itself has no persistence and is always "fresh" regardless)
 ########################################################
 
-rm -f logging/sliding_linucb_state.npz
+rm -f logging/eight_signal_linucb_state.npz
 
 run_experiment \
-"Sliding LinUCB Cold" \
+"Eight Signal Cold" \
 "python3 main.py \
---algo sliding \
+--algo eightsignal \
 --iterations $ITERATIONS \
---log logging/sliding_log_cold.csv"
+--log logging/eightsignal_cold_log.csv"
 
 ########################################################
-# Sliding LinUCB Warm
+# Eight Signal Warm
+# (deliberately NOT deleting eight_signal_linucb_state.npz —
+# this run's internal LinUCB fallback continues learning from
+# whatever Eight Signal Cold just built up)
 ########################################################
 
 run_experiment \
-"Sliding LinUCB Warm" \
+"Eight Signal Warm" \
 "python3 main.py \
---algo sliding \
+--algo eightsignal \
 --iterations $ITERATIONS \
---log logging/sliding_log_warm.csv"
+--log logging/eightsignal_warm_log.csv"
 
 ########################################################
 # Results

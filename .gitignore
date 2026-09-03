@@ -1,6 +1,108 @@
-venv/
+```gitignore
+# =========================
+# Python
+# =========================
 __pycache__/
-*.pyc
-EdgeMLBalancer
-linucb_state.npz
-logging/linucb_state.npz
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Python packaging
+*.egg-info/
+dist/
+build/
+.eggs/
+pip-wheel-metadata/
+
+# =========================
+# Datasets / Generated Data
+# =========================
+datasets/
+
+# =========================
+# Machine Learning / Models
+# =========================
+*.h5
+*.hdf5
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.safetensors
+*.pkl
+*.pickle
+*.joblib
+
+# =========================
+# Logs / Experiment Outputs
+# =========================
+*.log
+logs/
+logging_*/
+log_*/
+runs/
+wandb/
+
+# =========================
+# Jupyter
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# Environment Variables
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# Node.js
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =========================
+# Build / Framework Output
+# =========================
+.next/
+.nuxt/
+.svelte-kit/
+.vercel/
+out/
+coverage/
+
+# =========================
+# IDE / Editor
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Temporary Files
+# =========================
+*.tmp
+*.temp
+*.bak
+*~
+```
+
+datasets/
+venv/
+EdgeMLBalancer/

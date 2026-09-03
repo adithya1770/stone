@@ -1,0 +1,9 @@
+cat > .dockerignore << 'EOF'
+venv/
+datasets/
+logging*/
+__pycache__/
+*.pyc
+.git/
+EdgeMLBalancer/
+EOF

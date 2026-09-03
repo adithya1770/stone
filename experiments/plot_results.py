@@ -48,7 +48,8 @@ def add_reward(rows):
             latency_ms=r["latency_ms"],
             cpu=r["cpu"],
             ram=r["ram"],
-            temperature=r["temperature"]
+            temperature=r["temperature"],
+            decision_time_ms=r["decision_time_ms"]
         )
     return rows
 

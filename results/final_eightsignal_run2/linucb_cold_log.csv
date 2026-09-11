@@ -1,0 +1,101 @@
+timestamp,cpu,ram,temperature,battery,health_score,model,decision_source,image_path,true_label,label,correct,confidence,latency_ms,decision_time_ms
+2026-09-02 15:53:04,12.0,29.3,46.0,79.53,1.3944,fp32,algo,datasets/imagenette2-320/val/n03417042/n03417042_3600.JPEG,garbage truck,steam locomotive,False,0.248,12.36,0.155
+2026-09-02 15:53:05,12.4,29.32,46.0,79.53,1.1042,int8,algo,datasets/imagenette2-320/val/n03888257/n03888257_7831.JPEG,parachute,parachute,True,0.082,2.85,0.324
+2026-09-02 15:53:06,8.24,29.35,46.0,79.53,1.1023,fp32,algo,datasets/imagenette2-320/val/n03417042/n03417042_9592.JPEG,garbage truck,trailer truck,False,0.355,12.29,0.231
+2026-09-02 15:53:07,6.5,29.37,45.6,79.53,1.0058,int8,algo,datasets/imagenette2-320/val/n02979186/n02979186_6012.JPEG,cassette player,CD player,False,0.7969,2.9,0.212
+2026-09-02 15:53:08,4.7,29.38,45.36,79.53,1.0056,int8,algo,datasets/imagenette2-320/val/n03000684/n03000684_15691.JPEG,chain saw,wreck,False,0.0469,2.84,0.214
+2026-09-02 15:53:09,4.38,29.39,45.62,79.53,1.0063,fp32,algo,datasets/imagenette2-320/val/n03000684/n03000684_17902.JPEG,chain saw,chain saw,True,0.9989,12.31,0.244
+2026-09-02 15:53:10,3.43,29.43,45.37,79.53,1.0716,fp32,algo,datasets/imagenette2-320/val/n03000684/n03000684_16872.JPEG,chain saw,moped,False,0.252,21.75,0.262
+2026-09-02 15:53:11,2.86,29.42,45.62,79.53,0.9774,fp32,algo,datasets/imagenette2-320/val/n01440764/n01440764_3421.JPEG,tench,gar,False,0.2556,12.32,0.227
+2026-09-02 15:53:12,3.31,29.41,45.77,79.53,0.9188,int8,algo,datasets/imagenette2-320/val/n03000684/n03000684_17132.JPEG,chain saw,solar dish,False,0.2344,2.85,0.227
+2026-09-02 15:53:13,3.51,29.41,45.86,79.53,0.9189,fp32,algo,datasets/imagenette2-320/val/n03417042/n03417042_29722.JPEG,garbage truck,garbage truck,True,0.6876,12.31,0.29
+2026-09-02 15:53:14,2.91,29.4,45.52,79.53,0.9209,fp32,algo,datasets/imagenette2-320/val/n03417042/n03417042_3422.JPEG,garbage truck,cradle,False,0.163,12.31,0.233
+2026-09-02 15:53:15,2.54,29.44,45.71,79.53,0.8729,int8,algo,datasets/imagenette2-320/val/n03888257/n03888257_72591.JPEG,parachute,parachute,True,0.3359,9.98,0.232
+2026-09-02 15:53:16,3.17,29.47,45.43,79.53,0.872,int8,algo,datasets/imagenette2-320/val/n03028079/n03028079_3670.JPEG,church,church,True,0.0703,9.91,0.228
+2026-09-02 15:53:17,3.42,29.48,45.26,79.53,0.8716,fp32,algo,datasets/imagenette2-320/val/n02979186/n02979186_2141.JPEG,cassette player,cassette player,True,0.2659,12.31,0.229
+2026-09-02 15:53:18,3.65,29.49,45.15,79.53,0.8413,fp32,algo,datasets/imagenette2-320/val/n03028079/ILSVRC2012_val_00028310.JPEG,church,church,True,0.3145,23.26,0.236
+2026-09-02 15:53:19,2.99,29.49,45.09,79.53,0.8158,int8,algo,datasets/imagenette2-320/val/n02102040/n02102040_7510.JPEG,English springer,West Highland white terrier,False,0.3203,9.78,0.216
+2026-09-02 15:53:20,3.39,29.5,45.06,79.53,0.8156,fp32,algo,datasets/imagenette2-320/val/n03417042/n03417042_23771.JPEG,garbage truck,garbage truck,True,0.8136,12.31,0.246
+2026-09-02 15:53:21,3.6,29.5,45.43,79.53,0.8315,fp32,algo,datasets/imagenette2-320/val/n02102040/n02102040_1840.JPEG,English springer,English springer,True,0.4448,12.33,0.246
+2026-09-02 15:53:22,3.76,29.5,45.26,79.53,0.8209,fp32,algo,datasets/imagenette2-320/val/n03425413/n03425413_15082.JPEG,gas pump,gas pump,True,0.146,23.18,0.273
+2026-09-02 15:53:23,2.25,29.5,45.16,79.53,0.7924,int8,algo,datasets/imagenette2-320/val/n03394916/n03394916_47212.JPEG,French horn,French horn,True,0.7773,2.83,0.299
+2026-09-02 15:53:24,2.91,29.5,45.09,79.53,0.7919,int8,algo,datasets/imagenette2-320/val/n03425413/n03425413_4532.JPEG,gas pump,pay-phone,False,0.4336,2.85,0.276
+2026-09-02 15:53:25,2.55,29.5,44.66,79.53,0.7913,int8,algo,datasets/imagenette2-320/val/n02979186/n02979186_10612.JPEG,cassette player,cassette player,True,0.2461,10.83,0.242
+2026-09-02 15:53:26,3.17,29.5,44.79,79.53,0.7913,int8,algo,datasets/imagenette2-320/val/n03028079/n03028079_1.JPEG,church,church,True,0.8164,2.85,0.233
+2026-09-02 15:53:27,2.7,29.5,44.88,79.53,0.7916,int8,algo,datasets/imagenette2-320/val/n02979186/n02979186_930.JPEG,cassette player,photocopier,False,0.2812,4.33,0.219
+2026-09-02 15:53:28,3.14,29.5,44.93,79.53,0.7915,int8,algo,datasets/imagenette2-320/val/n03000684/n03000684_2812.JPEG,chain saw,chain saw,True,0.8164,2.83,0.238
+2026-09-02 15:53:29,2.68,29.46,44.96,79.53,0.7917,int8,algo,datasets/imagenette2-320/val/n01440764/n01440764_11830.JPEG,tench,tench,True,0.9805,2.84,0.247
+2026-09-02 15:53:30,3.17,29.48,44.97,79.53,0.7915,int8,algo,datasets/imagenette2-320/val/n03417042/n03417042_3710.JPEG,garbage truck,garbage truck,True,0.4688,2.84,0.233
+2026-09-02 15:53:31,2.7,29.49,44.98,79.53,0.7918,int8,algo,datasets/imagenette2-320/val/n03394916/n03394916_68382.JPEG,French horn,French horn,True,0.9883,2.85,0.231
+2026-09-02 15:53:32,3.14,29.49,44.99,79.53,0.7916,int8,algo,datasets/imagenette2-320/val/n03028079/n03028079_46322.JPEG,church,planetarium,False,0.0586,2.84,0.244
+2026-09-02 15:53:33,3.4,29.49,44.59,79.53,0.7909,int8,algo,datasets/imagenette2-320/val/n02102040/n02102040_2021.JPEG,English springer,boxer,False,0.1953,10.7,0.247
+2026-09-02 15:53:34,3.64,29.5,44.36,79.53,0.7905,int8,algo,datasets/imagenette2-320/val/n02102040/n02102040_7501.JPEG,English springer,Ibizan hound,False,0.2422,10.1,0.283
+2026-09-02 15:53:35,3.79,29.5,44.21,79.53,0.7902,int8,algo,datasets/imagenette2-320/val/n03445777/n03445777_5862.JPEG,golf ball,golf ball,True,0.9258,2.85,0.253
+2026-09-02 15:53:36,3.83,29.5,44.53,79.53,0.7907,int8,algo,datasets/imagenette2-320/val/n01440764/n01440764_5501.JPEG,tench,tench,True,0.9023,8.1,0.236
+2026-09-02 15:53:37,3.1,29.5,44.72,79.53,0.7912,int8,algo,datasets/imagenette2-320/val/n03417042/n03417042_19531.JPEG,garbage truck,thresher,False,0.1875,2.84,0.226
+2026-09-02 15:53:38,9.14,29.54,44.77,79.53,0.7954,int8,algo,datasets/imagenette2-320/val/n03445777/n03445777_8380.JPEG,golf ball,Indian cobra,False,0.125,7.06,0.108
+2026-09-02 15:53:39,18.23,29.56,49.4,79.53,0.8342,int8,algo,datasets/imagenette2-320/val/n01440764/n01440764_10211.JPEG,tench,barracouta,False,0.3516,7.73,0.099
+2026-09-02 15:53:40,26.4,29.57,53.86,79.53,0.8914,int8,algo,datasets/imagenette2-320/val/n03028079/ILSVRC2012_val_00019711.JPEG,church,bell cote,False,0.793,7.6,0.111
+2026-09-02 15:53:41,33.76,29.58,57.87,79.53,0.9545,int8,algo,datasets/imagenette2-320/val/n03394916/n03394916_32422.JPEG,French horn,French horn,True,0.6562,7.92,0.116
+2026-09-02 15:53:42,40.39,29.58,61.68,79.53,1.0183,int8,algo,datasets/imagenette2-320/val/n03425413/n03425413_1672.JPEG,gas pump,gas pump,True,0.1953,9.43,0.109
+2026-09-02 15:53:43,64.23,29.59,74.61,79.53,1.2689,fp32,algo,datasets/imagenette2-320/val/n02979186/n02979186_3211.JPEG,cassette player,cassette,False,0.4391,30.74,0.11
+2026-09-02 15:53:44,78.54,29.59,82.37,79.53,1.256,int8,algo,datasets/imagenette2-320/val/n03417042/n03417042_2491.JPEG,garbage truck,garbage truck,True,0.9258,10.2,0.11
+2026-09-02 15:53:45,87.12,29.6,87.02,79.53,1.3364,int8,algo,datasets/imagenette2-320/val/n03445777/n03445777_70.JPEG,golf ball,golf ball,True,0.9844,10.8,0.109
+2026-09-02 15:53:46,92.27,29.64,91.41,79.53,1.3925,int8,algo,datasets/imagenette2-320/val/n01440764/n01440764_26541.JPEG,tench,tench,True,0.9531,9.61,0.136
+2026-09-02 15:53:48,95.36,29.66,91.25,79.53,1.4135,fp32,algo,datasets/imagenette2-320/val/n03000684/n03000684_6761.JPEG,chain saw,chain saw,True,0.6242,31.69,0.108
+2026-09-02 15:53:49,97.22,29.68,93.15,79.53,1.2478,int8,algo,datasets/imagenette2-320/val/n02102040/n02102040_3022.JPEG,English springer,English springer,True,0.75,6.97,0.105
+2026-09-02 15:53:50,98.33,29.69,93.49,79.53,1.2553,int8,algo,datasets/imagenette2-320/val/n01440764/n01440764_8311.JPEG,tench,goldfish,False,0.4141,7.47,0.111
+2026-09-02 15:53:51,99.0,29.69,94.09,79.53,1.2613,fp32,algo,datasets/imagenette2-320/val/n03394916/n03394916_14002.JPEG,French horn,French horn,True,0.2286,34.8,0.12
+2026-09-02 15:53:52,99.4,29.66,94.86,79.53,1.1021,int8,algo,datasets/imagenette2-320/val/n03425413/n03425413_9791.JPEG,gas pump,gas pump,True,0.3164,11.63,0.13
+2026-09-02 15:53:53,99.64,29.67,94.91,79.53,1.1033,int8,algo,datasets/imagenette2-320/val/n01440764/n01440764_192.JPEG,tench,tench,True,0.543,6.93,0.106
+2026-09-02 15:53:54,99.78,29.68,94.55,79.53,1.1027,int8,algo,datasets/imagenette2-320/val/n03028079/n03028079_6501.JPEG,church,church,True,0.7461,10.13,0.102
+2026-09-02 15:53:55,99.87,29.69,94.33,79.53,1.1024,int8,algo,datasets/imagenette2-320/val/n03425413/n03425413_15792.JPEG,gas pump,gas pump,True,0.8516,7.74,0.137
+2026-09-02 15:53:56,99.92,29.69,94.2,79.53,1.1022,int8,algo,datasets/imagenette2-320/val/n03417042/n03417042_581.JPEG,garbage truck,shopping cart,False,0.3711,7.24,0.147
+2026-09-02 15:53:57,99.95,29.7,94.12,79.53,1.1021,int8,algo,datasets/imagenette2-320/val/n03000684/n03000684_851.JPEG,chain saw,abaya,False,0.0703,10.66,0.104
+2026-09-02 15:53:58,99.97,29.7,95.67,79.53,1.1073,fp32,algo,datasets/imagenette2-320/val/n03425413/n03425413_12270.JPEG,gas pump,tape player,False,0.1462,35.6,0.117
+2026-09-02 15:53:59,99.98,29.7,97.0,79.53,1.003,int8,algo,datasets/imagenette2-320/val/n03445777/n03445777_7580.JPEG,golf ball,plunger,False,0.4648,8.59,0.117
+2026-09-02 15:54:00,99.99,29.7,96.6,79.53,1.0017,int8,algo,datasets/imagenette2-320/val/n02979186/n02979186_26120.JPEG,cassette player,cassette,False,0.1406,7.98,0.135
+2026-09-02 15:54:01,99.99,29.7,94.36,79.53,0.9952,int8,algo,datasets/imagenette2-320/val/n03394916/n03394916_47110.JPEG,French horn,coil,False,0.6328,8.18,0.11
+2026-09-02 15:54:02,100.0,29.7,93.02,79.53,0.9917,int8,algo,datasets/imagenette2-320/val/n03394916/n03394916_54570.JPEG,French horn,French horn,True,0.9375,11.02,0.115
+2026-09-02 15:54:03,100.0,29.7,93.41,79.53,0.9927,int8,algo,datasets/imagenette2-320/val/n03417042/n03417042_6602.JPEG,garbage truck,garbage truck,True,0.7539,6.92,0.126
+2026-09-02 15:54:04,100.0,29.7,93.65,79.53,0.9933,int8,algo,datasets/imagenette2-320/val/n01440764/n01440764_6341.JPEG,tench,tench,True,0.918,10.33,0.131
+2026-09-02 15:54:05,100.0,29.7,93.39,79.53,0.9926,int8,algo,datasets/imagenette2-320/val/n03445777/ILSVRC2012_val_00036171.JPEG,golf ball,golf ball,True,0.8711,7.44,0.122
+2026-09-02 15:54:06,100.0,29.7,93.63,79.53,0.9933,int8,algo,datasets/imagenette2-320/val/n03425413/n03425413_260.JPEG,gas pump,gas pump,True,0.4492,11.18,0.108
+2026-09-02 15:54:07,100.0,29.7,94.18,79.53,0.9947,int8,algo,datasets/imagenette2-320/val/n03417042/n03417042_13151.JPEG,garbage truck,garbage truck,True,0.9648,7.47,0.129
+2026-09-02 15:54:08,100.0,29.7,93.71,79.53,0.9935,int8,algo,datasets/imagenette2-320/val/n03417042/n03417042_19812.JPEG,garbage truck,garbage truck,True,0.793,9.01,0.129
+2026-09-02 15:54:09,100.0,29.7,93.02,79.53,0.9917,int8,algo,datasets/imagenette2-320/val/n03425413/n03425413_14420.JPEG,gas pump,crane,False,0.6367,11.11,0.13
+2026-09-02 15:54:10,100.0,29.7,93.41,79.53,0.9927,int8,algo,datasets/imagenette2-320/val/n03028079/n03028079_3000.JPEG,church,church,True,0.75,7.72,0.107
+2026-09-02 15:54:11,100.0,29.7,93.65,79.53,0.9933,int8,algo,datasets/imagenette2-320/val/n01440764/n01440764_13821.JPEG,tench,tench,True,0.2656,9.06,0.106
+2026-09-02 15:54:12,100.0,29.74,93.79,79.53,0.9937,fp32,algo,datasets/imagenette2-320/val/n03445777/n03445777_9442.JPEG,golf ball,golf ball,True,0.5166,36.53,0.119
+2026-09-02 15:54:13,100.0,29.76,94.67,79.53,0.9512,int8,algo,datasets/imagenette2-320/val/n03000684/n03000684_11070.JPEG,chain saw,chain saw,True,0.9531,9.69,0.223
+2026-09-02 15:54:14,90.2,29.75,91.41,79.53,0.9138,int8,algo,datasets/imagenette2-320/val/n03425413/n03425413_21051.JPEG,gas pump,book jacket,False,0.0742,2.83,0.233
+2026-09-02 15:54:15,81.38,29.73,88.27,79.53,0.8819,int8,algo,datasets/imagenette2-320/val/n01440764/n01440764_8142.JPEG,tench,tench,True,0.6016,8.45,0.231
+2026-09-02 15:54:16,73.44,29.72,85.44,79.53,0.8555,int8,algo,datasets/imagenette2-320/val/n03000684/n03000684_17082.JPEG,chain saw,solar dish,False,0.4922,2.84,0.249
+2026-09-02 15:54:17,66.3,29.7,82.7,79.53,0.8335,int8,algo,datasets/imagenette2-320/val/n02102040/ILSVRC2012_val_00023440.JPEG,English springer,hen,False,0.1406,2.83,0.237
+2026-09-02 15:54:18,40.58,29.62,72.82,79.53,0.781,int8,algo,datasets/imagenette2-320/val/n02102040/n02102040_2961.JPEG,English springer,English springer,True,0.9102,2.86,0.263
+2026-09-02 15:54:19,25.15,29.57,66.89,79.53,0.7773,int8,algo,datasets/imagenette2-320/val/n03417042/n03417042_11452.JPEG,garbage truck,garbage truck,True,0.9219,2.84,0.258
+2026-09-02 15:54:20,15.89,29.58,63.73,79.53,0.7882,int8,algo,datasets/imagenette2-320/val/n03417042/n03417042_8581.JPEG,garbage truck,garbage truck,True,0.4141,2.82,0.247
+2026-09-02 15:54:21,11.09,29.59,61.04,79.53,0.7924,int8,algo,datasets/imagenette2-320/val/n03000684/n03000684_15441.JPEG,chain saw,book jacket,False,0.3438,3.14,0.233
+2026-09-02 15:54:22,7.46,29.59,59.42,79.53,0.7987,int8,algo,datasets/imagenette2-320/val/n02979186/n02979186_5781.JPEG,cassette player,cassette player,True,0.7305,9.78,0.21
+2026-09-02 15:54:23,6.07,29.6,58.05,79.53,0.7985,int8,algo,datasets/imagenette2-320/val/n03394916/n03394916_33481.JPEG,French horn,abaya,False,0.5742,2.83,0.234
+2026-09-02 15:54:24,5.2,29.6,57.23,79.53,0.7987,int8,algo,datasets/imagenette2-320/val/n03445777/n03445777_2270.JPEG,golf ball,croquet ball,False,0.2891,2.84,0.232
+2026-09-02 15:54:25,3.92,29.56,56.74,79.53,0.8017,int8,algo,datasets/imagenette2-320/val/n03425413/n03425413_15332.JPEG,gas pump,gas pump,True,0.8711,2.85,0.217
+2026-09-02 15:54:26,3.15,29.54,56.44,79.53,0.8036,int8,algo,datasets/imagenette2-320/val/n03417042/n03417042_6662.JPEG,garbage truck,garbage truck,True,0.4258,2.83,0.205
+2026-09-02 15:54:27,2.69,29.52,56.27,79.53,0.8047,int8,algo,datasets/imagenette2-320/val/n03888257/n03888257_41260.JPEG,parachute,parachute,True,0.9492,2.83,0.235
+2026-09-02 15:54:28,2.42,29.51,55.36,79.53,0.8025,int8,algo,datasets/imagenette2-320/val/n01440764/n01440764_9091.JPEG,tench,tench,True,0.9453,2.84,0.217
+2026-09-02 15:54:29,3.01,29.51,54.82,79.53,0.7985,int8,algo,datasets/imagenette2-320/val/n03028079/n03028079_7752.JPEG,church,monastery,False,0.3711,2.85,0.22
+2026-09-02 15:54:30,2.61,29.5,54.49,79.53,0.7989,int8,algo,datasets/imagenette2-320/val/n03394916/n03394916_44580.JPEG,French horn,French horn,True,0.9648,2.83,0.233
+2026-09-02 15:54:31,2.36,29.54,53.89,79.53,0.7981,int8,algo,datasets/imagenette2-320/val/n02102040/n02102040_4780.JPEG,English springer,English springer,True,0.4023,7.26,0.186
+2026-09-02 15:54:32,2.22,29.57,53.94,79.53,0.7988,int8,algo,datasets/imagenette2-320/val/n03394916/n03394916_34532.JPEG,French horn,French horn,True,0.3125,2.86,0.213
+2026-09-02 15:54:33,2.89,29.58,53.16,79.53,0.794,int8,algo,datasets/imagenette2-320/val/n03888257/n03888257_20572.JPEG,parachute,parachute,True,0.8984,3.23,0.252
+2026-09-02 15:54:34,3.29,29.59,52.7,79.53,0.7913,int8,algo,datasets/imagenette2-320/val/n03394916/n03394916_35801.JPEG,French horn,bearskin,False,0.8398,2.87,0.281
+2026-09-02 15:54:35,2.78,29.59,52.42,79.53,0.7924,int8,algo,datasets/imagenette2-320/val/n03417042/n03417042_130.JPEG,garbage truck,trailer truck,False,0.1367,2.83,0.232
+2026-09-02 15:54:36,2.47,29.6,52.25,79.53,0.7931,int8,algo,datasets/imagenette2-320/val/n03417042/n03417042_15592.JPEG,garbage truck,garbage truck,True,0.9062,2.84,0.216
+2026-09-02 15:54:37,3.08,29.6,52.15,79.53,0.7906,int8,algo,datasets/imagenette2-320/val/n03000684/n03000684_17811.JPEG,chain saw,chain saw,True,0.1055,9.02,0.201
+2026-09-02 15:54:38,2.65,29.6,52.09,79.53,0.792,int8,algo,datasets/imagenette2-320/val/n03425413/n03425413_20301.JPEG,gas pump,butternut squash,False,0.2812,2.84,0.237
+2026-09-02 15:54:39,3.15,29.6,51.65,79.53,0.7892,int8,algo,datasets/imagenette2-320/val/n03417042/n03417042_12300.JPEG,garbage truck,harvester,False,0.1094,2.82,0.269
+2026-09-02 15:54:40,2.69,29.6,51.79,79.53,0.7911,fp32,algo,datasets/imagenette2-320/val/n03000684/n03000684_26901.JPEG,chain saw,chain saw,True,0.8331,21.96,0.272
+2026-09-02 15:54:42,4.81,29.6,51.88,79.53,0.7939,fp32,algo,datasets/imagenette2-320/val/n03028079/n03028079_29920.JPEG,church,mosque,False,0.2692,12.78,0.079
+2026-09-02 15:54:43,2.89,29.56,51.53,79.53,0.7857,fp32,algo,datasets/imagenette2-320/val/n03445777/n03445777_6882.JPEG,golf ball,golf ball,True,0.9535,12.31,0.244
+2026-09-02 15:54:44,3.29,29.54,51.32,79.53,0.7998,fp32,algo,datasets/imagenette2-320/val/n01440764/n01440764_12100.JPEG,tench,tench,True,0.9831,12.3,0.217
+2026-09-02 15:54:45,2.78,29.52,51.19,79.53,0.8165,fp32,algo,datasets/imagenette2-320/val/n03417042/n03417042_9601.JPEG,garbage truck,garbage truck,True,0.8539,12.3,0.235

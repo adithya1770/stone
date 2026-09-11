@@ -7,7 +7,12 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from runtime.reward import calculate_reward
 
 
-RUN_DIRS = ["log_threshold1", "log_threshold2", "log_threshold3"]
+RUN_DIRS = [
+    "results/final_eightsignal_run1",
+    "results/final_eightsignal_run2",
+    "results/final_eightsignal_run3",
+]
+
 FILES = {
     "Baseline":         "baseline_log.csv",
     "AlwaysINT8":       "always_int8_log.csv",
@@ -28,11 +33,9 @@ def read_csv(path):
         reader = csv.DictReader(f)
         for row in reader:
             latency = float(row["latency_ms"])
-
             if latency > MAX_PLAUSIBLE_LATENCY_MS:
                 skipped += 1
                 continue
-
             rows.append({
                 "cpu":              float(row["cpu"]),
                 "ram":              float(row["ram"]),
@@ -43,12 +46,10 @@ def read_csv(path):
                 "decision_time_ms": float(row.get("decision_time_ms", 0) or 0),
                 "correct":          row.get("correct", "")
             })
-
     if skipped:
         print(f"Warning: {path} — skipped {skipped} row(s) with "
               f"latency_ms > {MAX_PLAUSIBLE_LATENCY_MS}ms "
               f"(likely system sleep/interruption, not real inference time)")
-
     return rows
 
 
@@ -66,11 +67,8 @@ def add_reward(rows):
 
 
 def get_run_lengths(rows):
-    """Group consecutive rows with the same model into 'runs' and return
-    their lengths in order. E.g. int8,int8,fp32,int8,int8,int8 -> [2,1,3]"""
     if not rows:
         return []
-
     run_lengths = []
     current_len = 1
     for i in range(1, len(rows)):

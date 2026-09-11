@@ -7,7 +7,7 @@ import numpy as np
 
 from runtime.inference_engine import InferenceEngine
 from runtime.telemetry import get_telemetry
-from runtime.decision_engine import get_algo
+from runtime.decision_engine import get_algo, choose, update, get_last_source, set_extra_telemetry
 from runtime.reward import calculate_reward
 from runtime.logger import initialize_logger, log_data
 from runtime.image_pool import ImagePool
@@ -157,12 +157,12 @@ for iteration in range(MAX_ITERATIONS):
 
     telemetry = read_telemetry()
 
-    if hasattr(algo, "set_extra_telemetry"):
-        algo.set_extra_telemetry(
-            telemetry.get("cpu_freq_current", 0.0),
-            telemetry.get("cpu_freq_max", 4000.0),
-            telemetry.get("disk_busy_time", 0)
-        )
+    set_extra_telemetry(
+        algo,
+        telemetry.get("cpu_freq_current", 0.0),
+        telemetry.get("cpu_freq_max", 4000.0),
+        telemetry.get("disk_busy_time", 0)
+    )
 
     recent_cpu.append(telemetry["cpu"])
     alpha = adaptive_alpha(recent_cpu)
@@ -194,14 +194,15 @@ for iteration in range(MAX_ITERATIONS):
 
     decision_start = time.time()
 
-    chosen_model, scores = algo.choose(
+    chosen_model, scores = choose(
+        algo,
         smoothed["cpu"],
         smoothed["ram"],
         smoothed["temperature"],
         smoothed["battery"]
     )
 
-    decision_source = algo.get_last_source() if hasattr(algo, "get_last_source") else "algo"
+    decision_source = get_last_source(algo) or "algo"
 
     decision_time_ms = round((time.time() - decision_start) * 1000, 3)
 
@@ -227,7 +228,8 @@ for iteration in range(MAX_ITERATIONS):
         decision_time_ms=decision_time_ms
     )
 
-    algo.update(
+    update(
+        algo,
         chosen_model,
         smoothed["cpu"],
         smoothed["ram"],

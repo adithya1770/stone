@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>STONE Edge AI</title>
+<style>
+  body { font-family: sans-serif; background: #111; color: #eee; text-align: center; padding: 20px; }
+  video, img { width: 90%; max-width: 400px; border-radius: 8px; }
+  #result { font-size: 20px; margin: 15px; }
+  #history { font-size: 24px; letter-spacing: 4px; margin-top: 10px; }
+  .fp32 { color: #4caf50; }
+  .int8 { color: #2196f3; }
+  button { font-size: 16px; padding: 8px 16px; margin: 5px; border-radius: 6px; border: none; cursor: pointer; }
+  #pauseBtn { background: #f44336; color: white; }
+  #pauseBtn.paused { background: #4caf50; }
+  #labelBox { margin-top: 10px; display: none; }
+  #labelInput { font-size: 16px; padding: 6px; width: 60%; }
+  #submitLabel { background: #2196f3; color: white; }
+</style>
+</head>
+<body>
+  <h2>STONE Edge AI</h2>
+  <video id="cam" autoplay playsinline></video>
+  <canvas id="snap" style="display:none;"></canvas>
+
+  <div>
+    <button id="pauseBtn">Pause</button>
+  </div>
+
+  <div id="result">Waiting...</div>
+  <div id="history"></div>
+
+  <div id="labelBox">
+    <input id="labelInput" type="text" placeholder="Type the true label...">
+    <button id="submitLabel">Submit</button>
+  </div>
+
+  <script>
+    const video = document.getElementById('cam');
+    const canvas = document.getElementById('snap');
+    const resultDiv = document.getElementById('result');
+    const historyDiv = document.getElementById('history');
+    const pauseBtn = document.getElementById('pauseBtn');
+    const labelBox = document.getElementById('labelBox');
+    const labelInput = document.getElementById('labelInput');
+    const submitLabel = document.getElementById('submitLabel');
+
+    let history = [];
+    let paused = false;
+    let lastRequestId = null;
+    let pollHandle = null;
+
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+      .then(stream => { video.srcObject = stream; });
+
+    async function captureAndSend() {
+      if (paused) return;
+
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      canvas.getContext('2d').drawImage(video, 0, 0);
+
+      canvas.toBlob(async (blob) => {
+        const formData = new FormData();
+        formData.append("file", blob, "frame.jpg");
+
+        try {
+          const res = await fetch("/infer", { method: "POST", body: formData });
+          const data = await res.json();
+
+          lastRequestId = data.request_id;
+
+          resultDiv.innerHTML = `
+            <b>${data.label}</b> (${(data.confidence*100).toFixed(1)}%)<br>
+            Model: <b>${data.model.toUpperCase()}</b> | Source: ${data.decision_source}<br>
+            Latency: ${data.latency_ms}ms | Decision: ${data.decision_time_ms}ms<br>
+            CPU: ${data.cpu}% | RAM: ${data.ram}% | Temp: ${data.temperature}°C
+          `;
+
+          history.push(data.model);
+          if (history.length > 10) history.shift();
+          historyDiv.innerHTML = history.map(m =>
+            `<span class="${m}">${m === 'fp32' ? '●' : '○'}</span>`
+          ).join(' ');
+
+        } catch (e) {
+          resultDiv.innerHTML = "Error contacting Pi: " + e;
+        }
+      }, "image/jpeg", 0.8);
+    }
+
+    pauseBtn.addEventListener('click', () => {
+      paused = !paused;
+      pauseBtn.textContent = paused ? "Resume" : "Pause";
+      pauseBtn.classList.toggle('paused', paused);
+      labelBox.style.display = paused ? "block" : "none";
+    });
+
+    submitLabel.addEventListener('click', async () => {
+      const label = labelInput.value.trim();
+      if (!label || lastRequestId === null) return;
+
+      await fetch("/label", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ request_id: lastRequestId, true_label: label })
+      });
+
+      labelInput.value = "";
+      resultDiv.innerHTML += "<br><i>Label saved.</i>";
+    });
+
+    pollHandle = setInterval(captureAndSend, 1500);
+  </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+iteration,cpu,ram,temperature,true_label,predicted,correct,model,decision_source,confidence,latency_ms,decision_time_ms
+0,0.0,25.1,81.315,golf ball,face powder,False,int8,static,0.2422,45.02,0.0
+1,0.0,25.1,78.393,cassette player,cassette,False,int8,static,0.8359,45.0,0.0
+2,2.0,25.1,79.367,chain saw,chain saw,True,int8,static,0.9648,45.01,0.0
+3,0.0,25.1,77.419,church,bell cote,False,int8,static,0.3516,45.0,0.0
+4,0.0,25.1,76.932,unknown,parachute,,int8,static,0.2305,45.0,0.0
+5,0.0,25.1,76.445,unknown,English springer,,int8,static,0.2969,45.02,0.0
+6,0.0,25.1,75.471,golf ball,golf ball,True,int8,static,0.9062,45.0,0.0
+7,0.0,25.1,74.984,unknown,French horn,,int8,static,0.9102,45.06,0.0
+8,0.0,24.7,75.958,parachute,balloon,False,int8,static,0.9766,45.06,0.0
+9,0.0,24.7,74.497,unknown,fountain pen,,int8,static,0.793,45.04,0.0
+10,0.0,24.7,74.497,unknown,iPod,,int8,static,0.2578,45.15,0.0
+11,0.0,24.8,74.497,unknown,jellyfish,,int8,static,0.0664,45.02,0.0
+12,0.0,24.8,74.01,tench,tench,True,int8,static,0.6406,60.23,0.0
+13,0.0,24.8,72.549,garbage truck,garbage truck,True,int8,static,0.8867,45.01,0.0
+14,0.0,24.8,73.036,golf ball,face powder,False,int8,static,0.2422,45.01,0.0
+15,0.0,24.8,74.01,cassette player,cassette,False,int8,static,0.8359,45.0,0.0
+16,0.0,24.8,73.036,chain saw,chain saw,True,int8,static,0.9648,45.12,0.0
+17,0.0,24.8,72.549,church,bell cote,False,int8,static,0.3516,45.02,0.0
+18,0.0,24.8,72.062,unknown,parachute,,int8,static,0.2305,45.02,0.0
+19,0.0,24.8,71.575,unknown,English springer,,int8,static,0.2969,45.02,0.0
+20,0.0,24.8,71.575,golf ball,golf ball,True,int8,static,0.9062,45.01,0.0
+21,0.0,24.8,71.575,unknown,French horn,,int8,static,0.9102,55.63,0.0
+22,2.0,25.4,71.088,parachute,balloon,False,int8,static,0.9766,45.02,0.0
+23,0.0,25.3,70.601,unknown,fountain pen,,int8,static,0.793,45.01,0.0
+24,0.0,25.3,71.088,unknown,iPod,,int8,static,0.2578,45.05,0.0
+25,0.0,25.3,70.601,unknown,jellyfish,,int8,static,0.0664,45.01,0.0
+26,0.0,25.3,71.575,tench,tench,True,int8,static,0.6406,45.01,0.0
+27,0.0,25.3,71.088,garbage truck,garbage truck,True,int8,static,0.8867,45.0,0.0
+28,0.0,25.3,70.601,golf ball,face powder,False,int8,static,0.2422,45.02,0.0
+29,0.0,25.3,71.088,cassette player,cassette,False,int8,static,0.8359,44.99,0.0
+30,0.0,25.3,69.627,chain saw,chain saw,True,int8,static,0.9648,88.46,0.0
+31,0.0,25.3,69.627,church,bell cote,False,int8,static,0.3516,45.02,0.0
+32,0.0,25.3,70.601,unknown,parachute,,int8,static,0.2305,45.03,0.0
+33,0.0,25.3,70.114,unknown,English springer,,int8,static,0.2969,45.04,0.0
+34,0.0,25.3,69.14,golf ball,golf ball,True,int8,static,0.9062,44.99,0.0
+35,0.0,25.3,69.14,unknown,French horn,,int8,static,0.9102,45.04,0.0
+36,0.0,24.8,69.627,parachute,balloon,False,int8,static,0.9766,45.01,0.0
+37,0.0,24.8,68.653,unknown,fountain pen,,int8,static,0.793,45.01,0.0
+38,0.0,24.8,69.627,unknown,iPod,,int8,static,0.2578,45.01,0.0
+39,0.0,24.9,69.627,unknown,jellyfish,,int8,static,0.0664,71.08,0.0
+40,100.0,25.3,75.958,tench,tench,True,int8,static,0.6406,93.07,0.0
+41,100.0,25.3,75.958,garbage truck,garbage truck,True,int8,static,0.8867,88.99,0.0
+42,100.0,25.3,77.419,golf ball,face powder,False,int8,static,0.2422,89.27,0.0
+43,100.0,25.3,78.393,cassette player,cassette,False,int8,static,0.8359,94.0,0.0
+44,100.0,25.3,78.393,chain saw,chain saw,True,int8,static,0.9648,93.63,0.0
+45,100.0,25.3,78.393,church,bell cote,False,int8,static,0.3516,89.34,0.0
+46,100.0,25.3,79.367,unknown,parachute,,int8,static,0.2305,89.4,0.0
+47,100.0,25.3,80.828,unknown,English springer,,int8,static,0.2969,89.09,0.0
+48,100.0,25.3,80.828,golf ball,golf ball,True,int8,static,0.9062,89.43,0.0
+49,100.0,25.3,80.828,unknown,French horn,,int8,static,0.9102,93.31,0.0
+50,100.0,26.0,82.776,parachute,balloon,False,int8,static,0.9766,94.12,0.0
+51,100.0,25.9,81.802,unknown,fountain pen,,int8,static,0.793,89.3,0.0
+52,100.0,25.9,82.289,unknown,iPod,,int8,static,0.2578,66.07,0.0
+53,100.0,25.9,81.802,unknown,jellyfish,,int8,static,0.0664,98.18,0.0
+54,100.0,25.9,82.776,tench,tench,True,int8,static,0.6406,66.51,0.0
+55,100.0,25.9,81.802,garbage truck,garbage truck,True,int8,static,0.8867,89.08,0.0
+56,100.0,25.9,82.776,golf ball,face powder,False,int8,static,0.2422,91.08,0.0
+57,100.0,25.9,83.75,cassette player,cassette,False,int8,static,0.8359,90.75,0.0
+58,100.0,25.8,81.802,chain saw,chain saw,True,int8,static,0.9648,89.76,0.0
+59,100.0,25.8,82.776,church,bell cote,False,int8,static,0.3516,94.88,0.0

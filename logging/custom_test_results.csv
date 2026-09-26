@@ -1,0 +1,43 @@
+algo,file,true_label,predicted,correct,model,decision_source,cpu,temperature,confidence,latency_ms
+linucb,truck.jpeg,garbage truck,garbage truck,True,fp32,algo,100.0,96.0,0.8882,29.69
+linucb,chain.jpeg,chain saw,chain saw,True,int8,algo,100.0,96.0,0.9609,5.55
+linucb,pen.jpeg,unknown,fountain pen,,int8,algo,100.0,90.0,0.793,7.05
+linucb,church.jpeg,church,bell cote,False,int8,algo,100.0,90.0,0.3516,7.06
+linucb,golfball.jpeg,golf ball,golf ball,True,fp32,algo,100.0,89.0,0.8637,31.36
+linucb,music.jpg,unknown,French horn,,int8,algo,100.0,89.0,0.9102,7.52
+linucb,para.jpeg,parachute,balloon,False,fp32,algo,100.0,95.0,0.9741,33.34
+linucb,ball.jpeg,golf ball,face powder,False,int8,algo,100.0,95.0,0.2422,11.57
+linucb,tench.jpeg,tench,tench,True,fp32,algo,100.0,98.0,0.7242,30.96
+linucb,cloud.jpeg,unknown,parachute,,int8,algo,100.0,98.0,0.2305,13.46
+linucb,rose.jpeg,unknown,jellyfish,,int8,algo,100.0,93.0,0.0664,7.06
+linucb,dog.jpeg,unknown,Welsh springer spaniel,,fp32,algo,100.0,93.0,0.3929,30.91
+linucb,casettee.jpeg,cassette player,cassette,False,int8,algo,100.0,94.0,0.8359,6.83
+linucb,phone.jpg,unknown,iPod,,int8,algo,100.0,94.0,0.2578,10.46
+egreedy,truck.jpeg,garbage truck,garbage truck,True,fp32,algo,100.0,98.0,0.8882,39.0
+egreedy,chain.jpeg,chain saw,chain saw,True,fp32,algo,100.0,98.0,0.9744,40.96
+egreedy,pen.jpeg,unknown,fountain pen,,fp32,algo,100.0,99.0,0.7887,44.4
+egreedy,church.jpeg,church,bell cote,False,fp32,algo,100.0,99.0,0.6547,37.33
+egreedy,golfball.jpeg,golf ball,golf ball,True,fp32,algo,100.0,93.0,0.8637,40.03
+egreedy,music.jpg,unknown,French horn,,fp32,algo,100.0,93.0,0.9103,37.46
+egreedy,para.jpeg,parachute,balloon,False,fp32,algo,100.0,92.0,0.9741,36.09
+egreedy,ball.jpeg,golf ball,soccer ball,False,fp32,algo,100.0,92.0,0.4527,35.11
+egreedy,tench.jpeg,tench,tench,True,fp32,algo,100.0,94.0,0.7242,35.73
+egreedy,cloud.jpeg,unknown,parachute,,fp32,algo,100.0,94.0,0.1679,35.09
+egreedy,rose.jpeg,unknown,hummingbird,,fp32,algo,100.0,94.0,0.0748,36.09
+egreedy,dog.jpeg,unknown,Welsh springer spaniel,,fp32,algo,100.0,94.0,0.3929,35.74
+egreedy,casettee.jpeg,cassette player,cassette,False,fp32,algo,100.0,92.0,0.9095,35.72
+egreedy,phone.jpg,unknown,iPod,,fp32,algo,100.0,92.0,0.254,35.75
+eightsignal,truck.jpeg,garbage truck,garbage truck,True,fp32,linucb,100.0,95.0,0.8882,33.71
+eightsignal,chain.jpeg,chain saw,chain saw,True,int8,linucb,100.0,95.0,0.9609,9.09
+eightsignal,pen.jpeg,unknown,fountain pen,,int8,vote_int8,100.0,96.0,0.793,12.69
+eightsignal,church.jpeg,church,bell cote,False,int8,linucb,100.0,96.0,0.3516,10.28
+eightsignal,golfball.jpeg,golf ball,golf ball,True,fp32,linucb,100.0,95.0,0.8637,45.34
+eightsignal,music.jpg,unknown,French horn,,int8,vote_int8,100.0,95.0,0.9102,11.45
+eightsignal,para.jpeg,parachute,balloon,False,int8,vote_int8,100.0,96.0,0.9727,9.27
+eightsignal,ball.jpeg,golf ball,face powder,False,int8,vote_int8,100.0,96.0,0.2422,11.18
+eightsignal,tench.jpeg,tench,tench,True,int8,vote_int8,100.0,96.0,0.6406,11.82
+eightsignal,cloud.jpeg,unknown,parachute,,int8,linucb,100.0,96.0,0.2305,7.99
+eightsignal,rose.jpeg,unknown,jellyfish,,int8,linucb,100.0,98.0,0.0664,11.67
+eightsignal,dog.jpeg,unknown,Welsh springer spaniel,,fp32,linucb,100.0,98.0,0.3929,37.4
+eightsignal,casettee.jpeg,cassette player,cassette,False,int8,linucb,100.0,93.0,0.8359,12.95
+eightsignal,phone.jpg,unknown,iPod,,int8,linucb,100.0,93.0,0.2578,8.0

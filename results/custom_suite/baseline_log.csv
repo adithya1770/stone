@@ -1,0 +1,61 @@
+iteration,file,cpu,ram,temperature,true_label,predicted,correct,model,decision_source,confidence,latency_ms,decision_time_ms
+0,ball.jpeg,20.0,38.5,42.0,golf ball,soccer ball,False,fp32,static,0.4527,14.23,0.0
+1,casettee.jpeg,13.7,38.8,42.0,cassette player,cassette,False,fp32,static,0.9095,20.16,0.0
+2,chain.jpeg,5.9,38.6,43.0,chain saw,chain saw,True,fp32,static,0.9744,13.69,0.0
+3,church.jpeg,20.0,38.7,43.0,church,bell cote,False,fp32,static,0.6547,14.13,0.0
+4,cloud.jpeg,9.6,38.7,44.0,unknown,parachute,,fp32,static,0.1679,14.26,0.0
+5,dog.jpeg,3.9,38.8,44.0,unknown,Welsh springer spaniel,,fp32,static,0.3929,12.32,0.0
+6,golfball.jpeg,2.0,38.7,42.0,golf ball,golf ball,True,fp32,static,0.8637,12.32,0.0
+7,music.jpg,2.0,38.7,42.0,unknown,French horn,,fp32,static,0.9103,12.41,0.0
+8,para.jpeg,2.0,38.7,42.0,parachute,balloon,False,fp32,static,0.9741,12.32,0.0
+9,pen.jpeg,3.8,38.7,42.0,unknown,fountain pen,,fp32,static,0.7887,12.33,0.0
+10,phone.jpg,2.0,38.7,41.0,unknown,iPod,,fp32,static,0.254,12.35,0.0
+11,rose.jpeg,6.1,38.6,41.0,unknown,hummingbird,,fp32,static,0.0748,15.43,0.0
+12,tench.jpeg,4.0,38.5,42.0,tench,tench,True,fp32,static,0.7242,12.32,0.0
+13,truck.jpeg,2.0,38.4,42.0,garbage truck,garbage truck,True,fp32,static,0.8882,16.3,0.0
+14,ball.jpeg,2.0,38.3,42.0,golf ball,soccer ball,False,fp32,static,0.4527,12.35,0.0
+15,casettee.jpeg,3.9,38.4,42.0,cassette player,cassette,False,fp32,static,0.9095,19.91,0.0
+16,chain.jpeg,3.9,38.3,42.0,chain saw,chain saw,True,fp32,static,0.9744,12.31,0.0
+17,church.jpeg,2.0,38.3,42.0,church,bell cote,False,fp32,static,0.6547,17.59,0.0
+18,cloud.jpeg,2.0,38.3,42.0,unknown,parachute,,fp32,static,0.1679,12.32,0.0
+19,dog.jpeg,6.0,38.3,42.0,unknown,Welsh springer spaniel,,fp32,static,0.3929,12.34,0.0
+20,golfball.jpeg,2.0,38.3,41.0,golf ball,golf ball,True,fp32,static,0.8637,12.34,0.0
+21,music.jpg,2.0,38.2,41.0,unknown,French horn,,fp32,static,0.9103,12.34,0.0
+22,para.jpeg,2.0,38.2,41.0,parachute,balloon,False,fp32,static,0.9741,12.31,0.0
+23,pen.jpeg,2.0,38.2,41.0,unknown,fountain pen,,fp32,static,0.7887,16.53,0.0
+24,phone.jpg,10.0,38.0,42.0,unknown,iPod,,fp32,static,0.254,12.36,0.0
+25,rose.jpeg,8.0,38.1,42.0,unknown,hummingbird,,fp32,static,0.0748,12.3,0.0
+26,tench.jpeg,2.0,38.0,42.0,tench,tench,True,fp32,static,0.7242,17.69,0.0
+27,truck.jpeg,5.8,38.0,42.0,garbage truck,garbage truck,True,fp32,static,0.8882,12.3,0.0
+28,ball.jpeg,5.9,38.1,42.0,golf ball,soccer ball,False,fp32,static,0.4527,17.79,0.0
+29,casettee.jpeg,2.0,38.1,42.0,cassette player,cassette,False,fp32,static,0.9095,12.33,0.0
+30,chain.jpeg,100.0,38.2,89.0,chain saw,chain saw,True,fp32,static,0.9744,31.18,0.0
+31,church.jpeg,100.0,38.2,89.0,church,bell cote,False,fp32,static,0.6547,34.62,0.0
+32,cloud.jpeg,100.0,38.2,95.0,unknown,parachute,,fp32,static,0.1679,34.42,0.0
+33,dog.jpeg,100.0,38.2,95.0,unknown,Welsh springer spaniel,,fp32,static,0.3929,31.3,0.0
+34,golfball.jpeg,100.0,38.2,93.0,golf ball,golf ball,True,fp32,static,0.8637,34.4,0.0
+35,music.jpg,100.0,38.2,93.0,unknown,French horn,,fp32,static,0.9103,31.41,0.0
+36,para.jpeg,100.0,38.2,89.0,parachute,balloon,False,fp32,static,0.9741,31.13,0.0
+37,pen.jpeg,100.0,38.2,89.0,unknown,fountain pen,,fp32,static,0.7887,34.86,0.0
+38,phone.jpg,100.0,38.1,96.0,unknown,iPod,,fp32,static,0.254,29.72,0.0
+39,rose.jpeg,100.0,38.1,96.0,unknown,hummingbird,,fp32,static,0.0748,30.65,0.0
+40,tench.jpeg,100.0,38.1,89.0,tench,tench,True,fp32,static,0.7242,34.51,0.0
+41,truck.jpeg,100.0,38.1,89.0,garbage truck,garbage truck,True,fp32,static,0.8882,31.5,0.0
+42,ball.jpeg,100.0,38.2,93.0,golf ball,soccer ball,False,fp32,static,0.4527,35.28,0.0
+43,casettee.jpeg,100.0,38.1,93.0,cassette player,cassette,False,fp32,static,0.9095,32.91,0.0
+44,chain.jpeg,100.0,38.1,95.0,chain saw,chain saw,True,fp32,static,0.9744,31.54,0.0
+45,church.jpeg,100.0,38.1,95.0,church,bell cote,False,fp32,static,0.6547,34.69,0.0
+46,cloud.jpeg,100.0,38.1,98.0,unknown,parachute,,fp32,static,0.1679,34.84,0.0
+47,dog.jpeg,100.0,38.1,98.0,unknown,Welsh springer spaniel,,fp32,static,0.3929,35.1,0.0
+48,golfball.jpeg,100.0,38.1,99.0,golf ball,golf ball,True,fp32,static,0.8637,34.99,0.0
+49,music.jpg,100.0,38.0,99.0,unknown,French horn,,fp32,static,0.9103,34.62,0.0
+50,para.jpeg,100.0,38.0,93.0,parachute,balloon,False,fp32,static,0.9741,35.11,0.0
+51,pen.jpeg,100.0,38.0,93.0,unknown,fountain pen,,fp32,static,0.7887,31.62,0.0
+52,phone.jpg,100.0,38.1,95.0,unknown,iPod,,fp32,static,0.254,34.09,0.0
+53,rose.jpeg,100.0,38.1,95.0,unknown,hummingbird,,fp32,static,0.0748,36.28,0.0
+54,tench.jpeg,100.0,38.1,89.0,tench,tench,True,fp32,static,0.7242,31.9,0.0
+55,truck.jpeg,100.0,38.0,89.0,garbage truck,garbage truck,True,fp32,static,0.8882,35.58,0.0
+56,ball.jpeg,100.0,38.0,99.0,golf ball,soccer ball,False,fp32,static,0.4527,35.27,0.0
+57,casettee.jpeg,100.0,38.0,99.0,cassette player,cassette,False,fp32,static,0.9095,34.49,0.0
+58,chain.jpeg,100.0,38.0,96.0,chain saw,chain saw,True,fp32,static,0.9744,35.38,0.0
+59,church.jpeg,100.0,38.0,96.0,church,bell cote,False,fp32,static,0.6547,31.04,0.0

@@ -1,0 +1,101 @@
+iteration,cpu,ram,temperature,true_label,predicted,correct,model,decision_source,confidence,latency_ms,decision_time_ms
+0,0.0,24.4,73.036,cassette player,cassette player,True,int8,algo,0.6289,45.42,111.053
+1,0.0,24.8,70.601,gas pump,gas pump,True,fp32,algo,0.7784,64.84,0.045
+2,0.0,24.8,69.627,garbage truck,garbage truck,True,fp32,algo,0.8858,64.7,0.04
+3,0.0,24.8,69.627,chain saw,street sign,False,fp32,algo,0.1295,64.73,0.039
+4,0.0,24.8,69.14,tench,tench,True,fp32,algo,0.9637,64.7,0.04
+5,0.0,24.8,67.192,tench,tench,True,fp32,algo,0.8553,64.77,0.042
+6,0.0,24.8,64.757,French horn,French horn,True,fp32,algo,0.7895,64.7,0.039
+7,0.0,24.8,66.218,cassette player,cassette player,True,fp32,algo,0.4806,64.79,0.038
+8,0.0,24.8,65.731,English springer,English springer,True,fp32,algo,0.29,64.85,0.232
+9,0.0,24.8,66.218,cassette player,modem,False,fp32,algo,0.318,65.08,0.038
+10,0.0,24.6,65.244,parachute,parachute,True,fp32,algo,0.9907,65.09,0.038
+11,0.0,24.7,64.27,French horn,French horn,True,fp32,algo,0.7794,65.23,0.041
+12,0.0,24.7,64.27,garbage truck,mobile home,False,fp32,algo,0.0621,102.3,0.066
+13,0.0,24.7,64.27,English springer,English springer,True,fp32,algo,0.25,65.15,0.038
+14,0.0,24.6,62.809,chain saw,chain saw,True,fp32,algo,0.3724,65.22,0.223
+15,0.0,24.6,62.809,garbage truck,garbage truck,True,fp32,algo,0.9131,65.33,0.039
+16,0.0,24.6,61.348,English springer,wire-haired fox terrier,False,fp32,algo,0.1974,65.26,0.039
+17,0.0,24.6,62.322,garbage truck,garbage truck,True,fp32,algo,0.6205,65.15,0.04
+18,0.0,24.6,61.835,tench,tench,True,fp32,algo,0.8855,65.15,0.039
+19,0.0,24.6,62.322,chain saw,snowmobile,False,fp32,algo,0.2455,65.24,0.038
+20,2.0,24.6,60.861,chain saw,chain saw,True,fp32,algo,0.9898,65.24,0.039
+21,0.0,24.6,61.835,chain saw,chain saw,True,fp32,algo,0.4957,107.99,0.083
+22,0.0,24.6,61.348,cassette player,loudspeaker,False,fp32,algo,0.3373,65.2,0.037
+23,0.0,24.6,59.887,chain saw,chain saw,True,fp32,algo,0.4287,65.22,0.228
+24,0.0,24.6,60.861,golf ball,golf ball,True,fp32,algo,0.7976,65.26,0.039
+25,2.0,24.6,59.887,French horn,French horn,True,int8,algo,0.418,45.62,0.224
+26,0.0,24.6,60.374,English springer,English springer,True,fp32,algo,0.7752,65.24,0.044
+27,0.0,24.6,60.374,cassette player,radio,False,fp32,algo,0.3819,65.14,0.224
+28,0.0,24.6,59.4,garbage truck,garbage truck,True,fp32,algo,0.7635,65.24,0.042
+29,0.0,24.6,58.426,tench,tench,True,int8,algo,0.9453,45.51,0.227
+30,2.0,24.6,59.887,golf ball,golf ball,True,fp32,algo,0.8779,101.18,0.434
+31,0.0,24.5,59.4,French horn,French horn,True,fp32,algo,0.7019,65.11,0.039
+32,0.0,24.5,59.887,golf ball,golf ball,True,fp32,algo,0.9662,65.3,0.038
+33,0.0,24.5,58.913,cassette player,cassette player,True,fp32,algo,0.5805,65.17,0.039
+34,0.0,24.5,58.913,golf ball,golf ball,True,fp32,algo,0.8831,65.23,0.039
+35,0.0,24.5,58.426,French horn,French horn,True,fp32,algo,0.9398,65.26,0.039
+36,0.0,24.5,59.4,French horn,French horn,True,fp32,algo,0.9176,65.12,0.038
+37,0.0,24.5,58.913,golf ball,golf ball,True,fp32,algo,0.9336,65.18,0.037
+38,0.0,24.5,57.939,parachute,parachute,True,fp32,algo,0.8589,65.2,0.039
+39,0.0,24.5,58.426,English springer,Brittany spaniel,False,fp32,algo,0.1223,105.14,0.039
+40,100.0,25.1,64.757,gas pump,gas pump,True,fp32,algo,0.3287,132.53,0.041
+41,100.0,25.3,66.705,French horn,French horn,True,fp32,algo,0.8986,118.5,0.041
+42,100.0,25.3,67.192,tench,tench,True,fp32,algo,0.9158,130.11,0.041
+43,100.0,25.3,67.679,gas pump,moped,False,fp32,algo,0.3624,122.1,0.041
+44,100.0,25.3,68.166,gas pump,gas pump,True,fp32,algo,0.9698,130.55,0.04
+45,100.0,25.1,67.679,golf ball,golf ball,True,fp32,algo,0.9341,129.93,0.045
+46,100.0,25.3,68.166,cassette player,cassette player,True,fp32,algo,0.304,125.6,0.06
+47,100.0,25.3,68.653,English springer,English springer,True,fp32,algo,0.392,129.29,0.044
+48,100.0,25.2,70.601,tench,tench,True,fp32,algo,0.1609,113.46,0.041
+49,100.0,25.2,70.114,French horn,cornet,False,fp32,algo,0.421,129.54,0.041
+50,100.0,25.2,71.575,cassette player,cassette player,True,fp32,algo,0.942,134.74,0.044
+51,100.0,25.2,70.601,parachute,sarong,False,fp32,algo,0.1213,135.38,0.041
+52,100.0,25.2,71.575,parachute,parachute,True,fp32,algo,0.8609,135.61,0.04
+53,100.0,25.2,71.575,chain saw,chain saw,True,fp32,algo,0.052,117.39,0.042
+54,100.0,25.2,72.062,tench,tench,True,fp32,algo,0.7481,129.3,0.039
+55,100.0,25.2,72.062,church,palace,False,fp32,algo,0.3559,134.06,0.041
+56,100.0,25.2,72.549,French horn,French horn,True,fp32,algo,0.9494,130.22,0.041
+57,100.0,25.2,73.036,garbage truck,garbage truck,True,fp32,algo,0.4972,130.18,0.042
+58,100.0,25.2,73.523,gas pump,gas pump,True,fp32,algo,0.4681,135.25,0.04
+59,100.0,25.2,74.01,parachute,parachute,True,fp32,algo,0.3177,125.82,0.044
+60,100.0,25.2,74.497,tench,tench,True,fp32,algo,0.9192,133.02,0.043
+61,100.0,25.2,74.497,English springer,sloth bear,False,int8,algo,0.375,94.13,0.237
+62,100.0,25.2,74.497,garbage truck,garbage truck,True,fp32,algo,0.2104,130.34,0.041
+63,100.0,25.2,74.01,French horn,French horn,True,fp32,algo,0.8855,134.74,0.046
+64,100.0,25.2,74.01,gas pump,gas pump,True,fp32,algo,0.5836,129.85,0.042
+65,100.0,25.2,74.01,parachute,parachute,True,fp32,algo,0.9439,132.96,0.046
+66,100.0,25.2,74.984,parachute,bubble,False,fp32,algo,0.1968,133.38,0.045
+67,100.0,25.2,74.984,parachute,parachute,True,int8,algo,0.9844,93.92,0.239
+68,100.0,25.2,74.01,French horn,paper towel,False,fp32,algo,0.125,118.33,0.041
+69,100.0,25.2,75.471,tench,tench,True,fp32,algo,0.7747,135.16,0.04
+70,100.0,25.2,75.471,gas pump,gas pump,True,fp32,algo,0.2226,135.27,0.243
+71,100.0,25.2,75.471,golf ball,golf ball,True,fp32,algo,0.9209,110.29,0.041
+72,100.0,25.2,74.497,garbage truck,garbage truck,True,fp32,algo,0.5843,129.08,0.04
+73,100.0,25.2,74.984,chain saw,chain saw,True,fp32,algo,0.9989,133.81,0.042
+74,100.0,25.2,76.445,French horn,French horn,True,fp32,algo,0.9705,129.64,0.042
+75,100.0,25.2,75.958,tench,tench,True,fp32,algo,0.6226,117.62,0.042
+76,100.0,25.2,76.932,tench,tench,True,fp32,algo,0.4544,128.87,0.043
+77,100.0,25.2,76.445,church,church,True,int8,algo,0.8164,90.09,0.247
+78,100.0,25.4,76.445,golf ball,golf ball,True,fp32,algo,0.8426,134.85,0.047
+79,100.0,25.4,76.445,parachute,parachute,True,fp32,algo,0.8524,129.11,0.062
+80,100.0,25.4,76.932,church,church,True,fp32,algo,0.3991,121.25,0.05
+81,100.0,25.1,76.932,golf ball,golf ball,True,fp32,algo,0.7063,129.46,0.043
+82,100.0,25.1,76.932,golf ball,shower cap,False,fp32,algo,0.1519,133.77,0.046
+83,100.0,25.1,76.932,English springer,German short-haired pointer,False,fp32,algo,0.4392,129.75,0.043
+84,100.0,25.1,76.932,tench,tench,True,fp32,algo,0.827,133.1,0.047
+85,100.0,25.1,75.958,garbage truck,garbage truck,True,int8,algo,0.7188,93.41,0.25
+86,100.0,25.1,76.445,parachute,parachute,True,fp32,algo,0.9443,124.88,0.041
+87,100.0,25.1,77.419,cassette player,marimba,False,fp32,algo,0.1479,125.84,0.043
+88,100.0,25.1,77.906,cassette player,printer,False,fp32,algo,0.7214,130.4,0.243
+89,100.0,25.1,77.906,tench,tench,True,fp32,algo,0.755,134.12,0.041
+90,100.0,25.1,78.393,parachute,parachute,True,fp32,algo,0.983,130.02,0.039
+91,100.0,25.1,78.393,gas pump,gas pump,True,fp32,algo,0.2898,133.76,0.041
+92,100.0,25.1,76.932,English springer,English setter,False,fp32,algo,0.0983,134.0,0.239
+93,100.0,25.1,77.419,gas pump,gas pump,True,fp32,algo,0.868,130.31,0.045
+94,100.0,25.1,77.906,tench,tench,True,fp32,algo,0.3967,134.98,0.041
+95,100.0,25.1,77.906,tench,plastic bag,False,fp32,algo,0.8379,130.25,0.043
+96,100.0,25.1,78.88,gas pump,ambulance,False,fp32,algo,0.3753,133.91,0.238
+97,100.0,25.1,77.906,gas pump,street sign,False,fp32,algo,0.1799,129.07,0.041
+98,100.0,25.1,78.393,church,church,True,fp32,algo,0.7075,134.05,0.04
+99,100.0,25.1,77.906,golf ball,golf ball,True,fp32,algo,0.6524,126.2,0.04

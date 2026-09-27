@@ -1,4 +1,5 @@
 import sys, os, csv, subprocess, time
+from datetime import datetime
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from runtime.inference_engine import InferenceEngine
@@ -7,6 +8,7 @@ from runtime.decision_engine import get_algo, choose, update, get_last_source, s
 from runtime.reward import calculate_reward
 from runtime.image_pool import ImagePool
 from runtime.label_lookup import true_label_for_image, build_wnid_to_label_index
+from runtime.logger import initialize_logger, log_data
 
 STRESS_START_AT = 40
 STRESS_DURATION = 60
@@ -80,7 +82,9 @@ def run_config(name, algo_kind, model_override, dataset, out_dir, state_dir):
     n_iterations, get_item = get_image_source(dataset)
     algo = make_algo(algo_kind, state_dir) if algo_kind else None
 
-    rows = []
+    log_file = os.path.join(out_dir, f"{name}_log.csv")
+    initialize_logger(log_file)
+
     stress_proc = None
 
     for i in range(n_iterations):
@@ -102,6 +106,7 @@ def run_config(name, algo_kind, model_override, dataset, out_dir, state_dir):
             source = get_last_source(algo) or "algo"
         else:
             chosen_model = model_override
+            scores = {}
             decision_time_ms = 0.0
             source = "static"
 
@@ -121,23 +126,29 @@ def run_config(name, algo_kind, model_override, dataset, out_dir, state_dir):
             result["label"].strip().lower() == true_label_str.strip().lower()
         )
 
-        rows.append({
-            "iteration": i, "cpu": t["cpu"], "ram": t["ram"], "temperature": t["temperature"],
-            "true_label": true_label_str, "predicted": result["label"], "correct": correct,
-            "model": result["model"], "decision_source": source,
-            "confidence": result["confidence"], "latency_ms": result["latency_ms"],
+        log_data({
+            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "cpu": t["cpu"], "ram": t["ram"], "temperature": t["temperature"],
+            "battery": t["battery"],
+            "health_score": round(scores.get("fp32", 0), 4),
+            "model": result["model"],
+            "decision_source": source,
+            "image_path": path,
+            "true_label": true_label_str,
+            "label": result["label"],
+            "correct": correct,
+            "confidence": result["confidence"],
+            "latency_ms": result["latency_ms"],
             "decision_time_ms": decision_time_ms
-        })
+        }, log_file)
+
+        if i % 20 == 0 or i == n_iterations - 1:
+            print(f"    [{i}] {result['model']} cpu={t['cpu']}% conf={result['confidence']}")
 
     if stress_proc:
         stress_proc.wait()
 
-    out_path = os.path.join(out_dir, f"{name}_log.csv")
-    with open(out_path, "w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=rows[0].keys())
-        writer.writeheader()
-        writer.writerows(rows)
-    print(f"    saved -> {out_path}")
+    print(f"    saved -> {log_file}")
 
 
 def run_trial(trial_num, dataset):

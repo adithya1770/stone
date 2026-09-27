@@ -1,0 +1,61 @@
+timestamp,cpu,ram,temperature,battery,health_score,model,decision_source,image_path,true_label,label,correct,confidence,latency_ms,decision_time_ms
+2026-09-27 08:50:16,0.0,24.3,73.036,100.0,0,int8,static,datasets/custom_test/ball.jpeg,golf ball,face powder,False,0.2422,45.03,0.0
+2026-09-27 08:50:17,0.0,24.3,73.036,100.0,0,int8,static,datasets/custom_test/casettee.jpeg,cassette player,cassette,False,0.8359,45.15,0.0
+2026-09-27 08:50:17,0.0,24.2,71.088,100.0,0,int8,static,datasets/custom_test/chain.jpeg,chain saw,chain saw,True,0.9648,45.04,0.0
+2026-09-27 08:50:18,0.0,24.2,69.14,100.0,0,int8,static,datasets/custom_test/church.jpeg,church,bell cote,False,0.3516,45.05,0.0
+2026-09-27 08:50:18,0.0,24.2,69.14,100.0,0,int8,static,datasets/custom_test/cloud.jpeg,unknown,parachute,,0.2305,45.07,0.0
+2026-09-27 08:50:19,0.0,24.2,69.14,100.0,0,int8,static,datasets/custom_test/dog.jpeg,unknown,English springer,,0.2969,45.04,0.0
+2026-09-27 08:50:19,0.0,24.2,68.166,100.0,0,int8,static,datasets/custom_test/golfball.jpeg,golf ball,golf ball,True,0.9062,87.71,0.0
+2026-09-27 08:50:20,0.0,24.2,67.192,100.0,0,int8,static,datasets/custom_test/music.jpg,unknown,French horn,,0.9102,45.09,0.0
+2026-09-27 08:50:21,0.0,23.9,65.731,100.0,0,int8,static,datasets/custom_test/para.jpeg,parachute,balloon,False,0.9766,45.07,0.0
+2026-09-27 08:50:21,0.0,23.9,66.218,100.0,0,int8,static,datasets/custom_test/pen.jpeg,unknown,fountain pen,,0.793,45.05,0.0
+2026-09-27 08:50:22,0.0,23.9,66.218,100.0,0,int8,static,datasets/custom_test/phone.jpg,unknown,iPod,,0.2578,45.21,0.0
+2026-09-27 08:50:22,0.0,23.9,63.783,100.0,0,int8,static,datasets/custom_test/rose.jpeg,unknown,jellyfish,,0.0664,45.08,0.0
+2026-09-27 08:50:23,0.0,23.9,64.757,100.0,0,int8,static,datasets/custom_test/tench.jpeg,tench,tench,True,0.6406,45.04,0.0
+2026-09-27 08:50:23,0.0,23.9,63.783,100.0,0,int8,static,datasets/custom_test/truck.jpeg,garbage truck,garbage truck,True,0.8867,45.09,0.0
+2026-09-27 08:50:24,0.0,23.9,63.783,100.0,0,int8,static,datasets/custom_test/ball.jpeg,golf ball,face powder,False,0.2422,45.06,0.0
+2026-09-27 08:50:25,0.0,23.9,63.783,100.0,0,int8,static,datasets/custom_test/casettee.jpeg,cassette player,cassette,False,0.8359,101.52,0.0
+2026-09-27 08:50:25,0.0,23.9,62.809,100.0,0,int8,static,datasets/custom_test/chain.jpeg,chain saw,chain saw,True,0.9648,45.07,0.0
+2026-09-27 08:50:26,0.0,23.9,61.835,100.0,0,int8,static,datasets/custom_test/church.jpeg,church,bell cote,False,0.3516,45.06,0.0
+2026-09-27 08:50:26,0.0,23.9,61.835,100.0,0,int8,static,datasets/custom_test/cloud.jpeg,unknown,parachute,,0.2305,45.05,0.0
+2026-09-27 08:50:27,0.0,23.9,61.835,100.0,0,int8,static,datasets/custom_test/dog.jpeg,unknown,English springer,,0.2969,45.04,0.0
+2026-09-27 08:50:27,0.0,23.9,61.835,100.0,0,int8,static,datasets/custom_test/golfball.jpeg,golf ball,golf ball,True,0.9062,45.2,0.0
+2026-09-27 08:50:28,0.0,23.9,61.835,100.0,0,int8,static,datasets/custom_test/music.jpg,unknown,French horn,,0.9102,45.05,0.0
+2026-09-27 08:50:29,0.0,24.6,61.348,100.0,0,int8,static,datasets/custom_test/para.jpeg,parachute,balloon,False,0.9766,45.07,0.0
+2026-09-27 08:50:29,0.0,24.6,61.348,100.0,0,int8,static,datasets/custom_test/pen.jpeg,unknown,fountain pen,,0.793,45.03,0.0
+2026-09-27 08:50:30,0.0,24.4,60.374,100.0,0,int8,static,datasets/custom_test/phone.jpg,unknown,iPod,,0.2578,53.14,0.0
+2026-09-27 08:50:30,0.0,24.4,60.861,100.0,0,int8,static,datasets/custom_test/rose.jpeg,unknown,jellyfish,,0.0664,45.05,0.0
+2026-09-27 08:50:31,0.0,24.4,60.374,100.0,0,int8,static,datasets/custom_test/tench.jpeg,tench,tench,True,0.6406,45.06,0.0
+2026-09-27 08:50:31,0.0,24.4,60.861,100.0,0,int8,static,datasets/custom_test/truck.jpeg,garbage truck,garbage truck,True,0.8867,45.06,0.0
+2026-09-27 08:50:32,0.0,24.4,59.887,100.0,0,int8,static,datasets/custom_test/ball.jpeg,golf ball,face powder,False,0.2422,45.21,0.0
+2026-09-27 08:50:33,0.0,24.4,59.887,100.0,0,int8,static,datasets/custom_test/casettee.jpeg,cassette player,cassette,False,0.8359,45.03,0.0
+2026-09-27 08:50:33,0.0,24.4,60.374,100.0,0,int8,static,datasets/custom_test/chain.jpeg,chain saw,chain saw,True,0.9648,45.06,0.0
+2026-09-27 08:50:34,0.0,24.4,59.4,100.0,0,int8,static,datasets/custom_test/church.jpeg,church,bell cote,False,0.3516,45.05,0.0
+2026-09-27 08:50:34,0.0,24.4,60.374,100.0,0,int8,static,datasets/custom_test/cloud.jpeg,unknown,parachute,,0.2305,45.16,0.0
+2026-09-27 08:50:35,0.0,24.3,59.887,100.0,0,int8,static,datasets/custom_test/dog.jpeg,unknown,English springer,,0.2969,95.94,0.0
+2026-09-27 08:50:35,0.0,24.3,59.4,100.0,0,int8,static,datasets/custom_test/golfball.jpeg,golf ball,golf ball,True,0.9062,45.06,0.0
+2026-09-27 08:50:36,0.0,24.3,58.426,100.0,0,int8,static,datasets/custom_test/music.jpg,unknown,French horn,,0.9102,45.11,0.0
+2026-09-27 08:50:37,0.0,23.9,59.4,100.0,0,int8,static,datasets/custom_test/para.jpeg,parachute,balloon,False,0.9766,45.07,0.0
+2026-09-27 08:50:37,0.0,23.9,58.913,100.0,0,int8,static,datasets/custom_test/pen.jpeg,unknown,fountain pen,,0.793,45.17,0.0
+2026-09-27 08:50:38,0.0,23.9,58.426,100.0,0,int8,static,datasets/custom_test/phone.jpg,unknown,iPod,,0.2578,45.05,0.0
+2026-09-27 08:50:38,0.0,23.9,57.939,100.0,0,int8,static,datasets/custom_test/rose.jpeg,unknown,jellyfish,,0.0664,45.11,0.0
+2026-09-27 08:50:40,100.0,24.7,64.27,100.0,0,int8,static,datasets/custom_test/tench.jpeg,tench,tench,True,0.6406,89.07,0.0
+2026-09-27 08:50:41,100.0,24.7,65.244,100.0,0,int8,static,datasets/custom_test/truck.jpeg,garbage truck,garbage truck,True,0.8867,89.02,0.0
+2026-09-27 08:50:42,100.0,24.7,67.192,100.0,0,int8,static,datasets/custom_test/ball.jpeg,golf ball,face powder,False,0.2422,89.29,0.0
+2026-09-27 08:50:42,100.0,24.7,68.166,100.0,0,int8,static,datasets/custom_test/casettee.jpeg,cassette player,cassette,False,0.8359,93.19,0.0
+2026-09-27 08:50:43,100.0,24.7,67.679,100.0,0,int8,static,datasets/custom_test/chain.jpeg,chain saw,chain saw,True,0.9648,89.49,0.0
+2026-09-27 08:50:43,100.0,24.7,69.14,100.0,0,int8,static,datasets/custom_test/church.jpeg,church,bell cote,False,0.3516,89.52,0.0
+2026-09-27 08:50:44,100.0,24.7,68.653,100.0,0,int8,static,datasets/custom_test/cloud.jpeg,unknown,parachute,,0.2305,89.22,0.0
+2026-09-27 08:50:45,100.0,24.7,70.114,100.0,0,int8,static,datasets/custom_test/dog.jpeg,unknown,English springer,,0.2969,89.28,0.0
+2026-09-27 08:50:45,100.0,24.7,70.601,100.0,0,int8,static,datasets/custom_test/golfball.jpeg,golf ball,golf ball,True,0.9062,93.33,0.0
+2026-09-27 08:50:46,100.0,24.7,71.575,100.0,0,int8,static,datasets/custom_test/music.jpg,unknown,French horn,,0.9102,93.28,0.0
+2026-09-27 08:50:47,100.0,25.2,70.601,100.0,0,int8,static,datasets/custom_test/para.jpeg,parachute,balloon,False,0.9766,89.17,0.0
+2026-09-27 08:50:47,100.0,25.2,71.575,100.0,0,int8,static,datasets/custom_test/pen.jpeg,unknown,fountain pen,,0.793,93.04,0.0
+2026-09-27 08:50:48,100.0,25.1,72.549,100.0,0,int8,static,datasets/custom_test/phone.jpg,unknown,iPod,,0.2578,93.09,0.0
+2026-09-27 08:50:49,100.0,25.4,72.062,100.0,0,int8,static,datasets/custom_test/rose.jpeg,unknown,jellyfish,,0.0664,93.73,0.0
+2026-09-27 08:50:49,100.0,25.4,72.062,100.0,0,int8,static,datasets/custom_test/tench.jpeg,tench,tench,True,0.6406,94.02,0.0
+2026-09-27 08:50:50,100.0,25.3,72.062,100.0,0,int8,static,datasets/custom_test/truck.jpeg,garbage truck,garbage truck,True,0.8867,89.25,0.0
+2026-09-27 08:50:50,100.0,25.1,72.549,100.0,0,int8,static,datasets/custom_test/ball.jpeg,golf ball,face powder,False,0.2422,89.01,0.0
+2026-09-27 08:50:51,100.0,25.1,72.549,100.0,0,int8,static,datasets/custom_test/casettee.jpeg,cassette player,cassette,False,0.8359,88.97,0.0
+2026-09-27 08:50:52,100.0,25.1,73.036,100.0,0,int8,static,datasets/custom_test/chain.jpeg,chain saw,chain saw,True,0.9648,92.96,0.0
+2026-09-27 08:50:52,100.0,25.1,73.523,100.0,0,int8,static,datasets/custom_test/church.jpeg,church,bell cote,False,0.3516,88.97,0.0

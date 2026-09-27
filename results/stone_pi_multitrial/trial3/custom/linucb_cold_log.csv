@@ -1,0 +1,61 @@
+iteration,cpu,ram,temperature,true_label,predicted,correct,model,decision_source,confidence,latency_ms,decision_time_ms
+0,0.0,25.8,80.828,golf ball,soccer ball,False,fp32,algo,0.4077,64.88,0.318
+1,0.0,25.7,79.854,cassette player,cassette,False,int8,algo,0.8359,45.39,0.379
+2,2.0,25.7,78.393,chain saw,chain saw,True,int8,algo,0.9648,45.5,0.309
+3,0.0,25.7,78.393,church,bell cote,False,int8,algo,0.3516,45.39,0.374
+4,0.0,25.7,77.906,unknown,parachute,,int8,algo,0.2305,45.48,0.309
+5,0.0,25.7,77.419,unknown,Welsh springer spaniel,,fp32,algo,0.3887,64.83,0.312
+6,0.0,25.7,76.445,golf ball,golf ball,True,int8,algo,0.9062,45.44,0.309
+7,0.0,25.7,74.984,unknown,French horn,,int8,algo,0.9102,45.45,0.311
+8,0.0,25.6,75.471,parachute,balloon,False,int8,algo,0.9766,45.42,0.311
+9,0.0,25.6,74.01,unknown,fountain pen,,int8,algo,0.793,91.95,0.314
+10,0.0,25.6,74.497,unknown,iPod,,int8,algo,0.2578,45.42,0.313
+11,0.0,25.7,74.497,unknown,hummingbird,,fp32,algo,0.0748,65.49,0.313
+12,0.0,25.7,74.01,tench,tench,True,int8,algo,0.6406,45.4,0.31
+13,0.0,25.7,72.549,garbage truck,garbage truck,True,int8,algo,0.8867,45.42,0.312
+14,0.0,25.7,73.036,golf ball,face powder,False,int8,algo,0.2422,45.43,0.309
+15,0.0,25.7,73.036,cassette player,cassette,False,int8,algo,0.8359,45.41,0.311
+16,0.0,25.7,72.549,chain saw,chain saw,True,int8,algo,0.9648,45.45,0.313
+17,0.0,25.7,72.549,church,bell cote,False,int8,algo,0.3516,45.44,0.312
+18,0.0,25.7,72.549,unknown,parachute,,int8,algo,0.2305,88.78,0.61
+19,0.0,25.7,72.062,unknown,English springer,,int8,algo,0.2969,45.43,0.311
+20,0.0,25.7,71.088,golf ball,golf ball,True,int8,algo,0.9062,45.49,0.312
+21,0.0,25.7,72.549,unknown,French horn,,int8,algo,0.9102,45.44,0.312
+22,0.0,25.9,71.575,parachute,balloon,False,int8,algo,0.9766,45.4,0.314
+23,0.0,25.9,71.088,unknown,fountain pen,,int8,algo,0.793,45.47,0.31
+24,0.0,25.9,70.114,unknown,iPod,,int8,algo,0.2578,45.44,0.315
+25,0.0,25.9,71.088,unknown,jellyfish,,int8,algo,0.0664,45.4,0.31
+26,0.0,25.9,71.088,tench,tench,True,fp32,algo,0.7216,65.07,0.309
+27,0.0,25.9,71.088,garbage truck,garbage truck,True,fp32,algo,0.883,105.42,0.61
+28,0.0,25.9,71.088,golf ball,soccer ball,False,fp32,algo,0.4077,64.73,0.308
+29,0.0,25.9,70.114,cassette player,cassette,False,int8,algo,0.8359,45.39,0.314
+30,0.0,25.9,70.601,chain saw,chain saw,True,int8,algo,0.9648,45.36,0.309
+31,0.0,25.9,69.627,church,bell cote,False,int8,algo,0.3516,45.38,0.37
+32,0.0,25.9,70.114,unknown,parachute,,int8,algo,0.2305,45.42,0.316
+33,0.0,25.9,70.114,unknown,Welsh springer spaniel,,fp32,algo,0.3887,64.6,0.312
+34,0.0,25.9,70.114,golf ball,golf ball,True,int8,algo,0.9062,45.38,0.311
+35,0.0,25.9,69.14,unknown,French horn,,int8,algo,0.9102,45.38,0.312
+36,0.0,25.8,69.627,parachute,balloon,False,int8,algo,0.9766,61.37,0.613
+37,0.0,25.8,69.627,unknown,fountain pen,,int8,algo,0.793,45.37,0.312
+38,0.0,25.7,69.14,unknown,iPod,,int8,algo,0.2578,45.37,0.373
+39,0.0,25.7,69.627,unknown,jellyfish,,int8,algo,0.0664,45.36,0.314
+40,100.0,26.0,75.958,tench,tench,True,int8,algo,0.6406,89.43,0.326
+41,100.0,26.0,77.419,garbage truck,garbage truck,True,fp32,algo,0.883,133.61,0.328
+42,100.0,26.0,77.906,golf ball,face powder,False,int8,algo,0.2422,45.34,0.326
+43,100.0,26.0,77.906,cassette player,cassette,False,fp32,algo,0.9074,117.25,0.329
+44,100.0,26.0,79.367,chain saw,chain saw,True,int8,algo,0.9648,89.58,0.324
+45,100.0,26.0,78.88,church,bell cote,False,fp32,algo,0.6433,130.13,0.322
+46,100.0,26.0,80.341,unknown,parachute,,int8,algo,0.2305,93.67,0.341
+47,100.0,26.0,80.341,unknown,Welsh springer spaniel,,fp32,algo,0.3887,129.08,0.338
+48,100.0,26.0,81.315,golf ball,golf ball,True,int8,algo,0.9062,89.4,0.325
+49,100.0,26.0,81.315,unknown,French horn,,fp32,algo,0.909,112.36,0.33
+50,100.0,25.7,81.802,parachute,balloon,False,int8,algo,0.9766,90.01,0.342
+51,100.0,25.7,82.289,unknown,fountain pen,,int8,algo,0.793,90.36,0.348
+52,100.0,25.7,82.776,unknown,iPod,,fp32,algo,0.2564,122.31,0.36
+53,100.0,26.1,83.263,unknown,jellyfish,,int8,algo,0.0664,95.87,0.319
+54,100.0,26.1,82.776,tench,tench,True,fp32,algo,0.7216,139.04,0.347
+55,100.0,26.1,82.289,garbage truck,garbage truck,True,int8,algo,0.8867,90.86,0.348
+56,100.0,26.1,83.75,golf ball,soccer ball,False,fp32,algo,0.4077,144.0,0.36
+57,100.0,26.1,83.263,cassette player,cassette,False,int8,algo,0.8359,96.91,0.338
+58,100.0,26.1,83.263,chain saw,chain saw,True,int8,algo,0.9648,97.25,0.345
+59,100.0,26.1,83.263,church,bell cote,False,int8,algo,0.3516,100.26,0.346

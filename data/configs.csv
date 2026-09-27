@@ -1,0 +1,8 @@
+config,config_name,policy_family,type,start_mode,sort_order
+baseline,Baseline (FP32),Static baseline,Static,n/a,1
+always_int8,Always INT8,Static baseline,Static,n/a,2
+egreedy,ε-greedy,ε-greedy,Adaptive,cold,3
+linucb_cold,LinUCB (cold),LinUCB,Adaptive,cold,4
+linucb_warm,LinUCB (warm),LinUCB,Adaptive,warm,5
+eightsignal_cold,EightSignal (cold),EightSignal,Adaptive,cold,6
+eightsignal_warm,EightSignal (warm),EightSignal,Adaptive,warm,7

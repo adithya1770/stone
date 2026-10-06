@@ -1,0 +1,24 @@
+# STONE v2 (model ladder, budget controller, demo). Python 3.10+; tested on Python 3.13
+# (Raspberry Pi OS 64-bit) and macOS.
+# Note: the root requirements.txt pins ai-edge-litert==2.1.5, which does not install on
+# Python 3.13; use this file for v2.
+
+ai-edge-litert==2.2.0      # LiteRT / TensorFlow Lite interpreter
+numpy>=2.2
+pillow>=12.0
+psutil>=7.0                # telemetry
+
+# analysis and plots
+matplotlib>=3.8
+
+# live demo server
+fastapi>=0.110
+uvicorn>=0.29
+python-multipart>=0.0.9
+
+# tests
+pytest>=8.0
+httpx>=0.27
+
+# Optional, only to rebuild the MobileNetV2 models (python -m v2.variants.build_variants):
+# tensorflow>=2.16

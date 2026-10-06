@@ -1,0 +1,46 @@
+{
+  "idle": {
+    "first": "mnv2q_160",
+    "second": "mnv2f_224",
+    "theta": -0.9928925,
+    "signal": "entropy",
+    "budget_ms": 56.054,
+    "est_ms": {
+      "int8_224": 55.075,
+      "fp32_224": 70.372,
+      "mnv2f_128": 30.18,
+      "mnv2f_160": 44.874,
+      "mnv2f_224": 77.858,
+      "mnv2q_128": 20.054,
+      "mnv2q_160": 31.13,
+      "mnv2q_224": 59.669
+    }
+  },
+  "stressed": {
+    "first": "mnv2q_224",
+    "second": null,
+    "theta": 0.0,
+    "signal": "margin",
+    "budget_ms": 93.13,
+    "est_ms": {
+      "int8_224": 93.374,
+      "fp32_224": 136.522,
+      "mnv2f_128": 51.954,
+      "mnv2f_160": 79.558,
+      "mnv2f_224": 150.134,
+      "mnv2q_128": 31.527,
+      "mnv2q_160": 49.153,
+      "mnv2q_224": 91.615
+    }
+  },
+  "_meta": {
+    "source_table": "v2/results_v2/rebuilt_20261002_2242/table_imagenette.csv",
+    "profiles": {
+      "idle": "v2/results_v2/rebuilt_20261002_2242/profile_idle.csv",
+      "stressed": "v2/results_v2/rebuilt_20261002_2242/profile_stressed.csv"
+    },
+    "generated": "2026-10-02T23:04:49.902198",
+    "label": "(rebuilt INT8 + FP32)",
+    "objective": "max accuracy s.t. mean latency <= budget (tuned on TUNE split)"
+  }
+}

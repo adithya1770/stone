@@ -1,0 +1,538 @@
+{
+  "table": "v2/results_v2/rebuilt_20261002_2242/table_imagenette.csv",
+  "n_images": 800,
+  "n_tune": 390,
+  "n_test": 410,
+  "variants": [
+    "int8_224",
+    "fp32_224",
+    "mnv2f_128",
+    "mnv2f_160",
+    "mnv2f_224",
+    "mnv2q_128",
+    "mnv2q_160",
+    "mnv2q_224"
+  ],
+  "v2_candidates": [
+    "mnv2f_128",
+    "mnv2f_160",
+    "mnv2f_224",
+    "mnv2q_128",
+    "mnv2q_160",
+    "mnv2q_224"
+  ],
+  "conditions": {
+    "idle": {
+      "latency_source": {
+        "int8_224": "profile",
+        "fp32_224": "profile",
+        "mnv2f_128": "profile",
+        "mnv2f_160": "profile",
+        "mnv2f_224": "profile",
+        "mnv2q_128": "profile",
+        "mnv2q_160": "profile",
+        "mnv2q_224": "profile"
+      },
+      "budget_ms": 81.29734846153848,
+      "static_test": {
+        "int8_224": {
+          "acc": 66.58536585365854,
+          "lat": 54.14331463414634,
+          "p95": 115.017,
+          "n": 410,
+          "kind": "static",
+          "first": "int8_224",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32_224": {
+          "acc": 69.26829268292683,
+          "lat": 71.14444146341462,
+          "p95": 117.638,
+          "n": 410,
+          "kind": "static",
+          "first": "fp32_224",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "mnv2f_128": {
+          "acc": 59.02439024390244,
+          "lat": 30.92671463414634,
+          "p95": 63.105,
+          "n": 410,
+          "kind": "static",
+          "first": "mnv2f_128",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "mnv2f_160": {
+          "acc": 73.17073170731707,
+          "lat": 44.49606341463414,
+          "p95": 99.086,
+          "n": 410,
+          "kind": "static",
+          "first": "mnv2f_160",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "mnv2f_224": {
+          "acc": 83.41463414634146,
+          "lat": 78.26820975609756,
+          "p95": 135.716,
+          "n": 410,
+          "kind": "static",
+          "first": "mnv2f_224",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "mnv2q_128": {
+          "acc": 43.170731707317074,
+          "lat": 19.74410487804878,
+          "p95": 43.977,
+          "n": 410,
+          "kind": "static",
+          "first": "mnv2q_128",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "mnv2q_160": {
+          "acc": 69.02439024390243,
+          "lat": 31.02579268292683,
+          "p95": 68.696,
+          "n": 410,
+          "kind": "static",
+          "first": "mnv2q_160",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "mnv2q_224": {
+          "acc": 81.70731707317073,
+          "lat": 58.5383975609756,
+          "p95": 117.592,
+          "n": 410,
+          "kind": "static",
+          "first": "mnv2q_224",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        }
+      },
+      "chosen_on_tune": {
+        "acc": 79.48717948717949,
+        "lat": 72.56463333333333,
+        "p95": 140.58625,
+        "n": 390,
+        "kind": "cascade",
+        "first": "mnv2q_160",
+        "second": "mnv2f_224",
+        "theta": 0.7734,
+        "signal": "margin",
+        "esc": 54.35897435897436
+      },
+      "chosen_test": {
+        "acc": 82.4390243902439,
+        "lat": 74.84553658536585,
+        "p95": 141.0092,
+        "n": 410,
+        "kind": "cascade",
+        "first": "mnv2q_160",
+        "second": "mnv2f_224",
+        "theta": 0.7734,
+        "signal": "margin",
+        "esc": 57.073170731707314
+      },
+      "accuracy_matched_on_tune": {
+        "acc": 65.12820512820512,
+        "lat": 33.121566666666666,
+        "p95": 68.706,
+        "n": 390,
+        "kind": "cascade",
+        "first": "mnv2q_160",
+        "second": "mnv2q_224",
+        "theta": 0.22835500000000003,
+        "signal": "confidence",
+        "esc": 2.564102564102564
+      },
+      "accuracy_matched_test": {
+        "acc": 70.0,
+        "lat": 33.3190512195122,
+        "p95": 68.732,
+        "n": 410,
+        "kind": "cascade",
+        "first": "mnv2q_160",
+        "second": "mnv2q_224",
+        "theta": 0.22835500000000003,
+        "signal": "confidence",
+        "esc": 3.902439024390244
+      },
+      "vs_baseline": {
+        "d_acc": 13.170731707317074,
+        "d_acc_ci": [
+          9.75609756097561,
+          16.82926829268293
+        ],
+        "d_lat": 3.7010951219512185,
+        "d_lat_ci": [
+          -0.8276590243902444,
+          8.178223536585364
+        ],
+        "wins": 57,
+        "losses": 3
+      },
+      "vs_alwaysint8": {
+        "d_acc": 15.853658536585366,
+        "d_acc_ci": [
+          12.195121951219512,
+          19.51219512195122
+        ],
+        "d_lat": 20.702221951219514,
+        "d_lat_ci": [
+          15.849409878048782,
+          25.185810914634146
+        ],
+        "wins": 68,
+        "losses": 3
+      },
+      "coin_flip_acc_at_same_latency": 69.26829268292683,
+      "oracle_test": {
+        "acc": 87.07317073170732,
+        "lat": 27.773536585365857,
+        "p95": 63.119299999999996,
+        "n": 410
+      },
+      "live_policy_test": {
+        "acc": 82.68292682926828,
+        "lat": 79.81150975609756,
+        "p95": 155.13055,
+        "n": 410,
+        "esc": 63.170731707317074,
+        "final_theta": {
+          "idle": 0.9028
+        }
+      },
+      "plot": "v2/results_v2/final_20261003_1218/replay_final/pareto_idle.png"
+    },
+    "stressed": {
+      "latency_source": {
+        "int8_224": "profile",
+        "fp32_224": "profile",
+        "mnv2f_128": "profile",
+        "mnv2f_160": "profile",
+        "mnv2f_224": "profile",
+        "mnv2q_128": "profile",
+        "mnv2q_160": "profile",
+        "mnv2q_224": "profile"
+      },
+      "budget_ms": 96.4322046153846,
+      "static_test": {
+        "int8_224": {
+          "acc": 66.58536585365854,
+          "lat": 93.60705365853659,
+          "p95": 100.169,
+          "n": 410,
+          "kind": "static",
+          "first": "int8_224",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32_224": {
+          "acc": 69.26829268292683,
+          "lat": 137.0757487804878,
+          "p95": 198.887,
+          "n": 410,
+          "kind": "static",
+          "first": "fp32_224",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "mnv2f_128": {
+          "acc": 59.02439024390244,
+          "lat": 52.08040487804878,
+          "p95": 55.476,
+          "n": 410,
+          "kind": "static",
+          "first": "mnv2f_128",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "mnv2f_160": {
+          "acc": 73.17073170731707,
+          "lat": 79.55970975609758,
+          "p95": 85.673,
+          "n": 410,
+          "kind": "static",
+          "first": "mnv2f_160",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "mnv2f_224": {
+          "acc": 83.41463414634146,
+          "lat": 149.82495121951217,
+          "p95": 161.15,
+          "n": 410,
+          "kind": "static",
+          "first": "mnv2f_224",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "mnv2q_128": {
+          "acc": 43.170731707317074,
+          "lat": 31.38232195121951,
+          "p95": 35.431,
+          "n": 410,
+          "kind": "static",
+          "first": "mnv2q_128",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "mnv2q_160": {
+          "acc": 69.02439024390243,
+          "lat": 49.15523170731707,
+          "p95": 54.205,
+          "n": 410,
+          "kind": "static",
+          "first": "mnv2q_160",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "mnv2q_224": {
+          "acc": 81.70731707317073,
+          "lat": 91.40039268292684,
+          "p95": 101.753,
+          "n": 410,
+          "kind": "static",
+          "first": "mnv2q_224",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        }
+      },
+      "chosen_on_tune": {
+        "acc": 77.17948717948718,
+        "lat": 95.71190512820512,
+        "p95": 101.753,
+        "n": 390,
+        "kind": "cascade",
+        "first": "mnv2q_224",
+        "second": "mnv2f_224",
+        "theta": -3.32463,
+        "signal": "entropy",
+        "esc": 2.564102564102564
+      },
+      "chosen_test": {
+        "acc": 81.95121951219512,
+        "lat": 94.64063170731707,
+        "p95": 102.62474999999992,
+        "n": 410,
+        "kind": "cascade",
+        "first": "mnv2q_224",
+        "second": "mnv2f_224",
+        "theta": -3.32463,
+        "signal": "entropy",
+        "esc": 2.195121951219512
+      },
+      "accuracy_matched_on_tune": {
+        "acc": 65.12820512820512,
+        "lat": 51.53877435897436,
+        "p95": 54.277049999999996,
+        "n": 390,
+        "kind": "cascade",
+        "first": "mnv2q_160",
+        "second": "mnv2q_224",
+        "theta": -2.8435975,
+        "signal": "entropy",
+        "esc": 2.564102564102564
+      },
+      "accuracy_matched_test": {
+        "acc": 69.26829268292683,
+        "lat": 50.746580487804884,
+        "p95": 54.277049999999996,
+        "n": 410,
+        "kind": "cascade",
+        "first": "mnv2q_160",
+        "second": "mnv2q_224",
+        "theta": -2.8435975,
+        "signal": "entropy",
+        "esc": 1.707317073170732
+      },
+      "vs_baseline": {
+        "d_acc": 12.682926829268293,
+        "d_acc_ci": [
+          9.268292682926829,
+          16.34146341463415
+        ],
+        "d_lat": -42.43511707317074,
+        "d_lat_ci": [
+          -45.071397439024395,
+          -39.67677335365854
+        ],
+        "wins": 56,
+        "losses": 4
+      },
+      "vs_alwaysint8": {
+        "d_acc": 15.365853658536585,
+        "d_acc_ci": [
+          11.951219512195122,
+          19.26829268292683
+        ],
+        "d_lat": 1.0335780487804884,
+        "d_lat_ci": [
+          -1.0766590243902436,
+          3.435480243902439
+        ],
+        "wins": 66,
+        "losses": 3
+      },
+      "coin_flip_acc_at_same_latency": 66.64915921735249,
+      "oracle_test": {
+        "acc": 87.07317073170732,
+        "lat": 44.509748780487804,
+        "p95": 95.038,
+        "n": 410
+      },
+      "live_policy_test": {
+        "acc": 81.95121951219512,
+        "lat": 95.35511219512195,
+        "p95": 103.338,
+        "n": 410,
+        "esc": 2.682926829268293,
+        "final_theta": {
+          "stressed": -2.8284
+        }
+      },
+      "plot": "v2/results_v2/final_20261003_1218/replay_final/pareto_stressed.png"
+    }
+  },
+  "generated": "2026-10-03T12:18:28.385919",
+  "auroc": {
+    "int8_224": {
+      "margin": 0.870992754204433,
+      "confidence": 0.867998181866795,
+      "entropy": 0.8522232025881661
+    },
+    "fp32_224": {
+      "margin": 0.8608735747820255,
+      "confidence": 0.859462329532752,
+      "entropy": 0.8065057008718981
+    },
+    "mnv2f_128": {
+      "margin": 0.8439713695395513,
+      "confidence": 0.8496900826446281,
+      "entropy": 0.8567124163715073
+    },
+    "mnv2f_160": {
+      "margin": 0.866969696969697,
+      "confidence": 0.8765454545454545,
+      "entropy": 0.8743333333333333
+    },
+    "mnv2f_224": {
+      "margin": 0.8928663570691434,
+      "confidence": 0.8825249398004816,
+      "entropy": 0.8316133470932232
+    },
+    "mnv2q_128": {
+      "margin": 0.61755292063723,
+      "confidence": 0.7083606120123178,
+      "entropy": 0.746853859023787
+    },
+    "mnv2q_160": {
+      "margin": 0.8349239030633538,
+      "confidence": 0.8577251606800034,
+      "entropy": 0.8603544698255474
+    },
+    "mnv2q_224": {
+      "margin": 0.8757014925373134,
+      "confidence": 0.8698706467661692,
+      "entropy": 0.8645174129353234
+    }
+  },
+  "mixed_schedule": {
+    "v2": {
+      "acc": 82.68292682926828,
+      "lat": 87.14009512195122,
+      "p95": 127.53285000000001,
+      "n": 410,
+      "esc": 25.121951219512194,
+      "final_theta": {
+        "idle": 0.8967,
+        "stressed": -2.6767
+      }
+    },
+    "static": {
+      "fp32_224": {
+        "acc": 69.26829268292683,
+        "lat": 111.34847804878048,
+        "p95": 142.294,
+        "n": 410
+      },
+      "int8_224": {
+        "acc": 66.58536585365854,
+        "lat": 78.41061463414634,
+        "p95": 109.61054999999965,
+        "n": 410
+      }
+    }
+  },
+  "operating_points": {
+    "idle": {
+      "first": "mnv2q_160",
+      "second": "mnv2f_224",
+      "theta": 0.7734,
+      "signal": "margin",
+      "budget_ms": 81.297,
+      "budget_ref": "mnv2f_224",
+      "est_ms": {
+        "int8_224": 55.075,
+        "fp32_224": 70.372,
+        "mnv2f_128": 30.18,
+        "mnv2f_160": 44.874,
+        "mnv2f_224": 77.858,
+        "mnv2q_128": 20.054,
+        "mnv2q_160": 31.13,
+        "mnv2q_224": 59.669
+      }
+    },
+    "stressed": {
+      "first": "mnv2q_224",
+      "second": "mnv2f_224",
+      "theta": -3.32463,
+      "signal": "entropy",
+      "budget_ms": 96.432,
+      "budget_ref": "mnv2q_224",
+      "est_ms": {
+        "int8_224": 93.374,
+        "fp32_224": 136.522,
+        "mnv2f_128": 51.954,
+        "mnv2f_160": 79.558,
+        "mnv2f_224": 150.134,
+        "mnv2q_128": 31.527,
+        "mnv2q_160": 49.153,
+        "mnv2q_224": 91.615
+      }
+    },
+    "_meta": {
+      "source_table": "v2/results_v2/rebuilt_20261002_2242/table_imagenette.csv",
+      "profiles": {
+        "idle": "v2/results_v2/rebuilt_20261002_2242/profile_idle.csv",
+        "stressed": "v2/results_v2/rebuilt_20261002_2242/profile_stressed.csv"
+      },
+      "generated": "2026-10-03T12:18:28.385919",
+      "label": "(v2_final: rebuilt models, per-state budgets)",
+      "objective": "max accuracy s.t. mean latency <= budget (tuned on TUNE split)"
+    }
+  }
+}

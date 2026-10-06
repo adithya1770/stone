@@ -1,0 +1,74 @@
+{
+  "device": {
+    "machine": "aarch64",
+    "model": "Raspberry Pi 4 Model B Rev 1.5",
+    "cpus": 4,
+    "python": "3.13.5"
+  },
+  "condition": "idle",
+  "dataset": "imagewoof",
+  "gap_s": 0.5,
+  "stressor": null,
+  "runs": 30,
+  "threads": null,
+  "rss_mb_all_variants": 225.1,
+  "temp_start": 53.556,
+  "temp_end": 52.095,
+  "throttled_end": 524288,
+  "variants": {
+    "int8_224": {
+      "median": 45.341,
+      "mean": 50.83,
+      "p95": 93.596,
+      "n": 30
+    },
+    "fp32_224": {
+      "median": 65.104,
+      "mean": 70.384,
+      "p95": 112.812,
+      "n": 30
+    },
+    "mnv2q_160": {
+      "median": 23.757,
+      "mean": 24.995,
+      "p95": 23.826,
+      "n": 30
+    },
+    "mnv2q_224": {
+      "median": 45.523,
+      "mean": 50.227,
+      "p95": 83.759,
+      "n": 30
+    },
+    "efl0q_224": {
+      "median": 55.517,
+      "mean": 62.206,
+      "p95": 121.75,
+      "n": 30
+    },
+    "efl1q_240": {
+      "median": 83.488,
+      "mean": 90.084,
+      "p95": 148.062,
+      "n": 30
+    },
+    "efl2q_260": {
+      "median": 115.661,
+      "mean": 130.58,
+      "p95": 184.299,
+      "n": 30
+    },
+    "efl3q_280": {
+      "median": 178.55,
+      "mean": 186.637,
+      "p95": 245.661,
+      "n": 30
+    },
+    "efl4q_300": {
+      "median": 309.705,
+      "mean": 320.355,
+      "p95": 367.265,
+      "n": 30
+    }
+  }
+}

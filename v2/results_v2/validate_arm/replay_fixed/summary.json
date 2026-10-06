@@ -1,0 +1,624 @@
+{
+  "table": "v2/results_v2/validate_arm/table_tiny.csv",
+  "n_images": 3000,
+  "n_tune": 1494,
+  "n_test": 1506,
+  "variants": [
+    "int8_96",
+    "int8_128",
+    "int8_160",
+    "int8_192",
+    "int8_224",
+    "fp32_128",
+    "fp32_160",
+    "fp32_224",
+    "fp32n_128",
+    "fp32n_160",
+    "fp32n_224"
+  ],
+  "conditions": {
+    "idle": {
+      "latency_source": {
+        "int8_96": "profile",
+        "int8_128": "profile",
+        "int8_160": "profile",
+        "int8_192": "profile",
+        "int8_224": "profile",
+        "fp32_128": "profile",
+        "fp32_160": "profile",
+        "fp32_224": "profile",
+        "fp32n_128": "profile",
+        "fp32n_160": "profile",
+        "fp32n_224": "profile"
+      },
+      "budget_ms": 2.865399598393574,
+      "static_test": {
+        "int8_96": {
+          "acc": 6.440903054448871,
+          "lat": 0.5920491367861885,
+          "p95": 0.65,
+          "n": 1506,
+          "kind": "static",
+          "first": "int8_96",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "int8_128": {
+          "acc": 12.749003984063744,
+          "lat": 0.9723413014608234,
+          "p95": 1.095,
+          "n": 1506,
+          "kind": "static",
+          "first": "int8_128",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "int8_160": {
+          "acc": 14.873837981407704,
+          "lat": 1.5134787516600265,
+          "p95": 1.678,
+          "n": 1506,
+          "kind": "static",
+          "first": "int8_160",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "int8_192": {
+          "acc": 13.811420982735722,
+          "lat": 2.1131195219123504,
+          "p95": 2.254,
+          "n": 1506,
+          "kind": "static",
+          "first": "int8_192",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "int8_224": {
+          "acc": 10.756972111553784,
+          "lat": 2.8613764940239044,
+          "p95": 3.022,
+          "n": 1506,
+          "kind": "static",
+          "first": "int8_224",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32_128": {
+          "acc": 16.268260292164673,
+          "lat": 1.8682808764940237,
+          "p95": 2.023,
+          "n": 1506,
+          "kind": "static",
+          "first": "fp32_128",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32_160": {
+          "acc": 16.865869853917662,
+          "lat": 3.0369375830013277,
+          "p95": 3.203,
+          "n": 1506,
+          "kind": "static",
+          "first": "fp32_160",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32_224": {
+          "acc": 10.358565737051793,
+          "lat": 5.686081009296149,
+          "p95": 5.877,
+          "n": 1506,
+          "kind": "static",
+          "first": "fp32_224",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32n_128": {
+          "acc": 25.830013280212484,
+          "lat": 1.8654641434262949,
+          "p95": 2.005,
+          "n": 1506,
+          "kind": "static",
+          "first": "fp32n_128",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32n_160": {
+          "acc": 26.958831341301458,
+          "lat": 3.032890438247012,
+          "p95": 3.18,
+          "n": 1506,
+          "kind": "static",
+          "first": "fp32n_160",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32n_224": {
+          "acc": 18.260292164674635,
+          "lat": 5.675669322709164,
+          "p95": 5.845,
+          "n": 1506,
+          "kind": "static",
+          "first": "fp32n_224",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        }
+      },
+      "chosen_on_tune": {
+        "acc": 25.568942436412318,
+        "lat": 2.547109103078983,
+        "p95": 4.984999999999999,
+        "n": 1494,
+        "kind": "cascade",
+        "first": "fp32n_128",
+        "second": "fp32n_160",
+        "theta": 0.1358475,
+        "signal": "margin",
+        "esc": 22.48995983935743
+      },
+      "chosen_test": {
+        "acc": 26.89243027888446,
+        "lat": 2.537646082337317,
+        "p95": 4.97875,
+        "n": 1506,
+        "kind": "cascade",
+        "first": "fp32n_128",
+        "second": "fp32n_160",
+        "theta": 0.1358475,
+        "signal": "margin",
+        "esc": 22.177954847277555
+      },
+      "accuracy_matched_on_tune": {
+        "acc": 10.977242302543507,
+        "lat": 0.8168989290495314,
+        "p95": 2.4446999999999997,
+        "n": 1494,
+        "kind": "cascade",
+        "first": "int8_96",
+        "second": "fp32n_128",
+        "theta": 0.0781,
+        "signal": "confidence",
+        "esc": 12.048192771084338
+      },
+      "accuracy_matched_test": {
+        "acc": 8.366533864541832,
+        "lat": 0.8561985391766268,
+        "p95": 2.4545000000000003,
+        "n": 1506,
+        "kind": "cascade",
+        "first": "int8_96",
+        "second": "fp32n_128",
+        "theta": 0.0781,
+        "signal": "confidence",
+        "esc": 14.143426294820719
+      },
+      "vs_baseline": {
+        "d_acc": 16.533864541832667,
+        "d_acc_ci": [
+          14.276228419654716,
+          18.725099601593627
+        ],
+        "d_lat": -3.148434926958832,
+        "d_lat_ci": [
+          -3.2112826029216466,
+          -3.0855727091633467
+        ],
+        "wins": 292,
+        "losses": 43
+      },
+      "vs_alwaysint8": {
+        "d_acc": 16.135458167330675,
+        "d_acc_ci": [
+          14.010624169986718,
+          18.326693227091635
+        ],
+        "d_lat": -0.323730411686587,
+        "d_lat_ci": [
+          -0.3869634462151394,
+          -0.2605919986719788
+        ],
+        "wins": 291,
+        "losses": 48
+      },
+      "coin_flip_acc_at_same_latency": null,
+      "oracle_test": {
+        "acc": 41.832669322709165,
+        "lat": 1.0534747675962814,
+        "p95": 2.947,
+        "n": 1506
+      },
+      "live_policy_test": {
+        "acc": 26.958831341301458,
+        "lat": 2.854225763612218,
+        "p95": 5.0017499999999995,
+        "n": 1506,
+        "esc": 32.602921646746346,
+        "final_theta": {
+          "idle": 0.2725
+        }
+      },
+      "plot": "v2/results_v2/validate_arm/replay_fixed/pareto_idle.png"
+    },
+    "stressed": {
+      "latency_source": {
+        "int8_96": "profile",
+        "int8_128": "profile",
+        "int8_160": "profile",
+        "int8_192": "profile",
+        "int8_224": "profile",
+        "fp32_128": "profile",
+        "fp32_160": "profile",
+        "fp32_224": "profile",
+        "fp32n_128": "profile",
+        "fp32n_160": "profile",
+        "fp32n_224": "profile"
+      },
+      "budget_ms": 4.1719143239625165,
+      "static_test": {
+        "int8_96": {
+          "acc": 6.440903054448871,
+          "lat": 0.8596314741035856,
+          "p95": 3.645,
+          "n": 1506,
+          "kind": "static",
+          "first": "int8_96",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "int8_128": {
+          "acc": 12.749003984063744,
+          "lat": 1.4440298804780876,
+          "p95": 4.019,
+          "n": 1506,
+          "kind": "static",
+          "first": "int8_128",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "int8_160": {
+          "acc": 14.873837981407704,
+          "lat": 2.264091633466135,
+          "p95": 5.315,
+          "n": 1506,
+          "kind": "static",
+          "first": "int8_160",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "int8_192": {
+          "acc": 13.811420982735722,
+          "lat": 2.9299913678618856,
+          "p95": 5.295,
+          "n": 1506,
+          "kind": "static",
+          "first": "int8_192",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "int8_224": {
+          "acc": 10.756972111553784,
+          "lat": 4.094695883134131,
+          "p95": 6.073,
+          "n": 1506,
+          "kind": "static",
+          "first": "int8_224",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32_128": {
+          "acc": 16.268260292164673,
+          "lat": 2.748458831341301,
+          "p95": 5.288,
+          "n": 1506,
+          "kind": "static",
+          "first": "fp32_128",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32_160": {
+          "acc": 16.865869853917662,
+          "lat": 4.297378486055777,
+          "p95": 6.429,
+          "n": 1506,
+          "kind": "static",
+          "first": "fp32_160",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32_224": {
+          "acc": 10.358565737051793,
+          "lat": 7.7780172642762295,
+          "p95": 13.923,
+          "n": 1506,
+          "kind": "static",
+          "first": "fp32_224",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32n_128": {
+          "acc": 25.830013280212484,
+          "lat": 2.6898519256308098,
+          "p95": 5.476,
+          "n": 1506,
+          "kind": "static",
+          "first": "fp32n_128",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32n_160": {
+          "acc": 26.958831341301458,
+          "lat": 4.577478751660027,
+          "p95": 9.205,
+          "n": 1506,
+          "kind": "static",
+          "first": "fp32n_160",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32n_224": {
+          "acc": 18.260292164674635,
+          "lat": 8.268815405046482,
+          "p95": 12.5,
+          "n": 1506,
+          "kind": "static",
+          "first": "fp32n_224",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        }
+      },
+      "chosen_on_tune": {
+        "acc": 25.568942436412318,
+        "lat": 3.752230923694779,
+        "p95": 8.378,
+        "n": 1494,
+        "kind": "cascade",
+        "first": "fp32n_128",
+        "second": "fp32n_160",
+        "theta": 0.1358475,
+        "signal": "margin",
+        "esc": 22.48995983935743
+      },
+      "chosen_test": {
+        "acc": 26.89243027888446,
+        "lat": 3.7113074369189905,
+        "p95": 8.325,
+        "n": 1506,
+        "kind": "cascade",
+        "first": "fp32n_128",
+        "second": "fp32n_160",
+        "theta": 0.1358475,
+        "signal": "margin",
+        "esc": 22.177954847277555
+      },
+      "accuracy_matched_on_tune": {
+        "acc": 10.977242302543507,
+        "lat": 1.2304190093708167,
+        "p95": 3.955,
+        "n": 1494,
+        "kind": "cascade",
+        "first": "int8_96",
+        "second": "fp32n_128",
+        "theta": 0.0781,
+        "signal": "confidence",
+        "esc": 12.048192771084338
+      },
+      "accuracy_matched_test": {
+        "acc": 8.366533864541832,
+        "lat": 1.2491314741035857,
+        "p95": 3.955,
+        "n": 1506,
+        "kind": "cascade",
+        "first": "int8_96",
+        "second": "fp32n_128",
+        "theta": 0.0781,
+        "signal": "confidence",
+        "esc": 14.143426294820719
+      },
+      "vs_baseline": {
+        "d_acc": 16.533864541832667,
+        "d_acc_ci": [
+          14.276228419654716,
+          18.725099601593627
+        ],
+        "d_lat": -4.066709827357238,
+        "d_lat_ci": [
+          -4.2543504648074375,
+          -3.8775136454183268
+        ],
+        "wins": 292,
+        "losses": 43
+      },
+      "vs_alwaysint8": {
+        "d_acc": 16.135458167330675,
+        "d_acc_ci": [
+          14.010624169986718,
+          18.326693227091635
+        ],
+        "d_lat": -0.3833884462151394,
+        "d_lat_ci": [
+          -0.5319138114209827,
+          -0.242792114873838
+        ],
+        "wins": 291,
+        "losses": 48
+      },
+      "coin_flip_acc_at_same_latency": null,
+      "oracle_test": {
+        "acc": 41.832669322709165,
+        "lat": 1.5443426294820715,
+        "p95": 5.105,
+        "n": 1506
+      },
+      "live_policy_test": {
+        "acc": 27.091633466135455,
+        "lat": 4.152092297476759,
+        "p95": 8.731250000000001,
+        "n": 1506,
+        "esc": 32.13811420982736,
+        "final_theta": {
+          "stressed": 0.273
+        }
+      },
+      "plot": "v2/results_v2/validate_arm/replay_fixed/pareto_stressed.png"
+    }
+  },
+  "generated": "2026-10-02T12:09:56.707082",
+  "auroc": {
+    "int8_96": {
+      "margin": 0.5539828642087318,
+      "confidence": 0.6604669539704258,
+      "entropy": 0.700518756447872
+    },
+    "int8_128": {
+      "margin": 0.5247316558853374,
+      "confidence": 0.6161272038305429,
+      "entropy": 0.6626355593607306
+    },
+    "int8_160": {
+      "margin": 0.6134753872297749,
+      "confidence": 0.6662702668821039,
+      "entropy": 0.6914924364831736
+    },
+    "int8_192": {
+      "margin": 0.6969579678795781,
+      "confidence": 0.7170628629844732,
+      "entropy": 0.7259319070759749
+    },
+    "int8_224": {
+      "margin": 0.6948440255731922,
+      "confidence": 0.7146990740740741,
+      "entropy": 0.7283261684303352
+    },
+    "fp32_128": {
+      "margin": 0.7314522002298144,
+      "confidence": 0.7579374969654793,
+      "entropy": 0.7748337082652252
+    },
+    "fp32_160": {
+      "margin": 0.7036159467686347,
+      "confidence": 0.7171203240170059,
+      "entropy": 0.7304470327790495
+    },
+    "fp32_224": {
+      "margin": 0.670636277302944,
+      "confidence": 0.6779724596391263,
+      "entropy": 0.6599287749287749
+    },
+    "fp32n_128": {
+      "margin": 0.7206389682241958,
+      "confidence": 0.7451330570086511,
+      "entropy": 0.7667883354468106
+    },
+    "fp32n_160": {
+      "margin": 0.7152115987460815,
+      "confidence": 0.7324059561128526,
+      "entropy": 0.7371630094043887
+    },
+    "fp32n_224": {
+      "margin": 0.7155379957167122,
+      "confidence": 0.7317864264086847,
+      "entropy": 0.7200841887600621
+    }
+  },
+  "mixed_schedule": {
+    "v2": {
+      "acc": 27.158034528552456,
+      "lat": 3.6048140770252326,
+      "p95": 8.226500000000001,
+      "n": 1506,
+      "esc": 31.142098273572376,
+      "final_theta": {
+        "idle": 0.322,
+        "stressed": 0.2842
+      }
+    },
+    "static": {
+      "fp32_224": {
+        "acc": 10.358565737051793,
+        "lat": 7.001907038512617,
+        "p95": 12.325,
+        "n": 1506
+      },
+      "int8_224": {
+        "acc": 10.756972111553784,
+        "lat": 3.6091958831341304,
+        "p95": 6.052,
+        "n": 1506
+      }
+    }
+  },
+  "operating_points": {
+    "idle": {
+      "first": "fp32n_128",
+      "second": "fp32n_160",
+      "theta": 0.1358475,
+      "signal": "margin",
+      "budget_ms": 2.865,
+      "est_ms": {
+        "int8_96": 0.592,
+        "int8_128": 0.973,
+        "int8_160": 1.515,
+        "int8_192": 2.114,
+        "int8_224": 2.863,
+        "fp32_128": 1.868,
+        "fp32_160": 3.038,
+        "fp32_224": 5.684,
+        "fp32n_128": 1.864,
+        "fp32n_160": 3.033,
+        "fp32n_224": 5.674
+      }
+    },
+    "stressed": {
+      "first": "fp32n_128",
+      "second": "fp32n_160",
+      "theta": 0.1358475,
+      "signal": "margin",
+      "budget_ms": 4.172,
+      "est_ms": {
+        "int8_96": 0.882,
+        "int8_128": 1.439,
+        "int8_160": 2.27,
+        "int8_192": 2.952,
+        "int8_224": 4.133,
+        "fp32_128": 2.764,
+        "fp32_160": 4.346,
+        "fp32_224": 7.814,
+        "fp32n_128": 2.696,
+        "fp32n_160": 4.614,
+        "fp32n_224": 8.244
+      }
+    },
+    "_meta": {
+      "source_table": "v2/results_v2/validate_arm/table_tiny.csv",
+      "profiles": {
+        "idle": "v2/results_v2/validate_arm/profile_idle.csv",
+        "stressed": "v2/results_v2/validate_arm/profile_stressed.csv"
+      },
+      "generated": "2026-10-02T12:09:56.707082",
+      "label": "(tiny, fixed preprocessing)",
+      "objective": "max accuracy s.t. mean latency <= budget (tuned on TUNE split)"
+    }
+  }
+}

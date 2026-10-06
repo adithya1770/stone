@@ -1,0 +1,39 @@
+# STONE v2: keep code, configs and result summaries; leave out large or generated files.
+# (Git applies this file to v2/ only. The repository's root .gitignore still applies too.)
+
+# Python / OS
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+
+# Run outputs: per-image CSV logs and learned controller state are large and can be
+# regenerated with the v2/pi_*.sh scripts. Keep only the summaries.
+results_v2/**
+!results_v2/**/
+!results_v2/**/analysis/*.md
+!results_v2/**/analysis/*.json
+!results_v2/**/analysis/*.png
+!results_v2/**/report.md
+!results_v2/**/summary.json
+!results_v2/ladder_pi/*.csv
+!results_v2/ladder_pi/*.json
+# never publish the live demo log (every request from the demo) or saved bandit state
+results_v2/demo_log.csv
+results_v2/state/
+*.npz
+
+# Official EfficientNet-Lite models: downloaded, not built here (commands in models_ext/README.md)
+models_ext/*.tflite
+models_ext/*.tar.gz
+models_ext/efficientnet-lite*/
+
+# Laptop-only validation configs
+configs/*validate*.json
+
+# HTTPS certificate and private key for the demo: never commit
+*.pem
+*.key
+
+# Logs from nohup runs
+*.log

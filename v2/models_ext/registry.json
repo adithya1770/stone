@@ -1,0 +1,52 @@
+{
+  "efl0q": {
+    "path": "efficientnet-lite0-int8.tflite",
+    "float_range": "effnet",
+    "native": 224
+  },
+  "efl1q": {
+    "path": "efficientnet-lite1-int8.tflite",
+    "float_range": "effnet",
+    "native": 240
+  },
+  "efl2q": {
+    "path": "efficientnet-lite2-int8.tflite",
+    "float_range": "effnet",
+    "native": 260
+  },
+  "efl3q": {
+    "path": "efficientnet-lite3-int8.tflite",
+    "float_range": "effnet",
+    "native": 280
+  },
+  "efl4q": {
+    "path": "efficientnet-lite4-int8.tflite",
+    "float_range": "effnet",
+    "native": 300
+  },
+  "efl0f": {
+    "path": "efficientnet-lite0-fp32.tflite",
+    "float_range": "effnet",
+    "native": 224
+  },
+  "efl1f": {
+    "path": "efficientnet-lite1-fp32.tflite",
+    "float_range": "effnet",
+    "native": 240
+  },
+  "efl2f": {
+    "path": "efficientnet-lite2-fp32.tflite",
+    "float_range": "effnet",
+    "native": 260
+  },
+  "efl3f": {
+    "path": "efficientnet-lite3-fp32.tflite",
+    "float_range": "effnet",
+    "native": 280
+  },
+  "efl4f": {
+    "path": "efficientnet-lite4-fp32.tflite",
+    "float_range": "effnet",
+    "native": 300
+  }
+}

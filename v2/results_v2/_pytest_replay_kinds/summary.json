@@ -1,0 +1,175 @@
+{
+  "table": "/sessions/rcw-017l9fs4cfqvzatvlekujv5d/tmp/pytest-of-rcw-017l9fs4cfqvzatvlekujv5d/pytest-28/test_replay_main_with_kinds_ke0/t2.csv",
+  "n_images": 400,
+  "n_tune": 203,
+  "n_test": 197,
+  "variants": [
+    "mnv2q_128",
+    "int8_224",
+    "fp32_224"
+  ],
+  "v2_candidates": [
+    "mnv2q_128"
+  ],
+  "conditions": {
+    "idle": {
+      "latency_source": {
+        "mnv2q_128": "table",
+        "int8_224": "table",
+        "fp32_224": "table"
+      },
+      "budget_ms": 30.0,
+      "static_test": {
+        "mnv2q_128": {
+          "acc": 71.57360406091371,
+          "lat": 10.0,
+          "p95": 10.0,
+          "n": 197,
+          "kind": "static",
+          "first": "mnv2q_128",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "int8_224": {
+          "acc": 85.27918781725889,
+          "lat": 30.0,
+          "p95": 30.0,
+          "n": 197,
+          "kind": "static",
+          "first": "int8_224",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32_224": {
+          "acc": 97.46192893401016,
+          "lat": 50.0,
+          "p95": 50.0,
+          "n": 197,
+          "kind": "static",
+          "first": "fp32_224",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        }
+      },
+      "chosen_on_tune": {
+        "acc": 71.92118226600985,
+        "lat": 10.0,
+        "p95": 10.0,
+        "n": 203,
+        "kind": "static",
+        "first": "mnv2q_128",
+        "second": null,
+        "theta": null,
+        "esc": 0.0
+      },
+      "chosen_test": {
+        "acc": 71.57360406091371,
+        "lat": 10.0,
+        "p95": 10.0,
+        "n": 197,
+        "kind": "static",
+        "first": "mnv2q_128",
+        "second": null,
+        "theta": null,
+        "esc": 0.0
+      },
+      "accuracy_matched_on_tune": null,
+      "accuracy_matched_test": null,
+      "vs_baseline": {
+        "d_acc": -25.888324873096447,
+        "d_acc_ci": [
+          -32.99492385786802,
+          -19.289340101522843
+        ],
+        "d_lat": -40.0,
+        "d_lat_ci": [
+          -40.0,
+          -40.0
+        ],
+        "wins": 5,
+        "losses": 56
+      },
+      "vs_alwaysint8": {
+        "d_acc": -13.705583756345177,
+        "d_acc_ci": [
+          -18.781725888324875,
+          -9.137055837563452
+        ],
+        "d_lat": -20.0,
+        "d_lat_ci": [
+          -20.0,
+          -20.0
+        ],
+        "wins": 0,
+        "losses": 27
+      },
+      "coin_flip_acc_at_same_latency": null,
+      "oracle_test": {
+        "acc": 71.57360406091371,
+        "lat": 10.0,
+        "p95": 10.0,
+        "n": 197
+      },
+      "live_policy_test": {
+        "acc": 71.57360406091371,
+        "lat": 10.0,
+        "p95": 10.0,
+        "n": 197,
+        "esc": 0.0,
+        "final_theta": {}
+      },
+      "plot": "/sessions/rcw-017l9fs4cfqvzatvlekujv5d/mnt/stone3/stone/v2/results_v2/_pytest_replay_kinds/pareto_idle.png"
+    }
+  },
+  "generated": "2026-10-04T06:47:42.897312",
+  "auroc": {
+    "mnv2q_128": {
+      "margin": 1.0,
+      "confidence": 0.5,
+      "entropy": 0.5
+    },
+    "int8_224": {
+      "margin": 0.5,
+      "confidence": 0.5,
+      "entropy": 0.5
+    },
+    "fp32_224": {
+      "margin": 0.5,
+      "confidence": 0.5,
+      "entropy": 0.5
+    }
+  },
+  "operating_points": {
+    "idle": {
+      "first": "mnv2q_128",
+      "second": null,
+      "theta": 0.0,
+      "signal": "margin",
+      "budget_ms": 30.0,
+      "budget_ref": "int8_224",
+      "est_ms": {
+        "mnv2q_128": 10.0,
+        "int8_224": 30.0,
+        "fp32_224": 50.0
+      }
+    },
+    "_reference": {
+      "best_static_per_state": {
+        "idle": "mnv2q_128"
+      },
+      "fixed_model": "mnv2q_128"
+    },
+    "_meta": {
+      "source_table": "/sessions/rcw-017l9fs4cfqvzatvlekujv5d/tmp/pytest-of-rcw-017l9fs4cfqvzatvlekujv5d/pytest-28/test_replay_main_with_kinds_ke0/t2.csv",
+      "profiles": {
+        "idle": null
+      },
+      "generated": "2026-10-04T06:47:42.897312",
+      "label": "",
+      "objective": "max accuracy s.t. mean latency <= budget (tuned on TUNE split)"
+    }
+  }
+}

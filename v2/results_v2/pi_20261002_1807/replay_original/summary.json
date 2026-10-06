@@ -1,0 +1,513 @@
+{
+  "table": "v2/results_v2/pi_20261002_1807/table_imagenette.csv",
+  "n_images": 800,
+  "n_tune": 390,
+  "n_test": 410,
+  "variants": [
+    "int8_96",
+    "int8_128",
+    "int8_160",
+    "int8_192",
+    "int8_224",
+    "fp32_128",
+    "fp32_160",
+    "fp32_224"
+  ],
+  "conditions": {
+    "idle": {
+      "latency_source": {
+        "int8_96": "profile",
+        "int8_128": "profile",
+        "int8_160": "profile",
+        "int8_192": "profile",
+        "int8_224": "profile",
+        "fp32_128": "profile",
+        "fp32_160": "profile",
+        "fp32_224": "profile"
+      },
+      "budget_ms": 57.580453846153844,
+      "static_test": {
+        "int8_96": {
+          "acc": 11.951219512195122,
+          "lat": 12.566641463414635,
+          "p95": 25.872,
+          "n": 410,
+          "kind": "static",
+          "first": "int8_96",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "int8_128": {
+          "acc": 29.756097560975608,
+          "lat": 19.75221219512195,
+          "p95": 44.067,
+          "n": 410,
+          "kind": "static",
+          "first": "int8_128",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "int8_160": {
+          "acc": 54.390243902439025,
+          "lat": 34.38663170731707,
+          "p95": 68.516,
+          "n": 410,
+          "kind": "static",
+          "first": "int8_160",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "int8_192": {
+          "acc": 63.90243902439025,
+          "lat": 39.97981951219513,
+          "p95": 86.739,
+          "n": 410,
+          "kind": "static",
+          "first": "int8_192",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "int8_224": {
+          "acc": 66.58536585365854,
+          "lat": 54.84645365853658,
+          "p95": 114.277,
+          "n": 410,
+          "kind": "static",
+          "first": "int8_224",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32_128": {
+          "acc": 42.19512195121951,
+          "lat": 24.024165853658534,
+          "p95": 49.526,
+          "n": 410,
+          "kind": "static",
+          "first": "fp32_128",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32_160": {
+          "acc": 59.26829268292683,
+          "lat": 43.33238536585365,
+          "p95": 88.966,
+          "n": 410,
+          "kind": "static",
+          "first": "fp32_160",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32_224": {
+          "acc": 69.26829268292683,
+          "lat": 75.20159756097561,
+          "p95": 126.718,
+          "n": 410,
+          "kind": "static",
+          "first": "fp32_224",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        }
+      },
+      "chosen_on_tune": {
+        "acc": 65.38461538461539,
+        "lat": 57.580453846153844,
+        "p95": 114.277,
+        "n": 390,
+        "kind": "static",
+        "first": "int8_224",
+        "second": null,
+        "theta": null,
+        "esc": 0.0
+      },
+      "chosen_test": {
+        "acc": 66.58536585365854,
+        "lat": 54.84645365853658,
+        "p95": 114.277,
+        "n": 410,
+        "kind": "static",
+        "first": "int8_224",
+        "second": null,
+        "theta": null,
+        "esc": 0.0
+      },
+      "accuracy_matched_on_tune": {
+        "acc": 65.38461538461539,
+        "lat": 57.580453846153844,
+        "p95": 114.277,
+        "n": 390,
+        "kind": "static",
+        "first": "int8_224",
+        "second": null,
+        "theta": null,
+        "esc": 0.0
+      },
+      "accuracy_matched_test": {
+        "acc": 66.58536585365854,
+        "lat": 54.84645365853658,
+        "p95": 114.277,
+        "n": 410,
+        "kind": "static",
+        "first": "int8_224",
+        "second": null,
+        "theta": null,
+        "esc": 0.0
+      },
+      "vs_baseline": {
+        "d_acc": -2.682926829268293,
+        "d_acc_ci": [
+          -5.121951219512195,
+          -0.4878048780487805
+        ],
+        "d_lat": -20.355143902439025,
+        "d_lat_ci": [
+          -23.40143304878049,
+          -17.208536097560973
+        ],
+        "wins": 6,
+        "losses": 17
+      },
+      "vs_alwaysint8": {
+        "d_acc": 0.0,
+        "d_acc_ci": [
+          0.0,
+          0.0
+        ],
+        "d_lat": 0.0,
+        "d_lat_ci": [
+          0.0,
+          0.0
+        ],
+        "wins": 0,
+        "losses": 0
+      },
+      "coin_flip_acc_at_same_latency": 66.58536585365854,
+      "oracle_test": {
+        "acc": 78.53658536585367,
+        "lat": 24.446363414634142,
+        "p95": 68.01944999999998,
+        "n": 410
+      },
+      "live_policy_test": {
+        "acc": 66.58536585365854,
+        "lat": 54.84645365853658,
+        "p95": 114.277,
+        "n": 410,
+        "esc": 0.0,
+        "final_theta": {}
+      },
+      "plot": "v2/results_v2/pi_20261002_1807/replay_original/pareto_idle.png"
+    },
+    "stressed": {
+      "latency_source": {
+        "int8_96": "profile",
+        "int8_128": "profile",
+        "int8_160": "profile",
+        "int8_192": "profile",
+        "int8_224": "profile",
+        "fp32_128": "profile",
+        "fp32_160": "profile",
+        "fp32_224": "profile"
+      },
+      "budget_ms": 97.8667717948718,
+      "static_test": {
+        "int8_96": {
+          "acc": 11.951219512195122,
+          "lat": 20.770653658536588,
+          "p95": 22.461,
+          "n": 410,
+          "kind": "static",
+          "first": "int8_96",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "int8_128": {
+          "acc": 29.756097560975608,
+          "lat": 34.073292682926834,
+          "p95": 37.597,
+          "n": 410,
+          "kind": "static",
+          "first": "int8_128",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "int8_160": {
+          "acc": 54.390243902439025,
+          "lat": 50.261673170731704,
+          "p95": 55.392,
+          "n": 410,
+          "kind": "static",
+          "first": "int8_160",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "int8_192": {
+          "acc": 63.90243902439025,
+          "lat": 71.51258780487805,
+          "p95": 83.348,
+          "n": 410,
+          "kind": "static",
+          "first": "int8_192",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "int8_224": {
+          "acc": 66.58536585365854,
+          "lat": 96.89938048780488,
+          "p95": 106.474,
+          "n": 410,
+          "kind": "static",
+          "first": "int8_224",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32_128": {
+          "acc": 42.19512195121951,
+          "lat": 44.037124390243896,
+          "p95": 47.699,
+          "n": 410,
+          "kind": "static",
+          "first": "fp32_128",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32_160": {
+          "acc": 59.26829268292683,
+          "lat": 72.07972195121951,
+          "p95": 77.353,
+          "n": 410,
+          "kind": "static",
+          "first": "fp32_160",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32_224": {
+          "acc": 69.26829268292683,
+          "lat": 137.83936585365853,
+          "p95": 149.608,
+          "n": 410,
+          "kind": "static",
+          "first": "fp32_224",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        }
+      },
+      "chosen_on_tune": {
+        "acc": 65.38461538461539,
+        "lat": 97.8667717948718,
+        "p95": 106.474,
+        "n": 390,
+        "kind": "static",
+        "first": "int8_224",
+        "second": null,
+        "theta": null,
+        "esc": 0.0
+      },
+      "chosen_test": {
+        "acc": 66.58536585365854,
+        "lat": 96.89938048780488,
+        "p95": 106.474,
+        "n": 410,
+        "kind": "static",
+        "first": "int8_224",
+        "second": null,
+        "theta": null,
+        "esc": 0.0
+      },
+      "accuracy_matched_on_tune": {
+        "acc": 65.38461538461539,
+        "lat": 97.8667717948718,
+        "p95": 106.474,
+        "n": 390,
+        "kind": "static",
+        "first": "int8_224",
+        "second": null,
+        "theta": null,
+        "esc": 0.0
+      },
+      "accuracy_matched_test": {
+        "acc": 66.58536585365854,
+        "lat": 96.89938048780488,
+        "p95": 106.474,
+        "n": 410,
+        "kind": "static",
+        "first": "int8_224",
+        "second": null,
+        "theta": null,
+        "esc": 0.0
+      },
+      "vs_baseline": {
+        "d_acc": -2.682926829268293,
+        "d_acc_ci": [
+          -5.121951219512195,
+          -0.4878048780487805
+        ],
+        "d_lat": -40.93998536585366,
+        "d_lat_ci": [
+          -42.006486585365856,
+          -39.77298896341463
+        ],
+        "wins": 6,
+        "losses": 17
+      },
+      "vs_alwaysint8": {
+        "d_acc": 0.0,
+        "d_acc_ci": [
+          0.0,
+          0.0
+        ],
+        "d_lat": 0.0,
+        "d_lat_ci": [
+          0.0,
+          0.0
+        ],
+        "wins": 0,
+        "losses": 0
+      },
+      "coin_flip_acc_at_same_latency": 66.58536585365854,
+      "oracle_test": {
+        "acc": 78.53658536585367,
+        "lat": 41.823124390243905,
+        "p95": 89.56094999999999,
+        "n": 410
+      },
+      "live_policy_test": {
+        "acc": 66.58536585365854,
+        "lat": 96.89938048780488,
+        "p95": 106.474,
+        "n": 410,
+        "esc": 0.0,
+        "final_theta": {}
+      },
+      "plot": "v2/results_v2/pi_20261002_1807/replay_original/pareto_stressed.png"
+    }
+  },
+  "generated": "2026-10-02T18:23:46.420170",
+  "auroc": {
+    "int8_96": {
+      "margin": 0.5480241958279156,
+      "confidence": 0.6825993555316864,
+      "entropy": 0.7410537622251117
+    },
+    "int8_128": {
+      "margin": 0.5137181238615665,
+      "confidence": 0.6318021402550091,
+      "entropy": 0.699496243169399
+    },
+    "int8_160": {
+      "margin": 0.6874295580441716,
+      "confidence": 0.7724754802043117,
+      "entropy": 0.7991534975180451
+    },
+    "int8_192": {
+      "margin": 0.8093021456571075,
+      "confidence": 0.8243630080462142,
+      "entropy": 0.8182638745615844
+    },
+    "int8_224": {
+      "margin": 0.870992754204433,
+      "confidence": 0.867998181866795,
+      "entropy": 0.8522232025881661
+    },
+    "fp32_128": {
+      "margin": 0.8454793785517426,
+      "confidence": 0.8522597009829028,
+      "entropy": 0.8543816004487695
+    },
+    "fp32_160": {
+      "margin": 0.8682881151277692,
+      "confidence": 0.8733643823464182,
+      "entropy": 0.8598851679357334
+    },
+    "fp32_224": {
+      "margin": 0.8608735747820255,
+      "confidence": 0.859462329532752,
+      "entropy": 0.8065057008718981
+    }
+  },
+  "mixed_schedule": {
+    "v2": {
+      "acc": 66.58536585365854,
+      "lat": 80.55799268292684,
+      "p95": 106.474,
+      "n": 410,
+      "esc": 0.0,
+      "final_theta": {}
+    },
+    "static": {
+      "fp32_224": {
+        "acc": 69.26829268292683,
+        "lat": 113.0650487804878,
+        "p95": 143.924,
+        "n": 410
+      },
+      "int8_224": {
+        "acc": 66.58536585365854,
+        "lat": 80.55799268292684,
+        "p95": 106.474,
+        "n": 410
+      }
+    }
+  },
+  "operating_points": {
+    "idle": {
+      "first": "int8_224",
+      "second": null,
+      "theta": 0.0,
+      "signal": "margin",
+      "budget_ms": 57.58,
+      "est_ms": {
+        "int8_96": 12.284,
+        "int8_128": 19.574,
+        "int8_160": 33.926,
+        "int8_192": 40.516,
+        "int8_224": 56.179,
+        "fp32_128": 23.907,
+        "fp32_160": 43.49,
+        "fp32_224": 74.873
+      }
+    },
+    "stressed": {
+      "first": "int8_224",
+      "second": null,
+      "theta": 0.0,
+      "signal": "margin",
+      "budget_ms": 97.867,
+      "est_ms": {
+        "int8_96": 20.455,
+        "int8_128": 34.001,
+        "int8_160": 50.155,
+        "int8_192": 71.418,
+        "int8_224": 97.371,
+        "fp32_128": 44.09,
+        "fp32_160": 72.035,
+        "fp32_224": 137.769
+      }
+    },
+    "_meta": {
+      "source_table": "v2/results_v2/pi_20261002_1807/table_imagenette.csv",
+      "profiles": {
+        "idle": "v2/results_v2/pi_20261002_1807/profile_idle.csv",
+        "stressed": "v2/results_v2/pi_20261002_1807/profile_stressed.csv"
+      },
+      "generated": "2026-10-02T18:23:46.420170",
+      "label": "(original preprocessing)",
+      "objective": "max accuracy s.t. mean latency <= budget (tuned on TUNE split)"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "idle": {
+    "first": "mnv2q_224",
+    "second": "efl3q_280",
+    "theta": 0.44003500000000034,
+    "signal": "margin",
+    "budget_ms": 150.0,
+    "budget_ref": "int8_224",
+    "est_ms": {
+      "int8_224": 50.471,
+      "fp32_224": 70.099,
+      "mnv2q_160": 24.968,
+      "mnv2q_224": 50.458,
+      "efl0q_224": 62.132,
+      "efl1q_240": 90.349,
+      "efl2q_260": 130.623,
+      "efl3q_280": 186.86,
+      "efl4q_300": 320.528
+    }
+  },
+  "stressed": {
+    "first": "mnv2q_224",
+    "second": "efl3q_280",
+    "theta": 0.1445,
+    "signal": "margin",
+    "budget_ms": 150.0,
+    "budget_ref": "int8_224",
+    "est_ms": {
+      "int8_224": 91.321,
+      "fp32_224": 132.077,
+      "mnv2q_160": 47.855,
+      "mnv2q_224": 92.247,
+      "efl0q_224": 111.772,
+      "efl1q_240": 163.218,
+      "efl2q_260": 211.427,
+      "efl3q_280": 273.411,
+      "efl4q_300": 436.706
+    }
+  },
+  "_reference": {
+    "best_static_per_state": {
+      "idle": "efl2q_260",
+      "stressed": "efl0q_224"
+    },
+    "fixed_model": "efl0q_224"
+  },
+  "_meta": {
+    "source_table": "v2/data/ladder/table_imagewoof.csv",
+    "profiles": {
+      "idle": "v2/results_v2/ladder_pi/profile_idle.csv",
+      "stressed": "v2/results_v2/ladder_pi/profile_stressed.csv"
+    },
+    "generated": "2026-10-03T19:07:02.971430",
+    "label": "(ladder, 150 ms budget)",
+    "objective": "max accuracy s.t. mean latency <= budget (tuned on TUNE split)"
+  }
+}

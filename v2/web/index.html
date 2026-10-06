@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STONE v2 live demo</title>
+<style>
+  :root {
+    --bg: #101214; --panel: #1a1d21; --line: #2a2f35; --text: #e8eaed; --muted: #9aa0a6;
+    --small: #4fc3f7; --big: #ffb74d; --idle: #66bb6a; --stressed: #ffa726; --critical: #ef5350; --budget: #e8eaed;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background: var(--bg); color: var(--text); }
+  header { padding: 14px 16px 6px; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  header h1 { font-size: 18px; margin: 0; }
+  header span { color: var(--muted); font-size: 13px; }
+  main { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 8px 16px 24px; max-width: 980px; margin: 0 auto; }
+  @media (min-width: 820px) { main { grid-template-columns: 380px minmax(0, 1fr); } }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+  video, #preview { width: 100%; border-radius: 8px; background: #000; display: block; }
+  #preview { display: none; }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 10px; }
+  button, label.btn { font: inherit; font-size: 14px; padding: 7px 12px; border-radius: 8px; border: 1px solid var(--line);
+    background: #23272c; color: var(--text); cursor: pointer; }
+  button.on { background: #e8eaed; color: #111; border-color: #e8eaed; }
+  #pauseBtn.paused { background: #2e7d32; border-color: #2e7d32; }
+  input[type=file] { display: none; }
+  .muted { color: var(--muted); font-size: 13px; }
+  #answer { font-size: 26px; font-weight: 650; margin: 2px 0 2px; overflow-wrap: anywhere; }
+  #conf { color: var(--muted); }
+  .path { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 10px 0 4px; }
+  .chip { border-radius: 999px; padding: 4px 10px; font-size: 13px; border: 1px solid var(--line); background: #22262b; }
+  .chip.small { border-color: var(--small); }
+  .chip.big { border-color: var(--big); }
+  .arrow { color: var(--muted); }
+  .badge { display: inline-block; border-radius: 6px; padding: 2px 8px; font-size: 13px; font-weight: 600; color: #111; }
+  .idle { background: var(--idle); } .stressed { background: var(--stressed); } .critical { background: var(--critical); }
+  .grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
+  .stat { background: #15181b; border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+  .stat b { display: block; font-size: 20px; }
+  canvas#chart { width: 100%; height: 170px; display: block; margin-top: 8px; }
+  .legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .sw { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 4px; vertical-align: -1px; }
+  #labelBox { display: none; }
+  #labelInput { font: inherit; padding: 6px 8px; border-radius: 8px; border: 1px solid var(--line); background: #15181b; color: var(--text); flex: 1; min-width: 0; }
+  #err { color: var(--critical); font-size: 13px; min-height: 1em; }
+</style>
+</head>
+<body>
+<header>
+  <h1>STONE v2</h1>
+  <span>resource-aware model switching on a Raspberry Pi 4</span>
+</header>
+<main>
+  <section class="panel">
+    <video id="cam" autoplay playsinline muted></video>
+    <img id="preview" alt="uploaded photo">
+    <canvas id="snap" hidden></canvas>
+    <div class="row">
+      <button id="pauseBtn">Pause</button>
+      <label class="btn" for="upload">Use a photo</label>
+      <input id="upload" type="file" accept="image/*" capture="environment">
+      <label class="muted"><input id="reuse" type="checkbox"> reuse unchanged frames</label>
+    </div>
+    <div class="row">
+      <span class="muted">Mode:</span>
+      <button class="mode on" data-mode="v2">v2 (adaptive)</button>
+      <button class="mode" data-mode="fixed">fixed model</button>
+      <button class="mode" data-mode="big">always big</button>
+    </div>
+    <div id="labelBox" class="row">
+      <input id="labelInput" type="text" placeholder="True label (optional)">
+      <button id="submitLabel">Save</button>
+    </div>
+    <div id="err"></div>
+  </section>
+
+  <section class="panel">
+    <div class="muted">Answer</div>
+    <div id="answer">Waiting for the first frame…</div>
+    <div id="conf"></div>
+    <div class="path" id="path"></div>
+    <div class="muted" id="why"></div>
+
+    <div class="grid3">
+      <div class="stat"><span class="muted">Device (EightSignal)</span><b id="tier">–</b><span class="muted" id="dev"></span></div>
+      <div class="stat"><span class="muted">Avg time, last 30</span><b id="avg">–</b><span class="muted" id="budget"></span></div>
+      <div class="stat"><span class="muted">Sent to big model</span><b id="esc">–</b><span class="muted" id="modeTxt"></span></div>
+    </div>
+
+    <canvas id="chart" width="600" height="170"></canvas>
+    <div class="legend">
+      <span><span class="sw" style="background:var(--small)"></span>small model only</span>
+      <span><span class="sw" style="background:var(--big)"></span>small, then big model</span>
+      <span><span class="sw" style="background:var(--budget)"></span>time budget</span>
+    </div>
+  </section>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+const video = $('cam'), canvas = $('snap');
+let paused = false, busy = false, lastId = null, uploaded = null;
+const bars = [];               // {ms, escalated}
+let target = 145;
+
+navigator.mediaDevices?.getUserMedia({ video: { facingMode: "environment" } })
+  .then(s => { video.srcObject = s; })
+  .catch(() => { $('err').textContent = "Camera unavailable (phones need https). Use \"Use a photo\" instead."; });
+
+function frameBlob() {
+  return new Promise(resolve => {
+    if (uploaded) { resolve(uploaded); return; }
+    if (!video.videoWidth) { resolve(null); return; }
+    canvas.width = video.videoWidth; canvas.height = video.videoHeight;
+    canvas.getContext('2d').drawImage(video, 0, 0);
+    canvas.toBlob(resolve, "image/jpeg", 0.85);
+  });
+}
+
+async function tick() {
+  if (paused || busy) return;
+  const blob = await frameBlob();
+  if (!blob) return;
+  busy = true;
+  try {
+    const fd = new FormData(); fd.append("file", blob, "frame.jpg");
+    const res = await fetch("/infer", { method: "POST", body: fd });
+    show(await res.json());
+    $('err').textContent = "";
+  } catch (e) { $('err').textContent = "Cannot reach the Pi: " + e; }
+  busy = false;
+  if (uploaded) { paused = true; setPauseUi(); }   // one answer per uploaded photo
+}
+
+function show(d) {
+  lastId = d.request_id; target = d.target_ms;
+  $('answer').textContent = d.label;
+  $('conf').textContent = `${(d.confidence * 100).toFixed(1)}% confident · ${d.latency_ms} ms on the Pi` + (d.reused ? " · reused (frame unchanged)" : "");
+  $('path').innerHTML = d.path.map((p, i) =>
+    `<span class="chip ${i ? 'big' : 'small'}">${p.model} · ${(p.confidence * 100).toFixed(0)}% · ${p.ms} ms</span>`
+  ).join('<span class="arrow">→</span>');
+  $('why').textContent = d.reused ? "" :
+    d.mode !== "v2" ? `Mode "${d.mode}": always ${d.model}.` :
+    d.escalated ? "The small model was unsure, so the photo went to the bigger model."
+                : "The small model was confident, so no bigger model was needed.";
+  $('tier').innerHTML = `<span class="badge ${d.tier}">${d.tier}</span>`;
+  $('dev').textContent = `CPU (others) ${Math.round(d.cpu)}% · ${Math.round(d.temperature)} °C`;
+  $('avg').textContent = d.avg_ms == null ? "–" : `${Math.round(d.avg_ms)} ms`;
+  $('budget').textContent = `budget ${Math.round(target)} ms`;
+  $('esc').textContent = d.escalated_pct == null ? "–" : `${Math.round(d.escalated_pct)}%`;
+  $('modeTxt').textContent = `mode: ${d.mode}`;
+  if (!d.reused) { bars.push({ ms: d.latency_ms, esc: d.escalated }); if (bars.length > 30) bars.shift(); draw(); }
+}
+
+function draw() {
+  const c = $('chart'), g = c.getContext('2d');
+  const W = c.width = c.clientWidth * devicePixelRatio, H = c.height = 170 * devicePixelRatio;
+  g.clearRect(0, 0, W, H);
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const top = Math.max(target * 2, ...bars.map(b => b.ms)) * 1.1;
+  const y = v => H - (v / top) * (H - 8 * devicePixelRatio);
+  const bw = W / 30;
+  bars.forEach((b, i) => {
+    g.fillStyle = b.esc ? css('--big') : css('--small');
+    g.fillRect(i * bw + 1, y(b.ms), Math.max(1, bw - 2), H - y(b.ms));
+  });
+  g.strokeStyle = css('--budget'); g.setLineDash([6, 4]); g.lineWidth = 1.5 * devicePixelRatio;
+  g.beginPath(); g.moveTo(0, y(target)); g.lineTo(W, y(target)); g.stroke(); g.setLineDash([]);
+  g.fillStyle = css('--muted'); g.font = `${11 * devicePixelRatio}px system-ui`;
+  g.fillText(`${Math.round(target)} ms`, 4, y(target) - 4);
+}
+
+function setPauseUi() {
+  $('pauseBtn').textContent = paused ? "Resume" : "Pause";
+  $('pauseBtn').classList.toggle('paused', paused);
+  $('labelBox').style.display = paused ? "flex" : "none";
+}
+$('pauseBtn').onclick = () => {
+  paused = !paused;
+  if (!paused && uploaded) { uploaded = null; $('preview').style.display = "none"; video.style.display = "block"; }
+  setPauseUi();
+};
+$('upload').onchange = e => {
+  const f = e.target.files[0]; if (!f) return;
+  uploaded = f; $('preview').src = URL.createObjectURL(f);
+  $('preview').style.display = "block"; video.style.display = "none";
+  e.target.value = "";            // allow choosing the same photo again
+  paused = false; setPauseUi(); tick();
+};
+document.querySelectorAll('.mode').forEach(b => b.onclick = async () => {
+  const r = await fetch("/settings", { method: "POST", headers: { "Content-Type": "application/json" },
+                                      body: JSON.stringify({ mode: b.dataset.mode }) });
+  const s = await r.json();
+  document.querySelectorAll('.mode').forEach(x => x.classList.toggle('on', x.dataset.mode === s.mode));
+  bars.length = 0; draw();
+});
+$('reuse').onchange = e => fetch("/settings", { method: "POST", headers: { "Content-Type": "application/json" },
+                                               body: JSON.stringify({ reuse: e.target.checked }) });
+$('submitLabel').onclick = async () => {
+  const label = $('labelInput').value.trim();
+  if (!label || lastId === null) return;
+  await fetch("/label", { method: "POST", headers: { "Content-Type": "application/json" },
+                          body: JSON.stringify({ request_id: lastId, true_label: label }) });
+  $('labelInput').value = ""; $('err').textContent = "Label saved.";
+};
+setInterval(tick, 400);
+window.addEventListener('resize', draw);
+</script>
+</body>
+</html>

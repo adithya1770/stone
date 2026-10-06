@@ -1,0 +1,835 @@
+{
+  "table": "v2/results_v2/rebuilt_20261002_2242/table_imagenette.csv",
+  "n_images": 800,
+  "n_tune": 390,
+  "n_test": 410,
+  "variants": [
+    "int8_96",
+    "int8_128",
+    "int8_160",
+    "int8_192",
+    "int8_224",
+    "fp32_128",
+    "fp32_160",
+    "fp32_224",
+    "fp32n_128",
+    "fp32n_160",
+    "fp32n_224",
+    "mnv2f_128",
+    "mnv2f_160",
+    "mnv2f_224",
+    "mnv2q_128",
+    "mnv2q_160",
+    "mnv2q_224"
+  ],
+  "v2_candidates": [
+    "int8_96",
+    "int8_128",
+    "int8_160",
+    "int8_192",
+    "int8_224",
+    "fp32_128",
+    "fp32_160",
+    "fp32_224",
+    "fp32n_128",
+    "fp32n_160",
+    "fp32n_224",
+    "mnv2f_128",
+    "mnv2f_160",
+    "mnv2f_224",
+    "mnv2q_128",
+    "mnv2q_160",
+    "mnv2q_224"
+  ],
+  "conditions": {
+    "idle": {
+      "latency_source": {
+        "int8_96": "profile",
+        "int8_128": "profile",
+        "int8_160": "profile",
+        "int8_192": "profile",
+        "int8_224": "profile",
+        "fp32_128": "profile",
+        "fp32_160": "profile",
+        "fp32_224": "profile",
+        "fp32n_128": "profile",
+        "fp32n_160": "profile",
+        "fp32n_224": "profile",
+        "mnv2f_128": "profile",
+        "mnv2f_160": "profile",
+        "mnv2f_224": "profile",
+        "mnv2q_128": "profile",
+        "mnv2q_160": "profile",
+        "mnv2q_224": "profile"
+      },
+      "budget_ms": 55.077635897435904,
+      "static_test": {
+        "int8_96": {
+          "acc": 11.951219512195122,
+          "lat": 11.235839024390243,
+          "p95": 25.736,
+          "n": 410,
+          "kind": "static",
+          "first": "int8_96",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "int8_128": {
+          "acc": 29.756097560975608,
+          "lat": 19.531990243902438,
+          "p95": 43.952,
+          "n": 410,
+          "kind": "static",
+          "first": "int8_128",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "int8_160": {
+          "acc": 54.390243902439025,
+          "lat": 27.540607317073174,
+          "p95": 59.383,
+          "n": 410,
+          "kind": "static",
+          "first": "int8_160",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "int8_192": {
+          "acc": 63.90243902439025,
+          "lat": 38.76590975609756,
+          "p95": 85.344,
+          "n": 410,
+          "kind": "static",
+          "first": "int8_192",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "int8_224": {
+          "acc": 66.58536585365854,
+          "lat": 53.933741463414634,
+          "p95": 115.017,
+          "n": 410,
+          "kind": "static",
+          "first": "int8_224",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32_128": {
+          "acc": 42.19512195121951,
+          "lat": 27.97218292682927,
+          "p95": 57.09119999999999,
+          "n": 410,
+          "kind": "static",
+          "first": "fp32_128",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32_160": {
+          "acc": 59.26829268292683,
+          "lat": 43.65899268292682,
+          "p95": 89.058,
+          "n": 410,
+          "kind": "static",
+          "first": "fp32_160",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32_224": {
+          "acc": 69.26829268292683,
+          "lat": 70.69999268292683,
+          "p95": 117.309,
+          "n": 410,
+          "kind": "static",
+          "first": "fp32_224",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32n_128": {
+          "acc": 57.80487804878048,
+          "lat": 26.58361463414634,
+          "p95": 56.908,
+          "n": 410,
+          "kind": "static",
+          "first": "fp32n_128",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32n_160": {
+          "acc": 71.95121951219512,
+          "lat": 47.249012195121956,
+          "p95": 88.885,
+          "n": 410,
+          "kind": "static",
+          "first": "fp32n_160",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32n_224": {
+          "acc": 81.46341463414633,
+          "lat": 75.56056829268293,
+          "p95": 128.99,
+          "n": 410,
+          "kind": "static",
+          "first": "fp32n_224",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "mnv2f_128": {
+          "acc": 59.02439024390244,
+          "lat": 29.407463414634144,
+          "p95": 62.61,
+          "n": 410,
+          "kind": "static",
+          "first": "mnv2f_128",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "mnv2f_160": {
+          "acc": 73.17073170731707,
+          "lat": 46.275936585365855,
+          "p95": 99.086,
+          "n": 410,
+          "kind": "static",
+          "first": "mnv2f_160",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "mnv2f_224": {
+          "acc": 83.41463414634146,
+          "lat": 77.36431951219512,
+          "p95": 135.716,
+          "n": 410,
+          "kind": "static",
+          "first": "mnv2f_224",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "mnv2q_128": {
+          "acc": 43.170731707317074,
+          "lat": 21.17860975609756,
+          "p95": 44.058,
+          "n": 410,
+          "kind": "static",
+          "first": "mnv2q_128",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "mnv2q_160": {
+          "acc": 69.02439024390243,
+          "lat": 30.800626829268296,
+          "p95": 68.696,
+          "n": 410,
+          "kind": "static",
+          "first": "mnv2q_160",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "mnv2q_224": {
+          "acc": 81.70731707317073,
+          "lat": 61.310243902439026,
+          "p95": 117.592,
+          "n": 410,
+          "kind": "static",
+          "first": "mnv2q_224",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        }
+      },
+      "chosen_on_tune": {
+        "acc": 75.38461538461539,
+        "lat": 54.94972051282051,
+        "p95": 139.83859999999999,
+        "n": 390,
+        "kind": "cascade",
+        "first": "mnv2q_160",
+        "second": "mnv2f_224",
+        "theta": 0.5679600000000001,
+        "signal": "confidence",
+        "esc": 30.0
+      },
+      "chosen_test": {
+        "acc": 79.51219512195122,
+        "lat": 55.93512926829269,
+        "p95": 131.29175,
+        "n": 410,
+        "kind": "cascade",
+        "first": "mnv2q_160",
+        "second": "mnv2f_224",
+        "theta": 0.5679600000000001,
+        "signal": "confidence",
+        "esc": 32.926829268292686
+      },
+      "accuracy_matched_on_tune": {
+        "acc": 65.12820512820512,
+        "lat": 32.89763076923077,
+        "p95": 68.706,
+        "n": 390,
+        "kind": "cascade",
+        "first": "mnv2q_160",
+        "second": "mnv2q_224",
+        "theta": -2.8435975,
+        "signal": "entropy",
+        "esc": 2.564102564102564
+      },
+      "accuracy_matched_test": {
+        "acc": 69.26829268292683,
+        "lat": 31.895790243902443,
+        "p95": 68.706,
+        "n": 410,
+        "kind": "cascade",
+        "first": "mnv2q_160",
+        "second": "mnv2q_224",
+        "theta": -2.8435975,
+        "signal": "entropy",
+        "esc": 1.707317073170732
+      },
+      "vs_baseline": {
+        "d_acc": 10.24390243902439,
+        "d_acc_ci": [
+          6.829268292682928,
+          13.664634146341431
+        ],
+        "d_lat": -14.764863414634146,
+        "d_lat_ci": [
+          -18.912311463414632,
+          -10.586178841463417
+        ],
+        "wins": 50,
+        "losses": 8
+      },
+      "vs_alwaysint8": {
+        "d_acc": 12.926829268292684,
+        "d_acc_ci": [
+          9.268292682926829,
+          16.585365853658537
+        ],
+        "d_lat": 2.001387804878049,
+        "d_lat_ci": [
+          -2.210001219512195,
+          6.607856646341462
+        ],
+        "wins": 60,
+        "losses": 7
+      },
+      "coin_flip_acc_at_same_latency": 66.90562689276481,
+      "oracle_test": {
+        "acc": 88.29268292682927,
+        "lat": 23.08300975609756,
+        "p95": 56.711,
+        "n": 410
+      },
+      "live_policy_test": {
+        "acc": 79.02439024390245,
+        "lat": 54.37859756097561,
+        "p95": 130.76419999999996,
+        "n": 410,
+        "esc": 30.975609756097562,
+        "final_theta": {
+          "idle": 0.5159
+        }
+      },
+      "plot": "v2/results_v2/rebuilt_20261002_2242/replay_all/pareto_idle.png"
+    },
+    "stressed": {
+      "latency_source": {
+        "int8_96": "profile",
+        "int8_128": "profile",
+        "int8_160": "profile",
+        "int8_192": "profile",
+        "int8_224": "profile",
+        "fp32_128": "profile",
+        "fp32_160": "profile",
+        "fp32_224": "profile",
+        "fp32n_128": "profile",
+        "fp32n_160": "profile",
+        "fp32n_224": "profile",
+        "mnv2f_128": "profile",
+        "mnv2f_160": "profile",
+        "mnv2f_224": "profile",
+        "mnv2q_128": "profile",
+        "mnv2q_160": "profile",
+        "mnv2q_224": "profile"
+      },
+      "budget_ms": 93.60978205128205,
+      "static_test": {
+        "int8_96": {
+          "acc": 11.951219512195122,
+          "lat": 17.877524390243902,
+          "p95": 21.737,
+          "n": 410,
+          "kind": "static",
+          "first": "int8_96",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "int8_128": {
+          "acc": 29.756097560975608,
+          "lat": 31.43613414634146,
+          "p95": 36.7,
+          "n": 410,
+          "kind": "static",
+          "first": "int8_128",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "int8_160": {
+          "acc": 54.390243902439025,
+          "lat": 49.78294634146341,
+          "p95": 55.081,
+          "n": 410,
+          "kind": "static",
+          "first": "int8_160",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "int8_192": {
+          "acc": 63.90243902439025,
+          "lat": 69.80805609756098,
+          "p95": 74.394,
+          "n": 410,
+          "kind": "static",
+          "first": "int8_192",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "int8_224": {
+          "acc": 66.58536585365854,
+          "lat": 93.02684878048781,
+          "p95": 100.169,
+          "n": 410,
+          "kind": "static",
+          "first": "int8_224",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32_128": {
+          "acc": 42.19512195121951,
+          "lat": 43.379024390243906,
+          "p95": 46.917,
+          "n": 410,
+          "kind": "static",
+          "first": "fp32_128",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32_160": {
+          "acc": 59.26829268292683,
+          "lat": 69.08590731707318,
+          "p95": 73.435,
+          "n": 410,
+          "kind": "static",
+          "first": "fp32_160",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32_224": {
+          "acc": 69.26829268292683,
+          "lat": 135.87120243902442,
+          "p95": 142.294,
+          "n": 410,
+          "kind": "static",
+          "first": "fp32_224",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32n_128": {
+          "acc": 57.80487804878048,
+          "lat": 44.11548536585365,
+          "p95": 47.597,
+          "n": 410,
+          "kind": "static",
+          "first": "fp32n_128",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32n_160": {
+          "acc": 71.95121951219512,
+          "lat": 68.71169024390244,
+          "p95": 73.613,
+          "n": 410,
+          "kind": "static",
+          "first": "fp32n_160",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "fp32n_224": {
+          "acc": 81.46341463414633,
+          "lat": 133.9480975609756,
+          "p95": 142.85,
+          "n": 410,
+          "kind": "static",
+          "first": "fp32n_224",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "mnv2f_128": {
+          "acc": 59.02439024390244,
+          "lat": 51.81079756097561,
+          "p95": 55.476,
+          "n": 410,
+          "kind": "static",
+          "first": "mnv2f_128",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "mnv2f_160": {
+          "acc": 73.17073170731707,
+          "lat": 79.60795853658537,
+          "p95": 85.673,
+          "n": 410,
+          "kind": "static",
+          "first": "mnv2f_160",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "mnv2f_224": {
+          "acc": 83.41463414634146,
+          "lat": 150.63033170731708,
+          "p95": 161.45,
+          "n": 410,
+          "kind": "static",
+          "first": "mnv2f_224",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "mnv2q_128": {
+          "acc": 43.170731707317074,
+          "lat": 31.622612195121953,
+          "p95": 36.00684999999995,
+          "n": 410,
+          "kind": "static",
+          "first": "mnv2q_128",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "mnv2q_160": {
+          "acc": 69.02439024390243,
+          "lat": 49.11186585365853,
+          "p95": 54.205,
+          "n": 410,
+          "kind": "static",
+          "first": "mnv2q_160",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        },
+        "mnv2q_224": {
+          "acc": 81.70731707317073,
+          "lat": 92.47460975609755,
+          "p95": 101.753,
+          "n": 410,
+          "kind": "static",
+          "first": "mnv2q_224",
+          "second": null,
+          "theta": null,
+          "esc": 0.0
+        }
+      },
+      "chosen_on_tune": {
+        "acc": 76.92307692307693,
+        "lat": 93.38890769230768,
+        "p95": 103.338,
+        "n": 390,
+        "kind": "cascade",
+        "first": "mnv2q_224",
+        "second": "int8_224",
+        "theta": 0.122855,
+        "signal": "confidence",
+        "esc": 2.564102564102564
+      },
+      "chosen_test": {
+        "acc": 81.70731707317073,
+        "lat": 94.31594634146342,
+        "p95": 102.62474999999992,
+        "n": 410,
+        "kind": "cascade",
+        "first": "mnv2q_224",
+        "second": "int8_224",
+        "theta": 0.122855,
+        "signal": "confidence",
+        "esc": 1.951219512195122
+      },
+      "accuracy_matched_on_tune": {
+        "acc": 65.12820512820512,
+        "lat": 51.75051538461539,
+        "p95": 54.336,
+        "n": 390,
+        "kind": "cascade",
+        "first": "mnv2q_160",
+        "second": "mnv2q_224",
+        "theta": 0.22835500000000003,
+        "signal": "confidence",
+        "esc": 2.564102564102564
+      },
+      "accuracy_matched_test": {
+        "acc": 70.0,
+        "lat": 52.69604146341464,
+        "p95": 54.336,
+        "n": 410,
+        "kind": "cascade",
+        "first": "mnv2q_160",
+        "second": "mnv2q_224",
+        "theta": 0.22835500000000003,
+        "signal": "confidence",
+        "esc": 3.902439024390244
+      },
+      "vs_baseline": {
+        "d_acc": 12.439024390243903,
+        "d_acc_ci": [
+          9.024390243902438,
+          16.097560975609756
+        ],
+        "d_lat": -41.55525609756097,
+        "d_lat_ci": [
+          -43.371325914634156,
+          -39.695975365853656
+        ],
+        "wins": 55,
+        "losses": 4
+      },
+      "vs_alwaysint8": {
+        "d_acc": 15.121951219512194,
+        "d_acc_ci": [
+          11.707317073170733,
+          19.024390243902438
+        ],
+        "d_lat": 1.28909756097561,
+        "d_lat_ci": [
+          -0.15835207317073138,
+          2.8696142073170696
+        ],
+        "wins": 65,
+        "losses": 3
+      },
+      "coin_flip_acc_at_same_latency": 66.66608954620038,
+      "oracle_test": {
+        "acc": 88.29268292682927,
+        "lat": 37.94935609756098,
+        "p95": 93.2464,
+        "n": 410
+      },
+      "live_policy_test": {
+        "acc": 81.70731707317073,
+        "lat": 94.33099024390243,
+        "p95": 102.62474999999992,
+        "n": 410,
+        "esc": 1.951219512195122,
+        "final_theta": {
+          "stressed": 0.1343
+        }
+      },
+      "plot": "v2/results_v2/rebuilt_20261002_2242/replay_all/pareto_stressed.png"
+    }
+  },
+  "generated": "2026-10-02T23:04:56.614403",
+  "auroc": {
+    "int8_96": {
+      "margin": 0.5480241958279156,
+      "confidence": 0.6825993555316864,
+      "entropy": 0.7410537622251117
+    },
+    "int8_128": {
+      "margin": 0.5137181238615665,
+      "confidence": 0.6318021402550091,
+      "entropy": 0.699496243169399
+    },
+    "int8_160": {
+      "margin": 0.6874295580441716,
+      "confidence": 0.7724754802043117,
+      "entropy": 0.7991534975180451
+    },
+    "int8_192": {
+      "margin": 0.8093021456571075,
+      "confidence": 0.8243630080462142,
+      "entropy": 0.8182638745615844
+    },
+    "int8_224": {
+      "margin": 0.870992754204433,
+      "confidence": 0.867998181866795,
+      "entropy": 0.8522232025881661
+    },
+    "fp32_128": {
+      "margin": 0.8454793785517426,
+      "confidence": 0.8522597009829028,
+      "entropy": 0.8543816004487695
+    },
+    "fp32_160": {
+      "margin": 0.8682881151277692,
+      "confidence": 0.8733643823464182,
+      "entropy": 0.8598851679357334
+    },
+    "fp32_224": {
+      "margin": 0.8608735747820255,
+      "confidence": 0.859462329532752,
+      "entropy": 0.8065057008718981
+    },
+    "fp32n_128": {
+      "margin": 0.8448086632033365,
+      "confidence": 0.8517962976512768,
+      "entropy": 0.8595400112192385
+    },
+    "fp32n_160": {
+      "margin": 0.8700368459837877,
+      "confidence": 0.8742225497420781,
+      "entropy": 0.8655711127487103
+    },
+    "fp32n_224": {
+      "margin": 0.8900488496690829,
+      "confidence": 0.8835289946422944,
+      "entropy": 0.835486920895052
+    },
+    "mnv2f_128": {
+      "margin": 0.8439713695395513,
+      "confidence": 0.8496900826446281,
+      "entropy": 0.8567124163715073
+    },
+    "mnv2f_160": {
+      "margin": 0.866969696969697,
+      "confidence": 0.8765454545454545,
+      "entropy": 0.8743333333333333
+    },
+    "mnv2f_224": {
+      "margin": 0.8928663570691434,
+      "confidence": 0.8825249398004816,
+      "entropy": 0.8316133470932232
+    },
+    "mnv2q_128": {
+      "margin": 0.61755292063723,
+      "confidence": 0.7083606120123178,
+      "entropy": 0.746853859023787
+    },
+    "mnv2q_160": {
+      "margin": 0.8349239030633538,
+      "confidence": 0.8577251606800034,
+      "entropy": 0.8603544698255474
+    },
+    "mnv2q_224": {
+      "margin": 0.8757014925373134,
+      "confidence": 0.8698706467661692,
+      "entropy": 0.8645174129353234
+    }
+  },
+  "mixed_schedule": {
+    "v2": {
+      "acc": 81.21951219512195,
+      "lat": 78.2952756097561,
+      "p95": 102.62474999999992,
+      "n": 410,
+      "esc": 13.414634146341465,
+      "final_theta": {
+        "idle": 0.5303,
+        "stressed": 0.1481
+      }
+    },
+    "static": {
+      "fp32_224": {
+        "acc": 69.26829268292683,
+        "lat": 110.02358780487805,
+        "p95": 141.611,
+        "n": 410
+      },
+      "int8_224": {
+        "acc": 66.58536585365854,
+        "lat": 77.9958463414634,
+        "p95": 105.298,
+        "n": 410
+      }
+    }
+  },
+  "operating_points": {
+    "idle": {
+      "first": "mnv2q_160",
+      "second": "mnv2f_224",
+      "theta": 0.5679600000000001,
+      "signal": "confidence",
+      "budget_ms": 55.078,
+      "est_ms": {
+        "int8_96": 11.392,
+        "int8_128": 19.559,
+        "int8_160": 28.006,
+        "int8_192": 38.555,
+        "int8_224": 54.491,
+        "fp32_128": 28.29,
+        "fp32_160": 44.161,
+        "fp32_224": 70.867,
+        "fp32n_128": 26.432,
+        "fp32n_160": 47.273,
+        "fp32n_224": 75.456,
+        "mnv2f_128": 29.448,
+        "mnv2f_160": 46.222,
+        "mnv2f_224": 77.918,
+        "mnv2q_128": 21.033,
+        "mnv2q_160": 31.258,
+        "mnv2q_224": 59.604
+      }
+    },
+    "stressed": {
+      "first": "mnv2q_224",
+      "second": "int8_224",
+      "theta": 0.122855,
+      "signal": "confidence",
+      "budget_ms": 93.61,
+      "est_ms": {
+        "int8_96": 17.918,
+        "int8_128": 31.502,
+        "int8_160": 49.621,
+        "int8_192": 69.591,
+        "int8_224": 93.311,
+        "fp32_128": 43.449,
+        "fp32_160": 69.109,
+        "fp32_224": 135.747,
+        "fp32n_128": 43.926,
+        "fp32n_160": 68.684,
+        "fp32n_224": 133.794,
+        "mnv2f_128": 51.877,
+        "mnv2f_160": 79.576,
+        "mnv2f_224": 151.02,
+        "mnv2q_128": 31.692,
+        "mnv2q_160": 49.302,
+        "mnv2q_224": 91.75
+      }
+    },
+    "_meta": {
+      "source_table": "v2/results_v2/rebuilt_20261002_2242/table_imagenette.csv",
+      "profiles": {
+        "idle": "v2/results_v2/rebuilt_20261002_2242/profile_idle.csv",
+        "stressed": "v2/results_v2/rebuilt_20261002_2242/profile_stressed.csv"
+      },
+      "generated": "2026-10-02T23:04:56.614403",
+      "label": "(all models)",
+      "objective": "max accuracy s.t. mean latency <= budget (tuned on TUNE split)"
+    }
+  }
+}

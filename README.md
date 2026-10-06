@@ -81,12 +81,6 @@ PY=~/v2env/bin/python bash v2/pi_run_compare.sh      # the 7-method comparison (
 
 Results are written to `v2/results_v2/suite/<tag>/analysis/`.
 
-**Run the tests** (no Pi needed):
-
-```bash
-python -m pytest -q v2/tests
-```
-
 ## Repository layout
 
 ```
@@ -107,4 +101,4 @@ models/               original MobileNetV2 models and labels
 
 ## Team
 
-Adithya P S, Akash A and Fathima Rafah, Department of Intelligent Computing and Business Systems, St Joseph Engineering College, Mangaluru. Guide: Ms. Teena Annamma James.
+Adithya P S, Akash A and Fathima Rafah.

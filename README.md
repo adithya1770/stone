@@ -5,7 +5,7 @@
 For every photo, STONE asks two questions: *how much can the device afford right now?* and *does this photo need a bigger model?* A small model answers first. Unsure photos go to a bigger model, less often when the device is busy, so the average time per photo stays within a fixed budget on a Raspberry Pi 4.
 
 <!-- TODO: add the architecture figure (Fig. 1 of the paper) -->
-![How STONE handles one photo](docs/images/architecture.png)
+![How STONE handles one photo](assests/archi.png)
 
 ## How it works
 
@@ -31,15 +31,15 @@ Raspberry Pi 4, 800 unseen Imagewoof photos (480 under `stress-ng` load), 150 ms
 
 STONE is 6.3 to 6.7 points more accurate than every method that keeps the budget (McNemar p < 0.001). It ties static Lite1 on accuracy (p = 0.71) while Lite1 misses the budget on 71% of stressed photos.
 
-## Live demo
+## Snapshots demo
 
 A phone points its camera at photos, sends frames to the Pi, and the page shows the answer, which model(s) ran, the device state and a live chart of time per photo against the budget.
 
 <!-- TODO: add demo screenshot, idle device -->
-![Demo on an idle Pi](docs/images/demo_idle.jpg)
+![Demo on an idle Pi](assests/demo1.jpeg)
 
 <!-- TODO: add demo screenshot, stressed device -->
-![Demo under stress](docs/images/demo_stressed.jpg)
+![Demo under stress](assests/IMG_9796%202.jpg)
 
 ## Quick start (Raspberry Pi 4)
 

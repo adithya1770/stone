@@ -39,7 +39,7 @@ A phone points its camera at photos, sends frames to the Pi, and the page shows 
 ![Demo on an idle Pi](assests/demo1.jpeg)
 
 <!-- TODO: add demo screenshot, stressed device -->
-![Demo under stress](assests/IMG_9796%202.jpg)
+![Demo under stress](assests/demo2.jpeg)
 
 ## Quick start (Raspberry Pi 4)
 
